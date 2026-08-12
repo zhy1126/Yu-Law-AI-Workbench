@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="虞律团队 AI 工具与 Skill 统一入口">
+    <title>{% block title %}虞律团队 AI 工作台{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='workbench.css') }}">
+    {% block head %}{% endblock %}
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">跳到主要内容</a>
+    {% block body %}{% endblock %}
+    {% block scripts %}{% endblock %}
+  </body>
+</html>

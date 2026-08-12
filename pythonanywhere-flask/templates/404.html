@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}页面未找到 · 虞律团队 AI 工作台{% endblock %}
+{% block body %}
+<main id="main-content" class="not-found-page"><p class="not-found-code">404</p><h1>没有找到这个工具</h1><p>工具可能尚未接入，或链接已经发生变化。</p><a class="action action-primary" href="{{ url_for('index') }}">返回工作台</a></main>
+{% endblock %}
