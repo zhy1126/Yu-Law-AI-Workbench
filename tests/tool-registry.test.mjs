@@ -168,6 +168,39 @@ const expectedAnthropicTools = [
   ["written-consent", "董事会书面决议", "参照既有范本起草董事会或委员会一致书面决议。"],
 ];
 
+const installableToolIds = [
+  "legal-fact-checker",
+  "pkulaw-citation-validator",
+  "pkulaw-law-recognition",
+  "pkulaw-batch-contract-screening",
+  "pkulaw-contract-review-lite",
+  "pkulaw-governance-research-memo",
+  "pkulaw-opinion-citation-check",
+  "pkulaw-regulatory-reply-check",
+  "pkulaw-grounded-answer",
+  "prc-internal-compliance-risk",
+  "prc-legal-article-retrieval",
+  "prc-regulatory-risk-assessment",
+  "prc-structured-element-extraction",
+  "prc-multi-document-summarization",
+  "prc-strategic-risk-prioritization",
+  "pre-ipo-readiness",
+  "equity-offering-prospectus",
+  "ipo-execution",
+  "ipo-valuation-pricing",
+  "equity-market-window",
+  "buy-side-due-diligence",
+  "cross-border-due-diligence",
+  "deal-data-room",
+  "sell-side-auction",
+  "post-merger-integration",
+  "investment-committee-memo",
+  "venture-return-model",
+  "venture-cap-table",
+  "term-sheet-economics",
+  "venture-exit-analysis",
+];
+
 test("exports the supported category and status filters", () => {
   assert.deepEqual(registry.categories, [
     "全部工具",
@@ -187,7 +220,7 @@ test("exports the supported category and status filters", () => {
 });
 
 test("defines approved tool identities and integration details", () => {
-  assert.equal(registry.tools.length, 20);
+  assert.equal(registry.tools.length, 50);
   assert.deepEqual(
     registry.tools.filter((tool) => expectedTools.some(({ id }) => id === tool.id)).map(({
       id,
@@ -220,6 +253,24 @@ test("defines approved tool identities and integration details", () => {
     "仅可使用已批准的内容库。",
   );
   assert.equal(registry.getTool("contract-drafting"), undefined);
+});
+
+test("publishes 30 curated skills as individual download choices", () => {
+  const installableTools = registry.tools.filter((tool) => tool.status === "installable");
+  assert.equal(installableTools.length, 30);
+
+  for (const id of installableToolIds) {
+    const tool = registry.getTool(id);
+    assert.ok(tool, `missing curated skill: ${id}`);
+    assert.equal(tool.status, "installable");
+    assert.match(tool.repository ?? "", /^https:\/\/github\.com\//);
+    assert.equal(tool.localUrl, null);
+    assert.match(tool.notice, /律师|本地化|复核/);
+    assert.match(`${tool.version} ${tool.notice}`, /MIT|Apache-2\.0|CC BY-NC-ND 4\.0/);
+    if (tool.version.includes("CC BY-NC-ND 4.0")) {
+      assert.match(tool.notice, /商业项目.*授权|不得用于商业/);
+    }
+  }
 });
 
 test("deploys all installed Anthropic legal skills with local invocations and source links", () => {
