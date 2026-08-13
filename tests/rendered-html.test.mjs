@@ -40,6 +40,9 @@ test("server-renders the workbench homepage and approved tools", async () => {
   assert.match(html, /Anthropic Legal/);
   assert.match(html, /尽调问题提取/);
   assert.match(html, /董事会书面决议/);
+  assert.match(html, /IPO 上市准备度评估/);
+  assert.match(html, /买方尽职调查/);
+  assert.match(html, /PE\/VC 投资委员会备忘录/);
   assert.match(html, /href="\/tools\/local-legal-redaction"/);
   assert.match(html, /本入口不会上传客户文件/);
   assert.doesNotMatch(html, /<input[^>]+type=["']file["']/i);
