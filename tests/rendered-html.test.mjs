@@ -153,11 +153,16 @@ test("team handbook renders the complete onboarding workflow", async () => {
 
   const html = await response.text();
   assert.match(html, /虞律团队 AI 工作流使用手册/);
-  assert.match(html, /安装 WorkBuddy/);
-  assert.match(html, /加入团队项目/);
+  assert.match(html, /下载安装 WorkBuddy/);
+  assert.match(html, /Mac Apple 芯片/);
+  assert.match(html, /Windows 10/);
+  assert.match(html, /加入“虞律团队 AI 工作流试验”/);
   assert.match(html, /先推荐、律师确认后执行/);
   assert.match(html, /待律师复核/);
   assert.match(html, /只推荐 1–3 个最适合的 Skill/);
+  assert.match(html, /复制 Prompt/);
+  assert.match(html, /第一次完整跑通：虚拟任务演练/);
+  assert.match(html, /管理员上线前检查/);
   assert.match(html, /返回 AI 工作台/);
 });
 
