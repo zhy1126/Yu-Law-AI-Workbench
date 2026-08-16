@@ -15,18 +15,21 @@ test("homepage links first-time users to the team handbook", async () => {
   assert.match(shell, /团队使用手册/);
 });
 
-test("handbook gives beginners a complete installation and first-run path", async () => {
+test("handbook gives beginners a concise setup path and a complete team workflow", async () => {
   const handbook = await readText("app/guide/page.tsx");
 
   for (const required of [
     /虞律团队 AI 工作流使用手册/,
     /https:\/\/www\.workbuddy\.cn\/work\//,
-    /Mac Apple 芯片/,
-    /Mac Intel 芯片/,
-    /Windows 10/,
     /微信扫码完成登录/,
     /加入“虞律团队 AI 工作流试验”/,
+    /周会或日常工作/,
+    /计划栏/,
+    /团队资源库/,
+    /任务工作区/,
     /法律 AI 工作流总入口/,
+    /专业子任务/,
+    /成果回到任务/,
     /问一问（Ask）/,
     /想一想（Plan）/,
     /默认权限/,

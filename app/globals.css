@@ -517,7 +517,7 @@ button { color: inherit; }
 .guide-table span, .guide-table strong { padding: 14px 16px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: 13px; }
 .guide-table strong { background: var(--paper-deep); text-align: left; }
 .guide-table span { background: var(--white); color: var(--muted); }
-.system-table [role="row"] { grid-template-columns: 1.3fr .7fr 1fr; }
+.workflow-entry-table [role="row"] { grid-template-columns: .7fr 1.3fr 1.3fr; }
 .material-table [role="row"] { grid-template-columns: .8fr 1.2fr 1.2fr; }
 .mode-table [role="row"] { grid-template-columns: .7fr 1.2fr 1.2fr; }
 .guide-small { font-size: 13px; }
@@ -649,7 +649,7 @@ button { color: inherit; }
   .guide-toc nav a:nth-child(odd) { border-right: 0; }
   .role-grid { grid-template-columns: 1fr; }
   .guide-flow { grid-template-columns: repeat(2, 1fr); }
-  .guide-table [role="row"], .system-table [role="row"], .material-table [role="row"], .mode-table [role="row"] { grid-template-columns: 1fr; }
+  .guide-table [role="row"], .workflow-entry-table [role="row"], .material-table [role="row"], .mode-table [role="row"] { grid-template-columns: 1fr; }
   .guide-table span + span, .guide-table strong + strong { border-top: 0; }
   .readme-steps li { grid-template-columns: 1fr; gap: 5px; }
   .prompt-block > header { align-items: stretch; flex-direction: column; }

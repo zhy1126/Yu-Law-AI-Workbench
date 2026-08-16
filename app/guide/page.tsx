@@ -132,17 +132,17 @@ export default function GuidePage() {
 
       <main id="main-content" className="guide-page" tabIndex={-1}>
         <header className="guide-intro guide-intro-readme">
-          <p className="hero-kicker">README · 新成员从零上手</p>
+          <p className="hero-kicker">README · 团队使用说明</p>
           <h1>虞律团队 AI 工作流使用手册</h1>
-          <p>从下载安装到完成第一个“待律师复核”任务。第一次使用时，请从上到下逐项操作，不要跳步，也不要使用真实客户材料演练。</p>
+          <p>这份手册说明团队怎样在 WorkBuddy 中接收任务、整理材料、选择 Skill、生成成果并完成律师复核。安装部分只保留必要步骤，后面的工作流说明是日常使用的重点。</p>
           <div className="guide-meta" aria-label="手册信息">
-            <span>适用对象：第一次使用的团队成员</span>
-            <span>预计时间：20–30 分钟</span>
+            <span>适用对象：虞律团队成员</span>
+            <span>使用方式：按任务节点查阅</span>
             <span>更新：2026 年 8 月</span>
           </div>
           <div className="guide-principle">
-            <strong>唯一默认流程</strong>
-            <span>先推荐、律师确认后执行；AI 最多执行到“待律师复核”。</span>
+            <strong>工作原则</strong>
+            <span>先推荐、律师确认后执行。AI 生成成果后，任务进入“待律师复核”。</span>
           </div>
         </header>
 
@@ -151,9 +151,9 @@ export default function GuidePage() {
             <p className="panel-label">目录</p>
             <nav aria-label="手册目录">
               <a href="#finish-line">完成标准</a>
-              <a href="#roles">先理解四个部分</a>
-              <a href="#before-install">安装前准备</a>
-              <a href="#install">下载安装 WorkBuddy</a>
+              <a href="#roles">四个组成部分</a>
+              <a href="#workflow-overview">工作流如何运转</a>
+              <a href="#install">安装和登录</a>
               <a href="#first-setup">首次设置</a>
               <a href="#demo">第一次完整演练</a>
               <a href="#prompts">Prompt 复制区</a>
@@ -170,123 +170,104 @@ export default function GuidePage() {
           <article className="guide-article guide-readme">
             <section id="finish-line" className="guide-section">
               <p className="section-index">00</p>
-              <h2>你做到什么才算“安装完成”</h2>
-              <p>不是看到 WorkBuddy 图标就算完成。以下六项全部满足，才算可以进入团队试用。</p>
+              <h2>开始使用前的检查</h2>
+              <p>完成下面几项后，就可以开始团队试用。</p>
               <ul className="readme-checklist">
                 <li>□ WorkBuddy 可以正常打开并登录。</li>
-                <li>□ 能进入“虞律团队 AI 工作流试验”项目，而不是自己新建一个同名项目。</li>
+                <li>□ 能进入“虞律团队 AI 工作流试验”项目。</li>
                 <li>□ 能看到团队计划栏、资源库以及项目材料。</li>
                 <li>□ 能找到并召唤“法律 AI 工作流总入口”。</li>
                 <li>□ 能用本页连接测试 Prompt 得到正确回复。</li>
                 <li>□ 能用虚拟材料把一个任务推进到“待律师复核”，且没有自动批准、归档或对外发送。</li>
               </ul>
-              <div className="guide-callout guide-callout-warning">
-                <strong>第一次演练禁止使用真实客户材料</strong>
-                <p>先用团队管理员提供的虚拟材料验证安装、权限和流程。虚拟演练通过后，再由经办律师决定是否在获授权的项目中使用真实材料。</p>
+              <div className="guide-callout">
+                <strong>首次演练材料</strong>
+                <p>第一次运行建议使用团队准备的虚拟材料。演练通过后，真实客户材料按照项目授权范围进入对应工作区。</p>
               </div>
             </section>
 
             <section id="roles" className="guide-section">
               <p className="section-index">01</p>
-              <h2>先理解四个部分</h2>
-              <p className="readme-lead">一句话记忆：在 WorkBuddy 里工作，用总入口选能力，用 Skill 做标准动作，最后由律师负责。</p>
+              <h2>四个组成部分</h2>
+              <p className="readme-lead">实际使用时，四个部分分别承担不同作用。</p>
               <div className="role-grid">
-                <div><h3>WorkBuddy</h3><p>实际工作的地方。项目、计划、材料、任务、专家、Skill 和成果都在这里组织。</p></div>
-                <div><h3>虞律 AI 工作台网页</h3><p>类似工具目录和 README。用来查“有什么能力、适合什么任务、需要什么材料”，网页本身不读取客户文件。</p></div>
-                <div><h3>法律 AI 工作流总入口</h3><p>团队的任务路由专家。它先理解任务、推荐 Skill、列出缺口，得到律师确认后才执行。</p></div>
-                <div><h3>经办律师</h3><p>决定立场、范围和风险边界，确认事实，复核成果，并手动批准、归档及对外发送。</p></div>
+                <div><h3>WorkBuddy</h3><p>团队实际开展工作的地方。项目、计划栏、材料、任务、专家、Skill 和成果都在这里组织。</p></div>
+                <div><h3>虞律 AI 工作台网页</h3><p>团队的 Skill 目录和使用说明。用于了解现有能力、适用任务和所需材料，不承接客户文件。</p></div>
+                <div><h3>法律 AI 工作流总入口</h3><p>WorkBuddy 中的任务路由专家。它根据任务推荐 Skill、说明材料缺口，并等待律师确认。</p></div>
+                <div><h3>经办律师</h3><p>确认委托方立场、工作范围和关键事实，复核成果，并完成批准、归档和对外发送。</p></div>
               </div>
               <div className="readme-route" aria-label="四部分关系">
                 <span>你在 WorkBuddy 发起任务</span><b>→</b><span>总入口推荐 Skill</span><b>→</b><span>律师确认</span><b>→</b><span>Skill 执行</span><b>→</b><span>律师复核</span>
               </div>
             </section>
 
-            <section id="before-install" className="guide-section">
+            <section id="workflow-overview" className="guide-section">
               <p className="section-index">02</p>
-              <h2>安装前准备</h2>
-              <h3>请先向团队管理员取得</h3>
-              <ul className="guide-checklist">
-                <li>团队项目邀请；项目名称应为“虞律团队 AI 工作流试验”。</li>
-                <li>团队管理员姓名及出现问题时的联系方法。</li>
-                <li>首次演练用的虚拟任务说明或虚拟材料包。</li>
-                <li>确认你应当能看到的专家名称：“法律 AI 工作流总入口”。</li>
-              </ul>
-              <h3>电脑和账号准备</h3>
-              <div className="guide-table system-table" role="table" aria-label="系统要求">
-                <div role="row"><strong role="columnheader">设备</strong><strong role="columnheader">最低要求</strong><strong role="columnheader">下载选择</strong></div>
-                <div role="row"><span role="cell">Mac Apple 芯片（M1/M2/M3/M4 等）</span><span role="cell">macOS 12.0+</span><span role="cell">Mac ARM64 / Apple 芯片</span></div>
-                <div role="row"><span role="cell">Mac Intel 芯片</span><span role="cell">macOS 12.0+</span><span role="cell">Mac X64 / Intel</span></div>
-                <div role="row"><span role="cell">Windows 电脑</span><span role="cell">Windows 10 及以上</span><span role="cell">Windows x64（兼容 ARM64）</span></div>
+              <h2>工作流如何运转</h2>
+              <p>团队的工作从周会或日常工作开始，统一进入 WorkBuddy 的计划栏。计划栏记录事项、负责人、期限和状态；专业法律工作再进入具体任务，由总入口推荐 Skill。</p>
+
+              <h3>一项工作通常经过以下环节</h3>
+              <ol className="demo-runbook workflow-runbook">
+                <li><span>1</span><div><h3>事项进入计划栏</h3><p>周会形成的行动项，由周协同整理后写入计划栏；日常新增事项也直接在计划栏建立。每项至少写明事项名称、负责人、期限和所属项目。</p></div></li>
+                <li><span>2</span><div><h3>判断是否需要专业子任务</h3><p>一般跟进事项继续在计划栏管理。涉及文书起草、合同审阅、尽调、并购结构、IPO 或专题研究时，建立独立任务进入法律 AI 工作流。</p></div></li>
+                <li><span>3</span><div><h3>整理材料</h3><p>项目专用材料放在任务工作区；团队批准的通用模板、案例和使用规范放在团队资源库。任务中写明所用文件和版本。</p></div></li>
+                <li><span>4</span><div><h3>总入口推荐 Skill</h3><p>在“法律 AI 工作流总入口”中说明任务、立场、材料和目标成果。总入口先推荐合适的 Skill，并列出缺失信息。</p></div></li>
+                <li><span>5</span><div><h3>律师确认后执行</h3><p>经办律师确认 Skill、工作范围、委托方立场和输出形式。确认完成后，任务进入“生成中”。</p></div></li>
+                <li><span>6</span><div><h3>成果回到任务</h3><p>生成的 Word、Excel、问题清单或分析意见保存在任务工作区，并在任务中列明文件名、版本和待确认事项。</p></div></li>
+                <li><span>7</span><div><h3>律师复核并更新计划</h3><p>成果进入“待律师复核”。律师复核后决定是否批准和归档，同时把完成情况、后续行动和期限更新回计划栏。</p></div></li>
+              </ol>
+
+              <h3>周会和日常任务的入口不同，后续流程相同</h3>
+              <div className="guide-table workflow-entry-table" role="table" aria-label="任务入口">
+                <div role="row"><strong role="columnheader">任务来源</strong><strong role="columnheader">如何进入计划栏</strong><strong role="columnheader">何时进入 AI 工作流</strong></div>
+                <div role="row"><span role="cell">周会</span><span role="cell">周协同根据会议记录整理目标、负责人和期限</span><span role="cell">行动项中出现专业文书或法律分析任务时</span></div>
+                <div role="row"><span role="cell">日常工作</span><span role="cell">发起人直接建立事项并补全负责人和期限</span><span role="cell">任务需要使用模板、Skill 或形成正式成果时</span></div>
               </div>
-              <ul className="guide-checklist">
-                <li>准备可以扫码登录的微信。</li>
-                <li>确认电脑可以正常联网，并设置 Chrome、Safari 或 Edge 为默认浏览器。</li>
-                <li>预留一个虚拟演练文件夹，不要直接选择“桌面”“下载”或整个“文稿”作为工作空间。</li>
-              </ul>
+              <div className="guide-callout">
+                <strong>计划栏是进度入口</strong>
+                <p>计划栏负责记录“谁在什么时候完成什么”。具体材料、对话和成果保留在对应任务中。网页工作台只用于查找和了解 Skill。</p>
+              </div>
             </section>
 
             <section id="install" className="guide-section">
               <p className="section-index">03</p>
-              <h2>下载安装 WorkBuddy</h2>
-              <p>只从官方入口下载：<a className="inline-link" href="https://www.workbuddy.cn/work/" target="_blank" rel="noreferrer">WorkBuddy 官方下载页</a>。</p>
-
-              <h3>Mac：先判断芯片，再安装</h3>
+              <h2>安装和登录</h2>
+              <p>从 <a className="inline-link" href="https://www.workbuddy.cn/work/" target="_blank" rel="noreferrer">WorkBuddy 官方下载页</a> 选择与电脑相符的版本，按安装向导完成安装。</p>
               <ol className="readme-steps">
-                <li><strong>查看芯片。</strong><span>点击屏幕左上角苹果图标 →“关于本机”。看到 Apple M 系列就选 Apple 芯片；看到 Intel 就选 Intel。</span></li>
-                <li><strong>下载正确版本。</strong><span>M 系列选择“.dmg（Apple 芯片）”；Intel 选择“.dmg（Intel）”。</span></li>
-                <li><strong>打开安装包。</strong><span>下载完成后双击 <code>.dmg</code> 文件。</span></li>
-                <li><strong>安装应用。</strong><span>把 WorkBuddy 图标拖到 Applications（应用程序）文件夹，等待复制完成。</span></li>
-                <li><strong>推出安装盘。</strong><span>在 Finder 左侧找到已挂载的 WorkBuddy，点击推出；安装包可在确认可用后删除。</span></li>
-                <li><strong>第一次打开。</strong><span>按 <code>Command + 空格</code>，输入 WorkBuddy 并打开。如系统询问是否打开从互联网下载的应用，核对名称后选择打开。</span></li>
+                <li><strong>下载安装。</strong><span>Mac 下载对应的 Apple 芯片或 Intel 版本；Windows 使用官方下载页提供的 Windows 版本。</span></li>
+                <li><strong>登录。</strong><span>打开 WorkBuddy，确认服务条款后，使用微信扫码完成登录。</span></li>
+                <li><strong>接受项目邀请。</strong><span>使用同一账号接受团队管理员发来的邀请，加入“虞律团队 AI 工作流试验”。</span></li>
+                <li><strong>检查项目内容。</strong><span>确认可以看到计划栏、团队资源库和“法律 AI 工作流总入口”。</span></li>
+                <li><strong>检查更新。</strong><span>在个人中心或头像菜单中运行“检查更新”。</span></li>
               </ol>
-
-              <h3>Windows：按安装向导完成</h3>
-              <ol className="readme-steps">
-                <li><strong>下载 Windows 版本。</strong><span>在官方下载页选择 Windows x64（兼容 ARM64）。</span></li>
-                <li><strong>双击安装包。</strong><span>打开下载完成的安装程序；如出现系统确认，先核对发布来源和应用名称。</span></li>
-                <li><strong>按向导安装。</strong><span>同意协议 → 保持默认安装路径 → 确认开始菜单文件夹 → 建议创建桌面快捷方式 → 点击安装。</span></li>
-                <li><strong>完成并启动。</strong><span>安装结束后点击完成，从桌面或开始菜单打开 WorkBuddy。</span></li>
-              </ol>
-
-              <h3>登录</h3>
-              <ol className="readme-steps">
-                <li><strong>点击登录。</strong><span>WorkBuddy 会调用默认浏览器打开登录页面。</span></li>
-                <li><strong>阅读并勾选协议。</strong><span>确认《服务条款》和《隐私协议》后继续。</span></li>
-                <li><strong>微信扫码完成登录。</strong><span>扫码后在手机端确认，浏览器完成后会自动返回客户端。</span></li>
-                <li><strong>检查更新。</strong><span>在左下角个人中心或头像菜单中点击“检查更新”，确保使用团队要求的版本。</span></li>
-              </ol>
-              <div className="guide-callout">
-                <strong>你应该看到什么</strong>
-                <p>WorkBuddy 主界面可以正常显示左侧导航、新建任务入口和个人头像；关闭并重新打开后仍保持登录。</p>
-              </div>
               <p className="source-note">官方参考：<a href="https://www.workbuddy.cn/docs/workbuddy/From-Beginner-to-Expert-Guide/Installation-Mac-Guide" target="_blank" rel="noreferrer">Mac 安装指南</a> · <a href="https://www.workbuddy.cn/docs/workbuddy/From-Beginner-to-Expert-Guide/Installation-Win-Guide" target="_blank" rel="noreferrer">Windows 安装指南</a></p>
             </section>
 
             <section id="first-setup" className="guide-section">
               <p className="section-index">04</p>
-              <h2>首次设置：不要直接开始真实工作</h2>
-              <h3>步骤 1：加入正确的团队项目</h3>
+              <h2>首次设置</h2>
+              <h3>加入团队项目</h3>
               <ol className="readme-steps">
                 <li><strong>打开管理员发来的项目邀请。</strong><span>使用与 WorkBuddy 登录相同的账号接受。</span></li>
-                <li><strong>进入项目。</strong><span>确认标题是“虞律团队 AI 工作流试验”。不要为解决“看不到项目”而自行新建同名项目。</span></li>
+                <li><strong>进入项目。</strong><span>确认标题是“虞律团队 AI 工作流试验”。如看不到项目，先核对登录账号，再联系管理员补发邀请。</span></li>
                 <li><strong>检查四个入口。</strong><span>至少应看到项目对话或任务、计划栏、资源库，以及项目可用的专家/Skill。</span></li>
               </ol>
 
-              <h3>步骤 2：找到“法律 AI 工作流总入口”</h3>
+              <h3>找到“法律 AI 工作流总入口”</h3>
               <ol className="readme-steps">
                 <li><strong>点击左侧“专家”。</strong><span>进入“我的专家”或项目配置的专家区域。</span></li>
                 <li><strong>搜索完整名称。</strong><span>输入“法律 AI 工作流总入口”。如果有相似名称，选择说明中包含“先推荐、律师确认后执行”的版本。</span></li>
                 <li><strong>召唤专家。</strong><span>进入该专家的对话界面，再发送下面的连接测试 Prompt。</span></li>
               </ol>
-              <PromptBlock label="Prompt 01｜连接测试" description="确认你选对专家；不读文件、不调用 Skill。" prompt={connectionPrompt} />
+              <PromptBlock label="Prompt 01｜连接测试" description="用于确认当前专家和基本工作原则。" prompt={connectionPrompt} />
 
-              <h3>步骤 3：设置本地工作空间</h3>
+              <h3>设置任务工作区</h3>
               <ol className="readme-steps">
-                <li><strong>新建虚拟演练文件夹。</strong><span>例如 <code>YULAW-DEMO-首次演练</code>，不要放在真实案件文件夹里。</span></li>
+                <li><strong>新建演练文件夹。</strong><span>例如 <code>YULAW-DEMO-首次演练</code>，与真实案件文件夹分开保存。</span></li>
                 <li><strong>在新任务中选择该文件夹。</strong><span>点击工作空间或文件夹选择入口，在系统文件选择器中选中它，无需手工输入路径。</span></li>
-                <li><strong>选择“默认权限”。</strong><span>不要开启完全访问。看到文件修改、工作空间外访问或外部连接请求时，先看清路径和动作再决定。</span></li>
-                <li><strong>第一次优先用“问一问（Ask）”。</strong><span>只做连接和需求确认；复杂任务需要先看执行计划时用“想一想（Plan）”，律师确认后才进入“做一做（Craft）”。</span></li>
-                <li><strong>模型保持团队默认。</strong><span>不要为了测试随意切换多个模型；模型选择不改变律师复核责任。</span></li>
+                <li><strong>选择“默认权限”。</strong><span>文件修改、工作空间外访问或外部连接需要单独确认。团队试用阶段保持这一设置。</span></li>
+                <li><strong>先使用“问一问（Ask）”。</strong><span>连接、材料清点和 Skill 推荐在 Ask 模式完成；复杂任务可先用“想一想（Plan）”查看计划，确认后再进入“做一做（Craft）”。</span></li>
+                <li><strong>模型使用团队默认设置。</strong><span>如某项 Skill 对模型有特别要求，以 Skill 说明和管理员通知为准。</span></li>
               </ol>
               <p className="source-note">官方参考：<a href="https://www.workbuddy.cn/docs/workbuddy/From-Beginner-to-Expert-Guide/Function-Description/Task-Bar" target="_blank" rel="noreferrer">新建任务栏、模式和工作空间</a> · <a href="https://www.workbuddy.cn/docs/workbuddy/From-Beginner-to-Expert-Guide/Function-Description/Permission-Modes" target="_blank" rel="noreferrer">默认权限与安全沙箱</a></p>
             </section>
@@ -294,16 +275,16 @@ export default function GuidePage() {
             <section id="demo" className="guide-section">
               <p className="section-index">05</p>
               <h2>第一次完整跑通：虚拟任务演练</h2>
-              <p>建议管理员先准备一个不含真实客户信息的虚拟材料包。没有文件也可以完成“材料清点 + Skill 推荐”，但不要假装已经完成正式审阅。</p>
+              <p>首次演练使用团队准备的虚拟材料包。暂时没有文件时，可以先完成“材料清点 + Skill 推荐”，正式审阅留到材料齐备后进行。</p>
               <div className="demo-brief">
                 <strong>建议演练任务</strong>
                 <p>完全虚拟的 PE/VC 融资文件审阅：虚拟公司 A 拟接受虚拟基金 B 投资，团队代表公司方，只验证材料清点、Skill 推荐和律师确认停点。</p>
               </div>
               <ol className="demo-runbook">
                 <li><span>1</span><div><h3>建立任务</h3><p>名称写“YULAW-DEMO｜PEVC 文件审阅｜你的姓名｜日期”，状态放在“待收件”。</p></div></li>
-                <li><span>2</span><div><h3>添加虚拟材料</h3><p>把虚拟文件放进当前演练工作空间；在对话中逐一写出文件名，不要只说“都在文件夹里”。</p></div></li>
+                <li><span>2</span><div><h3>添加虚拟材料</h3><p>把虚拟文件放进当前演练工作空间，并在对话中逐一写出文件名和版本。</p></div></li>
                 <li><span>3</span><div><h3>材料清点</h3><p>复制 Prompt 02。核对 WorkBuddy 列出的文件名和版本，正确后再把状态改为“材料已确认”。</p></div></li>
-                <li><span>4</span><div><h3>只做 Skill 推荐</h3><p>复制 Prompt 03。此时不得直接审阅文件或生成成果。</p></div></li>
+                <li><span>4</span><div><h3>只做 Skill 推荐</h3><p>复制 Prompt 03。这一步只确定使用哪个 Skill，不开始审阅或生成成果。</p></div></li>
                 <li><span>5</span><div><h3>律师确认</h3><p>经办律师确认首选 Skill、公司方立场、文件范围、输出格式和截止时间。</p></div></li>
                 <li><span>6</span><div><h3>启动执行</h3><p>复制 Prompt 04，把【】内字段填完整。执行开始后状态改为“生成中”。</p></div></li>
                 <li><span>7</span><div><h3>处理停点</h3><p>出现事实缺口或冲突时，使用 Prompt 05。未确认前不让 AI 继续猜测。</p></div></li>
@@ -327,13 +308,13 @@ export default function GuidePage() {
               <PromptBlock label="Prompt 05｜暂停并列确认问题" description="遇到缺口、冲突或选择题时先停下。" prompt={clarificationPrompt} />
               <PromptBlock label="Prompt 06｜律师复核清单" description="让 AI 做交付前自检，但不替律师批准。" prompt={reviewPrompt} />
               <PromptBlock label="Prompt 07｜只汇报进度" description="不希望它继续执行时，用结构化方式询问状态。" prompt={statusPrompt} />
-              <PromptBlock label="Prompt 08｜立即停止" description="发现范围、权限或材料错误时立即刹车。" prompt={stopPrompt} />
+              <PromptBlock label="Prompt 08｜立即停止" description="发现范围、权限或材料错误时停止当前任务。" prompt={stopPrompt} />
             </section>
 
             <section id="materials" className="guide-section">
               <p className="section-index">07</p>
               <h2>材料放在哪里、文件怎么命名</h2>
-              <h3>三个位置不要混用</h3>
+              <h3>三个位置分别放什么</h3>
               <div className="guide-table material-table" role="table" aria-label="材料位置">
                 <div role="row"><strong role="columnheader">位置</strong><strong role="columnheader">放什么</strong><strong role="columnheader">不要放什么</strong></div>
                 <div role="row"><span role="cell">获授权的项目工作空间</span><span role="cell">本项目合同、附件、任务说明、项目成果</span><span role="cell">其他客户材料、整个个人文稿目录</span></div>
@@ -407,7 +388,7 @@ export default function GuidePage() {
                 <div role="row"><span>已批准</span><span>律师完成复核和必要修改</span><span>记录批准人、时间和批准版本</span><span>具名律师手动确认</span></div>
                 <div role="row"><span>已归档</span><span>批准版本与过程文件齐备</span><span>按团队目录归档并保留版本记录</span><span>具名律师手动确认</span></div>
               </div>
-              <div className="guide-callout guide-callout-warning"><strong>红线</strong><p>AI 不得自行把任务从“待律师复核”推进到“已批准”或“已归档”，也不得自行把成果发送给客户、对方或第三方。</p></div>
+              <div className="guide-callout"><strong>人工确认节点</strong><p>“已批准”和“已归档”由经办律师手动确认。对客户、对方或第三方发送成果前，也需要律师确认发送版本和范围。</p></div>
             </section>
 
             <section id="review" className="guide-section">
@@ -428,10 +409,8 @@ export default function GuidePage() {
               <p className="section-index">11</p>
               <h2>常见问题：按现象排查</h2>
               <dl className="troubleshooting-list troubleshooting-detailed">
-                <div><dt>下载后打不开或版本选错</dt><dd>Mac 先到“关于本机”核对 Apple 芯片或 Intel；确认 macOS 12+。Windows 确认 Windows 10+。删除错误安装包后从官方下载页重新下载。</dd></div>
-                <div><dt>点击登录没有反应</dt><dd>先设置 Chrome、Safari 或 Edge 为默认浏览器，完全退出 WorkBuddy 后重开；也可以复制登录链接到默认浏览器完成验证。</dd></div>
                 <div><dt>看不到“虞律团队 AI 工作流试验”</dt><dd>不要自行新建同名项目。确认接受邀请的账号与 WorkBuddy 登录账号一致，把账号标识和项目邀请截图发给管理员。</dd></div>
-                <div><dt>专家或 Skill 不可见</dt><dd>刷新项目，进入“专家 / 我的专家”核对名称；Skill 则到“已安装”确认是否启用。仍不存在时联系管理员，不得假装已经调用。</dd></div>
+                <div><dt>专家或 Skill 不可见</dt><dd>刷新项目，进入“专家 / 我的专家”核对名称；Skill 则到“已安装”确认是否启用。仍不存在时联系管理员，先暂停该任务。</dd></div>
                 <div><dt>文件无法读取</dt><dd>检查文件能否在本机打开、是否加密、是否为临时文件；确认文件在当前工作空间。不要把客户文件移到公开位置来绕过读取问题。</dd></div>
                 <div><dt>弹出权限确认</dt><dd>看清动作、完整路径和影响范围。工作空间外访问、批量修改、上传、删除或陌生脚本一律先取消，让 WorkBuddy 解释为什么需要。</dd></div>
                 <div><dt>它跳过推荐直接开始执行</dt><dd>立即发送 Prompt 08，停止后重新选择“法律 AI 工作流总入口”，再用 Prompt 03 明确“先不要执行”。</dd></div>
@@ -445,7 +424,7 @@ export default function GuidePage() {
             <section id="admin" className="guide-section">
               <p className="section-index">12</p>
               <h2>管理员上线前检查</h2>
-              <p>下周让团队安装前，管理员应先完成以下准备，否则新人会卡在“装好了但看不到项目/专家”。</p>
+              <p>团队统一安装前，管理员先完成以下准备。</p>
               <ul className="readme-checklist admin-checklist">
                 <li>□ 已确定统一的 WorkBuddy 版本与官方下载入口。</li>
                 <li>□ 已邀请全部试用成员加入“虞律团队 AI 工作流试验”。</li>
@@ -459,7 +438,6 @@ export default function GuidePage() {
               </ul>
               <h3>每位成员的验收回执</h3>
               <pre className="acceptance-template"><code>{`姓名：【填写】
-电脑系统：【Mac Apple 芯片 / Mac Intel / Windows】
 WorkBuddy 版本：【填写】
 已进入团队项目：【是 / 否】
 已看到法律 AI 工作流总入口：【是 / 否】
