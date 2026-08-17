@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}登录｜虞律团队 AI 工作台{% endblock %}
+
+{% block body %}
+<main class="login-page" id="main-content">
+  <form class="site-login-card" method="post">
+    <div class="brand-mark login-brand" aria-hidden="true">虞律</div>
+    <p class="hero-kicker">YU LAW TEAM · INTERNAL</p>
+    <h1>虞律团队 AI 工作台</h1>
+    <p>Skill 库、团队指南与诉讼案例管理使用同一登录密码。</p>
+    <label for="site-password">登录密码</label>
+    <input id="site-password" name="password" type="password" autocomplete="current-password" required autofocus>
+    {% if error %}<p class="login-error" role="alert">{{ error }}</p>{% endif %}
+    <button class="action action-primary" type="submit">进入工作台</button>
+  </form>
+</main>
+{% endblock %}
