@@ -65,8 +65,18 @@ https://YOURUSERNAME.pythonanywhere.com/health
 正常结果为：
 
 ```json
-{"status":"ok","tools":20}
+{"status":"ok","tools":50}
 ```
+
+## GitHub 一键更新
+
+首次接入完成后，在 PythonAnywhere Bash 控制台运行：
+
+```bash
+bash ~/Yu-Law-AI-Workbench/pythonanywhere-flask/update_pythonanywhere.sh
+```
+
+脚本依次从 GitHub 拉取 `main`、运行单元测试并检查 Flask 是否可以导入。全部通过后才重新加载网站；任何一步失败都会停止，不会重新加载当前线上版本。
 
 ## 常见问题
 
