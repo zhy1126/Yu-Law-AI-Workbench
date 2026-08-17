@@ -16,6 +16,10 @@ async function readTextOrEmpty(relativePath) {
   }
 }
 
+async function readJson(relativePath) {
+  return JSON.parse(await readFile(new URL(relativePath, root), "utf8"));
+}
+
 test("routes through public GitHub first and uses a bundled fallback", async () => {
   const skill = await readTextOrEmpty(
     `${expertRoot}skills/yulaw-workbench-entry/SKILL.md`,
@@ -72,4 +76,29 @@ test("publishes the router as the legal AI workflow entry expert", async () => {
   assert.equal(plugin.version, "1.2.0");
   assert.equal(plugin.displayName.zh, "法律 AI 工作流总入口");
   assert.match(plugin.displayDescription.zh, /GitHub.*推荐.*确认.*执行/);
+});
+
+test("bundles one deterministic fallback record for every public catalog item", async () => {
+  const sourceTools = await readJson("pythonanywhere-flask/data/tools.json");
+  const indexText = await readTextOrEmpty(
+    `${expertRoot}skills/yulaw-workbench-entry/references/skill-router-index.json`,
+  );
+
+  assert.notEqual(indexText, "");
+  const index = JSON.parse(indexText);
+  assert.equal(index.source, "pythonanywhere-flask/data/tools.json");
+  assert.equal(index.count, sourceTools.length);
+  assert.equal(index.tools.length, sourceTools.length);
+  assert.equal(new Set(index.tools.map(({ id }) => id)).size, sourceTools.length);
+  assert.deepEqual(
+    index.tools.map(({ id }) => id).toSorted(),
+    sourceTools.map(({ id }) => id).toSorted(),
+  );
+
+  for (const tool of index.tools) {
+    assert.equal(typeof tool.repository === "string" || tool.repository === null, true);
+    assert.equal(typeof tool.catalogStatus, "string");
+    assert.equal(typeof tool.searchText, "string");
+    assert.ok(Array.isArray(tool.fileTypeHints));
+  }
 });

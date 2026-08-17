@@ -1,0 +1,1171 @@
+{
+  "source": "pythonanywhere-flask/data/tools.json",
+  "count": 50,
+  "catalogStatusNote": "目录状态仅用于推荐；执行前必须检查 WorkBuddy 当前实际安装状态。installable、planned 或 building 不等于已安装。",
+  "tools": [
+    {
+      "id": "local-legal-redaction",
+      "name": "本地律师材料脱敏",
+      "category": "数据安全",
+      "catalogStatus": "connected",
+      "summary": "在本机对律师材料进行识别、脱敏和复核准备，降低敏感信息外泄风险。",
+      "inputs": [
+        "TXT",
+        "DOCX",
+        "PDF"
+      ],
+      "outputs": [
+        "脱敏文本",
+        "简洁 DOCX",
+        "风险报告",
+        "完整结果包"
+      ],
+      "notice": "原始材料和映射仅在本机处理，输出须由律师复核。",
+      "repository": "https://github.com/zhy1126/Local-LLM-based-Legal-Document-De-identification-System/tree/feat/legal-redaction-mvp",
+      "localUrl": "http://127.0.0.1:8501",
+      "fileTypeHints": [
+        "DOCX/Word",
+        "PDF",
+        "TXT/Markdown"
+      ],
+      "searchText": "本地律师材料脱敏 | 数据安全 | 在本机对律师材料进行识别、脱敏和复核准备，降低敏感信息外泄风险。 | TXT | DOCX | PDF | 脱敏文本 | 简洁 DOCX | 风险报告 | 完整结果包 | 原始材料和映射仅在本机处理，输出须由律师复核。"
+    },
+    {
+      "id": "basic-work-skills",
+      "name": "基础工作 Skill",
+      "category": "基础工作",
+      "catalogStatus": "planned",
+      "summary": "用于材料摘要、文件对比、信息提取和内容检查等基础工作。",
+      "inputs": [
+        "任务说明",
+        "待处理材料"
+      ],
+      "outputs": [
+        "结构化结果",
+        "待确认事项"
+      ],
+      "notice": "处理范围和结论应由经办律师确认。",
+      "repository": null,
+      "localUrl": null,
+      "fileTypeHints": [
+        "TXT/Markdown"
+      ],
+      "searchText": "基础工作 Skill | 基础工作 | 用于材料摘要、文件对比、信息提取和内容检查等基础工作。 | 任务说明 | 待处理材料 | 结构化结果 | 待确认事项 | 处理范围和结论应由经办律师确认。"
+    },
+    {
+      "id": "legal-service-proposal",
+      "name": "法律服务建议书",
+      "category": "文书制作",
+      "catalogStatus": "building",
+      "summary": "基于批准模板和项目资料生成法律服务建议书的初稿与核对项。",
+      "inputs": [
+        "批准模板",
+        "项目资料",
+        "律师信息",
+        "案例信息"
+      ],
+      "outputs": [
+        "建议书初稿",
+        "检查清单",
+        "待确认项"
+      ],
+      "notice": "仅可使用已批准的内容库。",
+      "repository": null,
+      "localUrl": null,
+      "fileTypeHints": [
+        "DOCX/Word",
+        "PPTX/演示文稿",
+        "XLSX/表格"
+      ],
+      "searchText": "法律服务建议书 | 文书制作 | 基于批准模板和项目资料生成法律服务建议书的初稿与核对项。 | 批准模板 | 项目资料 | 律师信息 | 案例信息 | 建议书初稿 | 检查清单 | 待确认项 | 仅可使用已批准的内容库。"
+    },
+    {
+      "id": "quotation-letter",
+      "name": "报价函",
+      "category": "文书制作",
+      "catalogStatus": "planned",
+      "summary": "根据客户信息、服务范围和计费方案整理报价函初稿。",
+      "inputs": [
+        "客户信息",
+        "服务范围",
+        "计费方案"
+      ],
+      "outputs": [
+        "报价函初稿",
+        "费用核对表"
+      ],
+      "notice": "报价条件、税费和审批要求须由负责律师确认。",
+      "repository": null,
+      "localUrl": null,
+      "fileTypeHints": [
+        "DOCX/Word"
+      ],
+      "searchText": "报价函 | 文书制作 | 根据客户信息、服务范围和计费方案整理报价函初稿。 | 客户信息 | 服务范围 | 计费方案 | 报价函初稿 | 费用核对表 | 报价条件、税费和审批要求须由负责律师确认。"
+    },
+    {
+      "id": "tender-response",
+      "name": "标书 / 响应文件",
+      "category": "文书制作",
+      "catalogStatus": "planned",
+      "summary": "依据招标文件和响应模板组织标书或响应文件初稿。",
+      "inputs": [
+        "招标文件",
+        "响应模板",
+        "团队与案例"
+      ],
+      "outputs": [
+        "响应文件初稿",
+        "偏离表",
+        "缺件清单"
+      ],
+      "notice": "投标承诺、资格文件和最终响应内容须按审批流程复核。",
+      "repository": null,
+      "localUrl": null,
+      "fileTypeHints": [
+        "DOCX/Word",
+        "XLSX/表格"
+      ],
+      "searchText": "标书 / 响应文件 | 文书制作 | 依据招标文件和响应模板组织标书或响应文件初稿。 | 招标文件 | 响应模板 | 团队与案例 | 响应文件初稿 | 偏离表 | 缺件清单 | 投标承诺、资格文件和最终响应内容须按审批流程复核。"
+    },
+    {
+      "id": "drafting-legal-service-contracts",
+      "name": "法律服务合同受控起草",
+      "category": "文书制作",
+      "catalogStatus": "local-skill",
+      "summary": "按固定入项和受控母版，起草常年顾问、并购或尽调专项、诉讼仲裁法律服务合同。",
+      "inputs": [
+        "合同路由（常年顾问、并购/尽调专项或诉讼仲裁）",
+        "双方主体、委托事项、服务范围与期限",
+        "团队、收费、付款节点与第三方费用",
+        "争议解决、内部审批状态与适用 Word 母版"
+      ],
+      "outputs": [
+        "清洁版法律服务合同 Word",
+        "项目参数摘要",
+        "待律师确认事项",
+        "相对基准模板的变更清单"
+      ],
+      "notice": "当前为团队私有 Skill，GitHub 入口需相应权限。第一版不处理客户返稿或红线；待确认事项、利益冲突检查、收费审批和签署授权完成前，不得作为最终签署版本。",
+      "repository": "https://github.com/zhy1126/drafting-legal-service-contracts",
+      "localUrl": null,
+      "fileTypeHints": [
+        "DOCX/Word",
+        "XLSX/表格",
+        "TXT/Markdown"
+      ],
+      "searchText": "法律服务合同受控起草 | 文书制作 | 按固定入项和受控母版，起草常年顾问、并购或尽调专项、诉讼仲裁法律服务合同。 | 合同路由（常年顾问、并购/尽调专项或诉讼仲裁） | 双方主体、委托事项、服务范围与期限 | 团队、收费、付款节点与第三方费用 | 争议解决、内部审批状态与适用 Word 母版 | 清洁版法律服务合同 Word | 项目参数摘要 | 待律师确认事项 | 相对基准模板的变更清单 | 当前为团队私有 Skill，GitHub 入口需相应权限。第一版不处理客户返稿或红线；待确认事项、利益冲突检查、收费审批和签署授权完成前，不得作为最终签署版本。"
+    },
+    {
+      "id": "pe-vc-financing-doc-review",
+      "name": "PE/VC 融资交易文件审阅",
+      "category": "专业法律分析",
+      "catalogStatus": "local-skill",
+      "summary": "审阅未上市公司股权融资文件，覆盖首轮审阅、多轮红线、跨文件冲突和市场惯例，并在律师确认后生成最终报告。",
+      "inputs": [
+        "交易架构与委托方立场",
+        "Term Sheet / SPA / SHA / 章程等文件",
+        "当前版本、上一版及既有问题清单",
+        "项目事实、审阅偏好与重点关注事项"
+      ],
+      "outputs": [
+        "问题清单与 Major Issue List",
+        "Word《审阅关注点确认单》",
+        "逐条修改建议、批注或红线稿",
+        "多轮响应矩阵与跨文件一致性检查",
+        "律师确认后的最终 Word 审查报告"
+      ],
+      "notice": "最终完整报告、首次实质红线或根据审阅意见实施实质修改，必须先取得有效律师确认；确认前只能标记为初步或草稿。境外法、税务、会计及商业判断由相应专业人士确认。",
+      "repository": "https://github.com/zhy1126/PE-VC-Financing-Agreement-Review/tree/main/pe-vc-transaction-docs-review",
+      "localUrl": null,
+      "fileTypeHints": [
+        "DOCX/Word",
+        "XLSX/表格"
+      ],
+      "searchText": "PE/VC 融资交易文件审阅 | 专业法律分析 | 审阅未上市公司股权融资文件，覆盖首轮审阅、多轮红线、跨文件冲突和市场惯例，并在律师确认后生成最终报告。 | 交易架构与委托方立场 | Term Sheet / SPA / SHA / 章程等文件 | 当前版本、上一版及既有问题清单 | 项目事实、审阅偏好与重点关注事项 | 问题清单与 Major Issue List | Word《审阅关注点确认单》 | 逐条修改建议、批注或红线稿 | 多轮响应矩阵与跨文件一致性检查 | 律师确认后的最终 Word 审查报告 | 最终完整报告、首次实质红线或根据审阅意见实施实质修改，必须先取得有效律师确认；确认前只能标记为初步或草稿。境外法、税务、会计及商业判断由相应专业人士确认。"
+    },
+    {
+      "id": "transaction-structure-planning",
+      "name": "中国并购交易结构方案规划",
+      "category": "专业法律分析",
+      "catalogStatus": "local-skill",
+      "summary": "根据商业目标、项目事实和约束条件，比较基准、备选和兜底路径，并形成双版本方案与四类后续任务包。",
+      "inputs": [
+        "事项信息（阶段、立场、法域、基准日与保密等级）",
+        "商业目标（控制目标、并表目标、预算与期限）",
+        "交易事实（股权、表决权、治理、标的与交易对方）",
+        "可选路径（股权、增资、资产、分步或间接收购）",
+        "硬约束（审批、资金、时间、税务、国资、外资与数据）",
+        "材料与缺口（版本、未确认事实、责任人与关闭证据）"
+      ],
+      "outputs": [
+        "项目状态与一页式方案结论",
+        "三维目标及基准、备选、兜底方案比较",
+        "推荐方案、成立条件、关键反证与待决策事项",
+        "签署至控制取得及并表判断时间线",
+        "管理层决策版与律师执行版",
+        "尽调、交易文件、审批、会计四类任务包"
+      ],
+      "notice": "本 Skill 只负责交易结构方案规划，不直接完成全面尽调、整套交易文件审阅、审批申报或会计结论；中国法结论由经办律师复核，境外法由当地合资格律师确认。",
+      "repository": "https://github.com/zhy1126/Cross-border-M-and-A-Investment/tree/main/skills/handling-china-ma-transactions",
+      "localUrl": null,
+      "fileTypeHints": [],
+      "searchText": "中国并购交易结构方案规划 | 专业法律分析 | 根据商业目标、项目事实和约束条件，比较基准、备选和兜底路径，并形成双版本方案与四类后续任务包。 | 事项信息（阶段、立场、法域、基准日与保密等级） | 商业目标（控制目标、并表目标、预算与期限） | 交易事实（股权、表决权、治理、标的与交易对方） | 可选路径（股权、增资、资产、分步或间接收购） | 硬约束（审批、资金、时间、税务、国资、外资与数据） | 材料与缺口（版本、未确认事实、责任人与关闭证据） | 项目状态与一页式方案结论 | 三维目标及基准、备选、兜底方案比较 | 推荐方案、成立条件、关键反证与待决策事项 | 签署至控制取得及并表判断时间线 | 管理层决策版与律师执行版 | 尽调、交易文件、审批、会计四类任务包 | 本 Skill 只负责交易结构方案规划，不直接完成全面尽调、整套交易文件审阅、审批申报或会计结论；中国法结论由经办律师复核，境外法由当地合资格律师确认。"
+    },
+    {
+      "id": "ai-tool-handoff",
+      "name": "AI 批量审阅工具交接",
+      "category": "Anthropic Legal",
+      "catalogStatus": "local-skill",
+      "summary": "将批量条款提取交给 Luminance、Kira 等工具，并按信任等级复核输出。",
+      "inputs": [
+        "批量审阅任务说明",
+        "待审文件或外部工具导出结果",
+        "字段口径与信任等级"
+      ],
+      "outputs": [
+        "工具交接方案",
+        "抽样复核结果",
+        "异常与升级事项"
+      ],
+      "notice": "源自 Anthropic claude-for-legal；当前保留 Claude 路径及美国法/原始工作流口径，外部工具及其数据处理条款应另行核验，正式使用前须由经办律师完成 Codex 兼容和适用法本地化复核。",
+      "repository": "https://github.com/zhy1126/Anthropic-Legal-Skills/tree/main/skills/ai-tool-handoff",
+      "localUrl": null,
+      "fileTypeHints": [],
+      "searchText": "AI 批量审阅工具交接 | Anthropic Legal | 将批量条款提取交给 Luminance、Kira 等工具，并按信任等级复核输出。 | 批量审阅任务说明 | 待审文件或外部工具导出结果 | 字段口径与信任等级 | 工具交接方案 | 抽样复核结果 | 异常与升级事项 | 源自 Anthropic claude-for-legal；当前保留 Claude 路径及美国法/原始工作流口径，外部工具及其数据处理条款应另行核验，正式使用前须由经办律师完成 Codex 兼容和适用法本地化复核。"
+    },
+    {
+      "id": "board-minutes",
+      "name": "董事会及委员会会议纪要",
+      "category": "Anthropic Legal",
+      "catalogStatus": "local-skill",
+      "summary": "根据议程、会议材料和记录起草董事会或委员会会议纪要。",
+      "inputs": [
+        "会议议程",
+        "会议材料与记录",
+        "主体信息及适用范本"
+      ],
+      "outputs": [
+        "会议纪要初稿",
+        "决议事项摘要",
+        "待确认事实与签署清单"
+      ],
+      "notice": "源自 Anthropic claude-for-legal；当前保留 Claude 路径及美国法/原始工作流口径，会议程序、权限与决议效力须按适用法及章程核验，正式使用前须由经办律师完成 Codex 兼容和适用法本地化复核。",
+      "repository": "https://github.com/zhy1126/Anthropic-Legal-Skills/tree/main/skills/board-minutes",
+      "localUrl": null,
+      "fileTypeHints": [
+        "DOCX/Word",
+        "XLSX/表格",
+        "TXT/Markdown"
+      ],
+      "searchText": "董事会及委员会会议纪要 | Anthropic Legal | 根据议程、会议材料和记录起草董事会或委员会会议纪要。 | 会议议程 | 会议材料与记录 | 主体信息及适用范本 | 会议纪要初稿 | 决议事项摘要 | 待确认事实与签署清单 | 源自 Anthropic claude-for-legal；当前保留 Claude 路径及美国法/原始工作流口径，会议程序、权限与决议效力须按适用法及章程核验，正式使用前须由经办律师完成 Codex 兼容和适用法本地化复核。"
+    },
+    {
+      "id": "closing-checklist",
+      "name": "交割清单管理",
+      "category": "Anthropic Legal",
+      "catalogStatus": "local-skill",
+      "summary": "维护交割事项、责任人、状态、关键路径和预计交割日。",
+      "inputs": [
+        "交易文件与交割条件",
+        "责任人与目标日期",
+        "最新交割进展及证明文件"
+      ],
+      "outputs": [
+        "动态交割清单",
+        "关键路径与阻塞事项",
+        "交割日状态报告"
+      ],
+      "notice": "源自 Anthropic claude-for-legal；当前保留 Claude 路径及美国法/原始工作流口径，交割完成必须以签署文件、审批或其他正式证据为准，正式使用前须由经办律师完成 Codex 兼容和适用法本地化复核。",
+      "repository": "https://github.com/zhy1126/Anthropic-Legal-Skills/tree/main/skills/closing-checklist",
+      "localUrl": null,
+      "fileTypeHints": [
+        "DOCX/Word",
+        "XLSX/表格"
+      ],
+      "searchText": "交割清单管理 | Anthropic Legal | 维护交割事项、责任人、状态、关键路径和预计交割日。 | 交易文件与交割条件 | 责任人与目标日期 | 最新交割进展及证明文件 | 动态交割清单 | 关键路径与阻塞事项 | 交割日状态报告 | 源自 Anthropic claude-for-legal；当前保留 Claude 路径及美国法/原始工作流口径，交割完成必须以签署文件、审批或其他正式证据为准，正式使用前须由经办律师完成 Codex 兼容和适用法本地化复核。"
+    },
+    {
+      "id": "cold-start-interview",
+      "name": "项目与团队配置访谈",
+      "category": "Anthropic Legal",
+      "catalogStatus": "local-skill",
+      "summary": "通过一次结构化访谈建立团队偏好、项目范围和工作环境。",
+      "inputs": [
+        "团队工作偏好",
+        "项目基本信息",
+        "范本、阈值与系统环境"
+      ],
+      "outputs": [
+        "团队或项目配置",
+        "适用工作流清单",
+        "材料缺口与后续问题"
+      ],
+      "notice": "源自 Anthropic claude-for-legal；当前保留 Claude 路径及美国法/原始工作流口径，不应在配置中保存客户秘密或访问凭证，正式使用前须由经办律师完成 Codex 兼容和适用法本地化复核。",
+      "repository": "https://github.com/zhy1126/Anthropic-Legal-Skills/tree/main/skills/cold-start-interview",
+      "localUrl": null,
+      "fileTypeHints": [
+        "XLSX/表格"
+      ],
+      "searchText": "项目与团队配置访谈 | Anthropic Legal | 通过一次结构化访谈建立团队偏好、项目范围和工作环境。 | 团队工作偏好 | 项目基本信息 | 范本、阈值与系统环境 | 团队或项目配置 | 适用工作流清单 | 材料缺口与后续问题 | 源自 Anthropic claude-for-legal；当前保留 Claude 路径及美国法/原始工作流口径，不应在配置中保存客户秘密或访问凭证，正式使用前须由经办律师完成 Codex 兼容和适用法本地化复核。"
+    },
+    {
+      "id": "deal-team-summary",
+      "name": "交易团队摘要",
+      "category": "Anthropic Legal",
+      "catalogStatus": "local-skill",
+      "summary": "把尽调发现压缩成适合管理层或项目团队阅读的简报。",
+      "inputs": [
+        "尽调发现与问题清单",
+        "交易背景与受众",
+        "重要性标准与最新状态"
+      ],
+      "outputs": [
+        "管理层摘要",
+        "项目团队工作摘要",
+        "重大问题与下一步行动"
+      ],
+      "notice": "源自 Anthropic claude-for-legal；当前保留 Claude 路径及美国法/原始工作流口径，摘要不能替代底层尽调记录和律师意见，正式使用前须由经办律师完成 Codex 兼容和适用法本地化复核。",
+      "repository": "https://github.com/zhy1126/Anthropic-Legal-Skills/tree/main/skills/deal-team-summary",
+      "localUrl": null,
+      "fileTypeHints": [
+        "XLSX/表格",
+        "TXT/Markdown"
+      ],
+      "searchText": "交易团队摘要 | Anthropic Legal | 把尽调发现压缩成适合管理层或项目团队阅读的简报。 | 尽调发现与问题清单 | 交易背景与受众 | 重要性标准与最新状态 | 管理层摘要 | 项目团队工作摘要 | 重大问题与下一步行动 | 源自 Anthropic claude-for-legal；当前保留 Claude 路径及美国法/原始工作流口径，摘要不能替代底层尽调记录和律师意见，正式使用前须由经办律师完成 Codex 兼容和适用法本地化复核。"
+    },
+    {
+      "id": "diligence-issue-extraction",
+      "name": "尽调问题提取",
+      "category": "Anthropic Legal",
+      "catalogStatus": "local-skill",
+      "summary": "按预设分类和重要性标准，从资料室文件中提取尽调问题。",
+      "inputs": [
+        "资料室文件",
+        "尽调范围与委托方立场",
+        "问题分类及重要性阈值"
+      ],
+      "outputs": [
+        "尽调问题清单",
+        "证据出处与材料缺口",
+        "升级事项及建议行动"
+      ],
+      "notice": "源自 Anthropic claude-for-legal；当前保留 Claude 路径及美国法/原始工作流口径，尽调问题、风险评级和法律结论须由经办律师复核，正式使用前须完成 Codex 兼容和适用法本地化复核。",
+      "repository": "https://github.com/zhy1126/Anthropic-Legal-Skills/tree/main/skills/diligence-issue-extraction",
+      "localUrl": null,
+      "fileTypeHints": [
+        "XLSX/表格"
+      ],
+      "searchText": "尽调问题提取 | Anthropic Legal | 按预设分类和重要性标准，从资料室文件中提取尽调问题。 | 资料室文件 | 尽调范围与委托方立场 | 问题分类及重要性阈值 | 尽调问题清单 | 证据出处与材料缺口 | 升级事项及建议行动 | 源自 Anthropic claude-for-legal；当前保留 Claude 路径及美国法/原始工作流口径，尽调问题、风险评级和法律结论须由经办律师复核，正式使用前须完成 Codex 兼容和适用法本地化复核。"
+    },
+    {
+      "id": "entity-compliance",
+      "name": "主体合规事项跟踪",
+      "category": "Anthropic Legal",
+      "catalogStatus": "local-skill",
+      "summary": "维护主体合规台账、申报期限、完成状态和健康检查。",
+      "inputs": [
+        "主体清单与基本信息",
+        "适用申报和存续义务",
+        "完成状态及证明文件"
+      ],
+      "outputs": [
+        "合规事项台账",
+        "近期截止日期报告",
+        "健康检查与表格导出"
+      ],
+      "notice": "源自 Anthropic claude-for-legal；当前保留 Claude 路径及美国法/原始工作流口径，法定期限和申报要求必须以适用法及主管机关官方信息为准，正式使用前须由经办律师完成 Codex 兼容和适用法本地化复核。",
+      "repository": "https://github.com/zhy1126/Anthropic-Legal-Skills/tree/main/skills/entity-compliance",
+      "localUrl": null,
+      "fileTypeHints": [
+        "DOCX/Word",
+        "XLSX/表格"
+      ],
+      "searchText": "主体合规事项跟踪 | Anthropic Legal | 维护主体合规台账、申报期限、完成状态和健康检查。 | 主体清单与基本信息 | 适用申报和存续义务 | 完成状态及证明文件 | 合规事项台账 | 近期截止日期报告 | 健康检查与表格导出 | 源自 Anthropic claude-for-legal；当前保留 Claude 路径及美国法/原始工作流口径，法定期限和申报要求必须以适用法及主管机关官方信息为准，正式使用前须由经办律师完成 Codex 兼容和适用法本地化复核。"
+    },
+    {
+      "id": "integration-management",
+      "name": "并购后整合管理",
+      "category": "Anthropic Legal",
+      "catalogStatus": "local-skill",
+      "summary": "维护交割后整合计划、同意事项、合同转让和周报。",
+      "inputs": [
+        "交易文件和尽调发现",
+        "整合目标与责任分工",
+        "同意、通知及合同转让状态"
+      ],
+      "outputs": [
+        "分阶段整合计划",
+        "同意和合同转让台账",
+        "每周状态报告"
+      ],
+      "notice": "源自 Anthropic claude-for-legal；当前保留 Claude 路径及美国法/原始工作流口径，合同转让、员工、数据和监管事项须由相应专业人员确认，正式使用前须由经办律师完成 Codex 兼容和适用法本地化复核。",
+      "repository": "https://github.com/zhy1126/Anthropic-Legal-Skills/tree/main/skills/integration-management",
+      "localUrl": null,
+      "fileTypeHints": [
+        "DOCX/Word",
+        "XLSX/表格"
+      ],
+      "searchText": "并购后整合管理 | Anthropic Legal | 维护交割后整合计划、同意事项、合同转让和周报。 | 交易文件和尽调发现 | 整合目标与责任分工 | 同意、通知及合同转让状态 | 分阶段整合计划 | 同意和合同转让台账 | 每周状态报告 | 源自 Anthropic claude-for-legal；当前保留 Claude 路径及美国法/原始工作流口径，合同转让、员工、数据和监管事项须由相应专业人员确认，正式使用前须由经办律师完成 Codex 兼容和适用法本地化复核。"
+    },
+    {
+      "id": "material-contract-schedule",
+      "name": "重大合同披露清单",
+      "category": "Anthropic Legal",
+      "catalogStatus": "local-skill",
+      "summary": "依据交易文件中的重大合同定义，从尽调结果生成披露清单。",
+      "inputs": [
+        "交易文件中的重大合同定义",
+        "尽调结果和合同台账",
+        "披露清单格式及例外规则"
+      ],
+      "outputs": [
+        "重大合同披露清单初稿",
+        "纳入或排除依据",
+        "缺失信息与待确认事项"
+      ],
+      "notice": "源自 Anthropic claude-for-legal；当前保留 Claude 路径及美国法/原始工作流口径，披露范围必须以最终交易文件定义和完整尽调记录为准，正式使用前须由经办律师完成 Codex 兼容和适用法本地化复核。",
+      "repository": "https://github.com/zhy1126/Anthropic-Legal-Skills/tree/main/skills/material-contract-schedule",
+      "localUrl": null,
+      "fileTypeHints": [
+        "DOCX/Word",
+        "XLSX/表格"
+      ],
+      "searchText": "重大合同披露清单 | Anthropic Legal | 依据交易文件中的重大合同定义，从尽调结果生成披露清单。 | 交易文件中的重大合同定义 | 尽调结果和合同台账 | 披露清单格式及例外规则 | 重大合同披露清单初稿 | 纳入或排除依据 | 缺失信息与待确认事项 | 源自 Anthropic claude-for-legal；当前保留 Claude 路径及美国法/原始工作流口径，披露范围必须以最终交易文件定义和完整尽调记录为准，正式使用前须由经办律师完成 Codex 兼容和适用法本地化复核。"
+    },
+    {
+      "id": "matter-workspace",
+      "name": "项目工作空间管理",
+      "category": "Anthropic Legal",
+      "catalogStatus": "local-skill",
+      "summary": "创建、切换和关闭相互隔离的项目工作空间。",
+      "inputs": [
+        "项目名称和内部编号",
+        "客户与相对方信息",
+        "保密等级及项目阶段"
+      ],
+      "outputs": [
+        "隔离的项目工作空间",
+        "当前项目状态",
+        "项目关闭或脱离记录"
+      ],
+      "notice": "源自 Anthropic claude-for-legal；当前保留 Claude 路径及美国法/原始工作流口径，工作空间隔离不替代权限管理、利益冲突检查及正式档案制度，正式使用前须由经办律师完成 Codex 兼容和适用法本地化复核。",
+      "repository": "https://github.com/zhy1126/Anthropic-Legal-Skills/tree/main/skills/matter-workspace",
+      "localUrl": null,
+      "fileTypeHints": [],
+      "searchText": "项目工作空间管理 | Anthropic Legal | 创建、切换和关闭相互隔离的项目工作空间。 | 项目名称和内部编号 | 客户与相对方信息 | 保密等级及项目阶段 | 隔离的项目工作空间 | 当前项目状态 | 项目关闭或脱离记录 | 源自 Anthropic claude-for-legal；当前保留 Claude 路径及美国法/原始工作流口径，工作空间隔离不替代权限管理、利益冲突检查及正式档案制度，正式使用前须由经办律师完成 Codex 兼容和适用法本地化复核。"
+    },
+    {
+      "id": "tabular-review",
+      "name": "批量表格化审阅",
+      "category": "Anthropic Legal",
+      "catalogStatus": "local-skill",
+      "summary": "按一份文件一行、一项信息一列的方式批量审阅并保留出处。",
+      "inputs": [
+        "批量待审文件",
+        "列定义与提取口径",
+        "重要性门槛和输出格式"
+      ],
+      "outputs": [
+        "逐文件审阅表",
+        "逐单元格证据出处",
+        "异常、缺失与质量检查结果"
+      ],
+      "notice": "源自 Anthropic claude-for-legal；当前保留 Claude 路径及美国法/原始工作流口径，批量结果不能替代对重大异常和底层文件的律师审阅，正式使用前须完成 Codex 兼容和适用法本地化复核。",
+      "repository": "https://github.com/zhy1126/Anthropic-Legal-Skills/tree/main/skills/tabular-review",
+      "localUrl": null,
+      "fileTypeHints": [
+        "XLSX/表格"
+      ],
+      "searchText": "批量表格化审阅 | Anthropic Legal | 按一份文件一行、一项信息一列的方式批量审阅并保留出处。 | 批量待审文件 | 列定义与提取口径 | 重要性门槛和输出格式 | 逐文件审阅表 | 逐单元格证据出处 | 异常、缺失与质量检查结果 | 源自 Anthropic claude-for-legal；当前保留 Claude 路径及美国法/原始工作流口径，批量结果不能替代对重大异常和底层文件的律师审阅，正式使用前须完成 Codex 兼容和适用法本地化复核。"
+    },
+    {
+      "id": "written-consent",
+      "name": "董事会书面决议",
+      "category": "Anthropic Legal",
+      "catalogStatus": "local-skill",
+      "summary": "参照既有范本起草董事会或委员会一致书面决议。",
+      "inputs": [
+        "批准的书面决议范本",
+        "拟批准事项与支持文件",
+        "董事、权限及利益冲突信息"
+      ],
+      "outputs": [
+        "一致书面决议初稿",
+        "利益冲突和权限提示",
+        "签署人及附件清单"
+      ],
+      "notice": "源自 Anthropic claude-for-legal；当前保留 Claude 路径及美国法/原始工作流口径，决议程序、权限、利益冲突及效力须按适用法和章程核验，正式使用前须由经办律师完成 Codex 兼容和适用法本地化复核。",
+      "repository": "https://github.com/zhy1126/Anthropic-Legal-Skills/tree/main/skills/written-consent",
+      "localUrl": null,
+      "fileTypeHints": [
+        "DOCX/Word",
+        "XLSX/表格"
+      ],
+      "searchText": "董事会书面决议 | Anthropic Legal | 参照既有范本起草董事会或委员会一致书面决议。 | 批准的书面决议范本 | 拟批准事项与支持文件 | 董事、权限及利益冲突信息 | 一致书面决议初稿 | 利益冲突和权限提示 | 签署人及附件清单 | 源自 Anthropic claude-for-legal；当前保留 Claude 路径及美国法/原始工作流口径，决议程序、权限、利益冲突及效力须按适用法和章程核验，正式使用前须由经办律师完成 Codex 兼容和适用法本地化复核。"
+    },
+    {
+      "id": "legal-fact-checker",
+      "name": "中国法事实与法源核查",
+      "category": "基础工作",
+      "catalogStatus": "installable",
+      "summary": "核对法律文书中的关键事实、法规和案例来源，单列无法回查的内容。",
+      "inputs": [
+        "待核法律文本",
+        "底层材料和可用法源"
+      ],
+      "outputs": [
+        "事实与法源核验记录",
+        "无据内容及待补材料清单"
+      ],
+      "notice": "经 LegalAISkill 收录；下载前仍须核对原始许可和依赖，核验结果及法律结论须由经办律师复核。",
+      "repository": "https://github.com/NEU-ZHA/legal-ai-skills/tree/main/skills/legal-fact-checker",
+      "localUrl": null,
+      "fileTypeHints": [
+        "DOCX/Word",
+        "XLSX/表格",
+        "TXT/Markdown"
+      ],
+      "searchText": "中国法事实与法源核查 | 基础工作 | 核对法律文书中的关键事实、法规和案例来源，单列无法回查的内容。 | 待核法律文本 | 底层材料和可用法源 | 事实与法源核验记录 | 无据内容及待补材料清单 | 经 LegalAISkill 收录；下载前仍须核对原始许可和依赖，核验结果及法律结论须由经办律师复核。"
+    },
+    {
+      "id": "pkulaw-citation-validator",
+      "name": "北大法宝引注核验",
+      "category": "基础工作",
+      "catalogStatus": "installable",
+      "summary": "逐项核验草稿中的法条引用，标记命中、修正建议和人工复核事项。",
+      "inputs": [
+        "含法条引注的草稿",
+        "合法的北大法宝访问权限"
+      ],
+      "outputs": [
+        "逐项引注核验表",
+        "修正建议与歧义清单"
+      ],
+      "notice": "经 LegalAISkill 收录；需要合法的北大法宝权限，任何未命中或歧义引注均须由经办律师复核。",
+      "repository": "https://github.com/NEU-ZHA/legal-ai-skills/tree/main/skills/pkulaw-mcp-citation-validator",
+      "localUrl": null,
+      "fileTypeHints": [
+        "XLSX/表格"
+      ],
+      "searchText": "北大法宝引注核验 | 基础工作 | 逐项核验草稿中的法条引用，标记命中、修正建议和人工复核事项。 | 含法条引注的草稿 | 合法的北大法宝访问权限 | 逐项引注核验表 | 修正建议与歧义清单 | 经 LegalAISkill 收录；需要合法的北大法宝权限，任何未命中或歧义引注均须由经办律师复核。"
+    },
+    {
+      "id": "pkulaw-law-recognition",
+      "name": "法条识别与溯源",
+      "category": "基础工作",
+      "catalogStatus": "installable",
+      "summary": "从合同、函件和备忘中识别法规名称、条号及可继续回查的来源线索。",
+      "inputs": [
+        "合同、函件或法律备忘",
+        "合法的北大法宝访问权限"
+      ],
+      "outputs": [
+        "法条候选及文本位置",
+        "低置信度和待回查项目"
+      ],
+      "notice": "经 LegalAISkill 收录；需要合法的北大法宝权限，识别结果不代表法条现行有效，须由经办律师复核。",
+      "repository": "https://github.com/NEU-ZHA/legal-ai-skills/tree/main/skills/pkulaw-mcp-law-recognition",
+      "localUrl": null,
+      "fileTypeHints": [
+        "DOCX/Word",
+        "TXT/Markdown"
+      ],
+      "searchText": "法条识别与溯源 | 基础工作 | 从合同、函件和备忘中识别法规名称、条号及可继续回查的来源线索。 | 合同、函件或法律备忘 | 合法的北大法宝访问权限 | 法条候选及文本位置 | 低置信度和待回查项目 | 经 LegalAISkill 收录；需要合法的北大法宝权限，识别结果不代表法条现行有效，须由经办律师复核。"
+    },
+    {
+      "id": "pkulaw-batch-contract-screening",
+      "name": "批量合同合规初筛",
+      "category": "专业法律分析",
+      "catalogStatus": "installable",
+      "summary": "按统一口径批量筛查同类合同，形成带定位、依据和风险等级的台账。",
+      "inputs": [
+        "同类合同文件",
+        "筛查口径和风险阈值"
+      ],
+      "outputs": [
+        "批量风险台账",
+        "法规依据和整改优先级"
+      ],
+      "notice": "经 LegalAISkill 收录；可能需要合法数据库权限，批量初筛不能替代重大合同的律师逐份复核。",
+      "repository": "https://github.com/NEU-ZHA/legal-ai-skills/tree/main/skills/pkulaw-mcp-batch-contract-screening",
+      "localUrl": null,
+      "fileTypeHints": [
+        "DOCX/Word",
+        "XLSX/表格"
+      ],
+      "searchText": "批量合同合规初筛 | 专业法律分析 | 按统一口径批量筛查同类合同，形成带定位、依据和风险等级的台账。 | 同类合同文件 | 筛查口径和风险阈值 | 批量风险台账 | 法规依据和整改优先级 | 经 LegalAISkill 收录；可能需要合法数据库权限，批量初筛不能替代重大合同的律师逐份复核。"
+    },
+    {
+      "id": "pkulaw-contract-review-lite",
+      "name": "单份合同合规初筛",
+      "category": "专业法律分析",
+      "catalogStatus": "installable",
+      "summary": "针对一份合同识别法规线索、条款风险、建议动作和待复核事项。",
+      "inputs": [
+        "待审合同",
+        "审阅目的、立场与重点条款"
+      ],
+      "outputs": [
+        "条款风险清单",
+        "依据线索与建议动作"
+      ],
+      "notice": "经 LegalAISkill 收录；可能需要合法数据库权限，仅用于首轮筛查，最终意见须由经办律师复核。",
+      "repository": "https://github.com/NEU-ZHA/legal-ai-skills/tree/main/skills/pkulaw-mcp-contract-review-lite",
+      "localUrl": null,
+      "fileTypeHints": [
+        "DOCX/Word",
+        "XLSX/表格"
+      ],
+      "searchText": "单份合同合规初筛 | 专业法律分析 | 针对一份合同识别法规线索、条款风险、建议动作和待复核事项。 | 待审合同 | 审阅目的、立场与重点条款 | 条款风险清单 | 依据线索与建议动作 | 经 LegalAISkill 收录；可能需要合法数据库权限，仅用于首轮筛查，最终意见须由经办律师复核。"
+    },
+    {
+      "id": "pkulaw-governance-research-memo",
+      "name": "公司治理研究备忘",
+      "category": "专业法律分析",
+      "catalogStatus": "installable",
+      "summary": "围绕股权、控制权、决议、董监高责任和关联交易形成研究备忘。",
+      "inputs": [
+        "公司治理问题和事实",
+        "章程、决议及适用规则"
+      ],
+      "outputs": [
+        "公司治理研究备忘",
+        "法源、事实缺口与待决策事项"
+      ],
+      "notice": "经 LegalAISkill 收录；需要按项目核对现行中国法、章程和监管口径，结论须由经办律师复核。",
+      "repository": "https://github.com/NEU-ZHA/legal-ai-skills/tree/main/skills/pkulaw-mcp-governance-research-memo",
+      "localUrl": null,
+      "fileTypeHints": [
+        "DOCX/Word"
+      ],
+      "searchText": "公司治理研究备忘 | 专业法律分析 | 围绕股权、控制权、决议、董监高责任和关联交易形成研究备忘。 | 公司治理问题和事实 | 章程、决议及适用规则 | 公司治理研究备忘 | 法源、事实缺口与待决策事项 | 经 LegalAISkill 收录；需要按项目核对现行中国法、章程和监管口径，结论须由经办律师复核。"
+    },
+    {
+      "id": "pkulaw-opinion-citation-check",
+      "name": "法律意见书引注核验",
+      "category": "基础工作",
+      "catalogStatus": "installable",
+      "summary": "在法律意见书或备忘签发前，对法条引用和依据状态进行逐项检查。",
+      "inputs": [
+        "法律意见书或备忘草稿",
+        "合法的北大法宝访问权限"
+      ],
+      "outputs": [
+        "引注核验表",
+        "失效、错引和待确认清单"
+      ],
+      "notice": "经 LegalAISkill 收录；需要合法的北大法宝权限，不得将自动核验替代签字律师的法源复核。",
+      "repository": "https://github.com/NEU-ZHA/legal-ai-skills/tree/main/skills/pkulaw-mcp-opinion-citation-check",
+      "localUrl": null,
+      "fileTypeHints": [
+        "DOCX/Word",
+        "XLSX/表格"
+      ],
+      "searchText": "法律意见书引注核验 | 基础工作 | 在法律意见书或备忘签发前，对法条引用和依据状态进行逐项检查。 | 法律意见书或备忘草稿 | 合法的北大法宝访问权限 | 引注核验表 | 失效、错引和待确认清单 | 经 LegalAISkill 收录；需要合法的北大法宝权限，不得将自动核验替代签字律师的法源复核。"
+    },
+    {
+      "id": "pkulaw-regulatory-reply-check",
+      "name": "监管回复依据核查",
+      "category": "专业法律分析",
+      "catalogStatus": "installable",
+      "summary": "检查问询回复、说明材料和监管答复中的法规引用及依据完整性。",
+      "inputs": [
+        "问询或监管回复草稿",
+        "适用规则和底层证明材料"
+      ],
+      "outputs": [
+        "依据核查记录",
+        "缺失、错引和待补证明清单"
+      ],
+      "notice": "经 LegalAISkill 收录；可能需要合法数据库权限，监管回复必须结合最新监管口径并由经办律师复核。",
+      "repository": "https://github.com/NEU-ZHA/legal-ai-skills/tree/main/skills/pkulaw-mcp-regulatory-reply-check",
+      "localUrl": null,
+      "fileTypeHints": [
+        "XLSX/表格"
+      ],
+      "searchText": "监管回复依据核查 | 专业法律分析 | 检查问询回复、说明材料和监管答复中的法规引用及依据完整性。 | 问询或监管回复草稿 | 适用规则和底层证明材料 | 依据核查记录 | 缺失、错引和待补证明清单 | 经 LegalAISkill 收录；可能需要合法数据库权限，监管回复必须结合最新监管口径并由经办律师复核。"
+    },
+    {
+      "id": "pkulaw-grounded-answer",
+      "name": "有据可查的法律答复",
+      "category": "专业法律分析",
+      "catalogStatus": "installable",
+      "summary": "将一般法律问题整理成带事实前提、法源依据和待确认事项的答复草稿。",
+      "inputs": [
+        "法律问题与事实前提",
+        "可回查法规、案例和项目材料"
+      ],
+      "outputs": [
+        "有据答复草稿",
+        "事实假设、法源和待确认事项"
+      ],
+      "notice": "经 LegalAISkill 收录；自动生成内容仅为草稿，事实、现行法和最终结论须由经办律师复核。",
+      "repository": "https://github.com/NEU-ZHA/legal-ai-skills/tree/main/skills/pkulaw-mcp-grounded-answer",
+      "localUrl": null,
+      "fileTypeHints": [],
+      "searchText": "有据可查的法律答复 | 专业法律分析 | 将一般法律问题整理成带事实前提、法源依据和待确认事项的答复草稿。 | 法律问题与事实前提 | 可回查法规、案例和项目材料 | 有据答复草稿 | 事实假设、法源和待确认事项 | 经 LegalAISkill 收录；自动生成内容仅为草稿，事实、现行法和最终结论须由经办律师复核。"
+    },
+    {
+      "id": "prc-internal-compliance-risk",
+      "name": "内部合规风险识别",
+      "category": "专业法律分析",
+      "catalogStatus": "installable",
+      "summary": "用于上市、并购、监管检查或制度更新前的企业内部合规自查。",
+      "inputs": [
+        "内部制度、流程和合规事实",
+        "上市、并购或检查的目标范围"
+      ],
+      "outputs": [
+        "内部合规风险清单",
+        "整改优先级和材料缺口"
+      ],
+      "notice": "经 LegalAISkill 收录；原仓库许可不得用于商业项目或分发修改版本，律所商业项目使用前须另行取得权利人授权；该中国法分析框架不能替代专项核查，风险分级和整改建议须由经办律师复核。",
+      "repository": "https://github.com/THUYRan/Legal-Skills-Chinese/tree/main/skills/internal-compliance-risk-identification",
+      "localUrl": null,
+      "fileTypeHints": [
+        "XLSX/表格"
+      ],
+      "searchText": "内部合规风险识别 | 专业法律分析 | 用于上市、并购、监管检查或制度更新前的企业内部合规自查。 | 内部制度、流程和合规事实 | 上市、并购或检查的目标范围 | 内部合规风险清单 | 整改优先级和材料缺口 | 经 LegalAISkill 收录；原仓库许可不得用于商业项目或分发修改版本，律所商业项目使用前须另行取得权利人授权；该中国法分析框架不能替代专项核查，风险分级和整改建议须由经办律师复核。"
+    },
+    {
+      "id": "prc-legal-article-retrieval",
+      "name": "中国法检索报告",
+      "category": "基础工作",
+      "catalogStatus": "installable",
+      "summary": "围绕交易、合规或专题问题检索并复核法规、案例及辅助资料。",
+      "inputs": [
+        "明确的检索问题",
+        "法域、时间和来源范围"
+      ],
+      "outputs": [
+        "结构化法律检索报告",
+        "来源链接、局限和待回查事项"
+      ],
+      "notice": "经 LegalAISkill 收录；原仓库许可不得用于商业项目或分发修改版本，律所商业项目使用前须另行取得权利人授权；数据库访问能力取决于团队权限，所有法源和适用性判断须由经办律师复核。",
+      "repository": "https://github.com/THUYRan/Legal-Skills-Chinese/tree/main/skills/legal-article-retrieval",
+      "localUrl": null,
+      "fileTypeHints": [
+        "DOCX/Word"
+      ],
+      "searchText": "中国法检索报告 | 基础工作 | 围绕交易、合规或专题问题检索并复核法规、案例及辅助资料。 | 明确的检索问题 | 法域、时间和来源范围 | 结构化法律检索报告 | 来源链接、局限和待回查事项 | 经 LegalAISkill 收录；原仓库许可不得用于商业项目或分发修改版本，律所商业项目使用前须另行取得权利人授权；数据库访问能力取决于团队权限，所有法源和适用性判断须由经办律师复核。"
+    },
+    {
+      "id": "prc-regulatory-risk-assessment",
+      "name": "外部监管风险识别",
+      "category": "专业法律分析",
+      "catalogStatus": "installable",
+      "summary": "初步筛查企业在上市、投资或并购中面临的处罚、许可和信用风险。",
+      "inputs": [
+        "企业业务、许可与处罚材料",
+        "监管范围和重要性标准"
+      ],
+      "outputs": [
+        "外部监管风险清单",
+        "核查路径和升级事项"
+      ],
+      "notice": "经 LegalAISkill 收录；原仓库许可不得用于商业项目或分发修改版本，律所商业项目使用前须另行取得权利人授权；仅作监管风险初筛，正式尽调和法律结论须基于权威来源并由经办律师复核。",
+      "repository": "https://github.com/THUYRan/Legal-Skills-Chinese/tree/main/skills/legal-risk-assessment",
+      "localUrl": null,
+      "fileTypeHints": [
+        "XLSX/表格"
+      ],
+      "searchText": "外部监管风险识别 | 专业法律分析 | 初步筛查企业在上市、投资或并购中面临的处罚、许可和信用风险。 | 企业业务、许可与处罚材料 | 监管范围和重要性标准 | 外部监管风险清单 | 核查路径和升级事项 | 经 LegalAISkill 收录；原仓库许可不得用于商业项目或分发修改版本，律所商业项目使用前须另行取得权利人授权；仅作监管风险初筛，正式尽调和法律结论须基于权威来源并由经办律师复核。"
+    },
+    {
+      "id": "prc-structured-element-extraction",
+      "name": "法律要素结构化提取",
+      "category": "基础工作",
+      "catalogStatus": "installable",
+      "summary": "在法律适用和风险评估前，从材料中提取并检查关键构成要素。",
+      "inputs": [
+        "合同、证照、访谈纪要等材料",
+        "预设法律要素表"
+      ],
+      "outputs": [
+        "结构化要素表",
+        "缺失、冲突和待核验事实"
+      ],
+      "notice": "经 LegalAISkill 收录；原仓库许可不得用于商业项目或分发修改版本，律所商业项目使用前须另行取得权利人授权；要素提取不等于法律评价，事实完整性和适用法律须由经办律师复核。",
+      "repository": "https://github.com/THUYRan/Legal-Skills-Chinese/tree/main/skills/structured-element-extraction",
+      "localUrl": null,
+      "fileTypeHints": [
+        "DOCX/Word"
+      ],
+      "searchText": "法律要素结构化提取 | 基础工作 | 在法律适用和风险评估前，从材料中提取并检查关键构成要素。 | 合同、证照、访谈纪要等材料 | 预设法律要素表 | 结构化要素表 | 缺失、冲突和待核验事实 | 经 LegalAISkill 收录；原仓库许可不得用于商业项目或分发修改版本，律所商业项目使用前须另行取得权利人授权；要素提取不等于法律评价，事实完整性和适用法律须由经办律师复核。"
+    },
+    {
+      "id": "prc-multi-document-summarization",
+      "name": "多份法律文档归纳",
+      "category": "基础工作",
+      "catalogStatus": "installable",
+      "summary": "综合多份合同、法规、证据或法律意见，保留差异、出处和冲突事项。",
+      "inputs": [
+        "多份法律文件",
+        "归纳维度和阅读对象"
+      ],
+      "outputs": [
+        "多文档归纳摘要",
+        "差异、冲突和来源定位"
+      ],
+      "notice": "经 LegalAISkill 收录；原仓库许可不得用于商业项目或分发修改版本，律所商业项目使用前须另行取得权利人授权；摘要不能替代底层文件，关键事实、差异和结论须回到原文并由经办律师复核。",
+      "repository": "https://github.com/THUYRan/Legal-Skills-Chinese/tree/main/skills/multi-document-summarization",
+      "localUrl": null,
+      "fileTypeHints": [
+        "DOCX/Word",
+        "TXT/Markdown"
+      ],
+      "searchText": "多份法律文档归纳 | 基础工作 | 综合多份合同、法规、证据或法律意见，保留差异、出处和冲突事项。 | 多份法律文件 | 归纳维度和阅读对象 | 多文档归纳摘要 | 差异、冲突和来源定位 | 经 LegalAISkill 收录；原仓库许可不得用于商业项目或分发修改版本，律所商业项目使用前须另行取得权利人授权；摘要不能替代底层文件，关键事实、差异和结论须回到原文并由经办律师复核。"
+    },
+    {
+      "id": "prc-strategic-risk-prioritization",
+      "name": "法律风险优先级排序",
+      "category": "专业法律分析",
+      "catalogStatus": "installable",
+      "summary": "对尽调、交易和合规项目中已识别的多项风险安排处理优先级。",
+      "inputs": [
+        "已识别法律风险",
+        "影响、概率、时限和可控性标准"
+      ],
+      "outputs": [
+        "风险优先级矩阵",
+        "近期行动、责任人与升级建议"
+      ],
+      "notice": "经 LegalAISkill 收录；原仓库许可不得用于商业项目或分发修改版本，律所商业项目使用前须另行取得权利人授权；自动排序只提供决策框架，重大性、商业影响和处理顺序须由经办律师及项目负责人复核。",
+      "repository": "https://github.com/THUYRan/Legal-Skills-Chinese/tree/main/skills/strategic-risk-prioritization",
+      "localUrl": null,
+      "fileTypeHints": [
+        "XLSX/表格"
+      ],
+      "searchText": "法律风险优先级排序 | 专业法律分析 | 对尽调、交易和合规项目中已识别的多项风险安排处理优先级。 | 已识别法律风险 | 影响、概率、时限和可控性标准 | 风险优先级矩阵 | 近期行动、责任人与升级建议 | 经 LegalAISkill 收录；原仓库许可不得用于商业项目或分发修改版本，律所商业项目使用前须另行取得权利人授权；自动排序只提供决策框架，重大性、商业影响和处理顺序须由经办律师及项目负责人复核。"
+    },
+    {
+      "id": "pre-ipo-readiness",
+      "name": "IPO 上市准备度评估",
+      "category": "专业法律分析",
+      "catalogStatus": "installable",
+      "summary": "按治理、财务、内控、披露和执行条件评估企业上市准备程度。",
+      "inputs": [
+        "公司治理、财务和合规资料",
+        "拟上市市场与时间表"
+      ],
+      "outputs": [
+        "上市准备度差距清单",
+        "整改路线和关键里程碑"
+      ],
+      "notice": "源自 CaseMark/skills，主要反映境外资本市场框架；用于中国项目时须完成中国法与交易所规则本地化并由经办律师复核。",
+      "repository": "https://github.com/CaseMark/skills/tree/main/skills/capital/conducting-pre-ipo-readiness-assessments",
+      "localUrl": null,
+      "fileTypeHints": [
+        "XLSX/表格"
+      ],
+      "searchText": "IPO 上市准备度评估 | 专业法律分析 | 按治理、财务、内控、披露和执行条件评估企业上市准备程度。 | 公司治理、财务和合规资料 | 拟上市市场与时间表 | 上市准备度差距清单 | 整改路线和关键里程碑 | 源自 CaseMark/skills，主要反映境外资本市场框架；用于中国项目时须完成中国法与交易所规则本地化并由经办律师复核。"
+    },
+    {
+      "id": "equity-offering-prospectus",
+      "name": "股权发行招股书起草框架",
+      "category": "文书制作",
+      "catalogStatus": "installable",
+      "summary": "组织股权发行招股书的章节、披露输入、核查问题和版本工作流。",
+      "inputs": [
+        "发行人资料和尽调结果",
+        "适用披露规则与招股书模板"
+      ],
+      "outputs": [
+        "招股书章节初稿框架",
+        "披露缺口和核查问题清单"
+      ],
+      "notice": "源自 CaseMark/skills，不能直接生成中国 IPO 申报文件；必须使用批准模板、完成中国法本地化并由经办律师复核。",
+      "repository": "https://github.com/CaseMark/skills/tree/main/skills/capital/drafting-equity-offering-prospectuses",
+      "localUrl": null,
+      "fileTypeHints": [
+        "DOCX/Word",
+        "XLSX/表格"
+      ],
+      "searchText": "股权发行招股书起草框架 | 文书制作 | 组织股权发行招股书的章节、披露输入、核查问题和版本工作流。 | 发行人资料和尽调结果 | 适用披露规则与招股书模板 | 招股书章节初稿框架 | 披露缺口和核查问题清单 | 源自 CaseMark/skills，不能直接生成中国 IPO 申报文件；必须使用批准模板、完成中国法本地化并由经办律师复核。"
+    },
+    {
+      "id": "ipo-execution",
+      "name": "IPO 执行进程管理",
+      "category": "专业法律分析",
+      "catalogStatus": "installable",
+      "summary": "跟踪 IPO 准备、申报、问询、路演和发行阶段的任务、依赖与责任人。",
+      "inputs": [
+        "IPO 工作计划与责任分工",
+        "申报、问询和发行进度"
+      ],
+      "outputs": [
+        "IPO 执行清单",
+        "关键路径、阻塞事项和周报"
+      ],
+      "notice": "源自 CaseMark/skills，里程碑主要反映境外流程；用于中国项目时须按交易所和监管流程本地化并由经办律师复核。",
+      "repository": "https://github.com/CaseMark/skills/tree/main/skills/capital/managing-ipo-execution-processes",
+      "localUrl": null,
+      "fileTypeHints": [
+        "XLSX/表格"
+      ],
+      "searchText": "IPO 执行进程管理 | 专业法律分析 | 跟踪 IPO 准备、申报、问询、路演和发行阶段的任务、依赖与责任人。 | IPO 工作计划与责任分工 | 申报、问询和发行进度 | IPO 执行清单 | 关键路径、阻塞事项和周报 | 源自 CaseMark/skills，里程碑主要反映境外流程；用于中国项目时须按交易所和监管流程本地化并由经办律师复核。"
+    },
+    {
+      "id": "ipo-valuation-pricing",
+      "name": "IPO 估值与定价分析",
+      "category": "专业法律分析",
+      "catalogStatus": "installable",
+      "summary": "比较可比公司、发行折价、估值区间及关键定价假设。",
+      "inputs": [
+        "发行人财务和业务指标",
+        "可比公司、市场与发行假设"
+      ],
+      "outputs": [
+        "估值区间分析",
+        "定价假设、敏感性和风险提示"
+      ],
+      "notice": "源自 CaseMark/skills，仅作估值分析框架，不构成投资或定价建议；中国项目须本地化并由相关专业人员及经办律师复核。",
+      "repository": "https://github.com/CaseMark/skills/tree/main/skills/capital/analyzing-ipo-valuation-and-pricing",
+      "localUrl": null,
+      "fileTypeHints": [],
+      "searchText": "IPO 估值与定价分析 | 专业法律分析 | 比较可比公司、发行折价、估值区间及关键定价假设。 | 发行人财务和业务指标 | 可比公司、市场与发行假设 | 估值区间分析 | 定价假设、敏感性和风险提示 | 源自 CaseMark/skills，仅作估值分析框架，不构成投资或定价建议；中国项目须本地化并由相关专业人员及经办律师复核。"
+    },
+    {
+      "id": "equity-market-window",
+      "name": "股票发行窗口分析",
+      "category": "专业法律分析",
+      "catalogStatus": "installable",
+      "summary": "从市场环境、可比发行、投资者需求和项目准备度判断发行窗口。",
+      "inputs": [
+        "市场、行业和可比发行数据",
+        "项目准备度和发行约束"
+      ],
+      "outputs": [
+        "发行窗口判断框架",
+        "情景分析和前置条件"
+      ],
+      "notice": "源自 CaseMark/skills，主要反映境外市场分析；市场数据需实时核验，中国项目须本地化并由经办律师复核。",
+      "repository": "https://github.com/CaseMark/skills/tree/main/skills/capital/conducting-equity-market-windows-analysis",
+      "localUrl": null,
+      "fileTypeHints": [],
+      "searchText": "股票发行窗口分析 | 专业法律分析 | 从市场环境、可比发行、投资者需求和项目准备度判断发行窗口。 | 市场、行业和可比发行数据 | 项目准备度和发行约束 | 发行窗口判断框架 | 情景分析和前置条件 | 源自 CaseMark/skills，主要反映境外市场分析；市场数据需实时核验，中国项目须本地化并由经办律师复核。"
+    },
+    {
+      "id": "buy-side-due-diligence",
+      "name": "买方尽职调查",
+      "category": "专业法律分析",
+      "catalogStatus": "installable",
+      "summary": "为收购或重大投资建立买方尽调范围、问题流、发现与决策框架。",
+      "inputs": [
+        "交易目标、结构和时间表",
+        "资料室文件、访谈和问题清单"
+      ],
+      "outputs": [
+        "买方尽调工作计划",
+        "重大问题、缺口和交易建议"
+      ],
+      "notice": "源自 CaseMark/skills，不能替代完整法律尽调；中国项目须按委托范围和重要性标准本地化并由经办律师复核。",
+      "repository": "https://github.com/CaseMark/skills/tree/main/skills/capital/conducting-buy-side-due-diligence",
+      "localUrl": null,
+      "fileTypeHints": [
+        "XLSX/表格"
+      ],
+      "searchText": "买方尽职调查 | 专业法律分析 | 为收购或重大投资建立买方尽调范围、问题流、发现与决策框架。 | 交易目标、结构和时间表 | 资料室文件、访谈和问题清单 | 买方尽调工作计划 | 重大问题、缺口和交易建议 | 源自 CaseMark/skills，不能替代完整法律尽调；中国项目须按委托范围和重要性标准本地化并由经办律师复核。"
+    },
+    {
+      "id": "cross-border-due-diligence",
+      "name": "跨境投资并购尽职调查",
+      "category": "专业法律分析",
+      "catalogStatus": "installable",
+      "summary": "梳理跨境交易中的法域、外资、反垄断、税务、数据和审批问题。",
+      "inputs": [
+        "交易结构、标的法域和业务分布",
+        "当地尽调资料及监管信息"
+      ],
+      "outputs": [
+        "跨境尽调矩阵",
+        "审批、法域和当地律师任务清单"
+      ],
+      "notice": "源自 CaseMark/skills，涉及多法域且含境外监管示例；须按交易实际法域本地化并由经办律师及当地律师复核。",
+      "repository": "https://github.com/CaseMark/skills/tree/main/skills/capital/conducting-cross-border-due-diligence",
+      "localUrl": null,
+      "fileTypeHints": [
+        "XLSX/表格"
+      ],
+      "searchText": "跨境投资并购尽职调查 | 专业法律分析 | 梳理跨境交易中的法域、外资、反垄断、税务、数据和审批问题。 | 交易结构、标的法域和业务分布 | 当地尽调资料及监管信息 | 跨境尽调矩阵 | 审批、法域和当地律师任务清单 | 源自 CaseMark/skills，涉及多法域且含境外监管示例；须按交易实际法域本地化并由经办律师及当地律师复核。"
+    },
+    {
+      "id": "deal-data-room",
+      "name": "交易资料室管理",
+      "category": "基础工作",
+      "catalogStatus": "installable",
+      "summary": "规划资料室目录、权限、补件、版本和问答流转，支持投资并购尽调。",
+      "inputs": [
+        "交易资料清单",
+        "权限分组、版本和补件状态"
+      ],
+      "outputs": [
+        "资料室目录与权限方案",
+        "缺件、版本和问答台账"
+      ],
+      "notice": "源自 CaseMark/skills；不得向未批准系统上传客户材料，权限、披露范围和数据安全须由经办律师复核。",
+      "repository": "https://github.com/CaseMark/skills/tree/main/skills/capital/managing-deal-data-rooms",
+      "localUrl": null,
+      "fileTypeHints": [
+        "XLSX/表格"
+      ],
+      "searchText": "交易资料室管理 | 基础工作 | 规划资料室目录、权限、补件、版本和问答流转，支持投资并购尽调。 | 交易资料清单 | 权限分组、版本和补件状态 | 资料室目录与权限方案 | 缺件、版本和问答台账 | 源自 CaseMark/skills；不得向未批准系统上传客户材料，权限、披露范围和数据安全须由经办律师复核。"
+    },
+    {
+      "id": "sell-side-auction",
+      "name": "出售方竞价流程管理",
+      "category": "专业法律分析",
+      "catalogStatus": "installable",
+      "summary": "组织出售方竞价交易中的买方接触、流程函、投标比较和签约路径。",
+      "inputs": [
+        "出售目标、时间表和候选买方",
+        "投标条件、流程文件和评估标准"
+      ],
+      "outputs": [
+        "出售流程计划",
+        "投标比较、关键节点和决策事项"
+      ],
+      "notice": "源自 CaseMark/skills，主要反映境外 M&A 流程；中国项目须结合审批、保密和交易惯例本地化并由经办律师复核。",
+      "repository": "https://github.com/CaseMark/skills/tree/main/skills/capital/managing-sell-side-auction-processes",
+      "localUrl": null,
+      "fileTypeHints": [
+        "DOCX/Word"
+      ],
+      "searchText": "出售方竞价流程管理 | 专业法律分析 | 组织出售方竞价交易中的买方接触、流程函、投标比较和签约路径。 | 出售目标、时间表和候选买方 | 投标条件、流程文件和评估标准 | 出售流程计划 | 投标比较、关键节点和决策事项 | 源自 CaseMark/skills，主要反映境外 M&A 流程；中国项目须结合审批、保密和交易惯例本地化并由经办律师复核。"
+    },
+    {
+      "id": "post-merger-integration",
+      "name": "并购后整合规划",
+      "category": "专业法律分析",
+      "catalogStatus": "installable",
+      "summary": "把并购交割后的治理、人员、合同、系统和合规任务整理成整合计划。",
+      "inputs": [
+        "交易文件、尽调发现和整合目标",
+        "业务、人员、合同和系统现状"
+      ],
+      "outputs": [
+        "并购后整合路线图",
+        "责任人、里程碑和风险清单"
+      ],
+      "notice": "源自 CaseMark/skills；整合涉及劳动、数据、合同和监管事项，中国项目须本地化并由经办律师及相应专业人员复核。",
+      "repository": "https://github.com/CaseMark/skills/tree/main/skills/capital/planning-post-merger-integration",
+      "localUrl": null,
+      "fileTypeHints": [
+        "DOCX/Word",
+        "XLSX/表格"
+      ],
+      "searchText": "并购后整合规划 | 专业法律分析 | 把并购交割后的治理、人员、合同、系统和合规任务整理成整合计划。 | 交易文件、尽调发现和整合目标 | 业务、人员、合同和系统现状 | 并购后整合路线图 | 责任人、里程碑和风险清单 | 源自 CaseMark/skills；整合涉及劳动、数据、合同和监管事项，中国项目须本地化并由经办律师及相应专业人员复核。"
+    },
+    {
+      "id": "investment-committee-memo",
+      "name": "PE/VC 投资委员会备忘录",
+      "category": "文书制作",
+      "catalogStatus": "installable",
+      "summary": "将投资逻辑、尽调发现、估值、风险和退出情景组织成投委会材料。",
+      "inputs": [
+        "投资逻辑、尽调结果和财务模型",
+        "基金策略、审批门槛和投委会模板"
+      ],
+      "outputs": [
+        "投委会备忘录初稿",
+        "关键假设、重大风险和待决策事项"
+      ],
+      "notice": "源自 CaseMark/skills，不构成投资建议；商业、财务和中国法内容须分别本地化并由投资团队及经办律师复核。",
+      "repository": "https://github.com/CaseMark/skills/tree/main/skills/capital/drafting-investment-committee-memos",
+      "localUrl": null,
+      "fileTypeHints": [
+        "DOCX/Word",
+        "XLSX/表格",
+        "TXT/Markdown"
+      ],
+      "searchText": "PE/VC 投资委员会备忘录 | 文书制作 | 将投资逻辑、尽调发现、估值、风险和退出情景组织成投委会材料。 | 投资逻辑、尽调结果和财务模型 | 基金策略、审批门槛和投委会模板 | 投委会备忘录初稿 | 关键假设、重大风险和待决策事项 | 源自 CaseMark/skills，不构成投资建议；商业、财务和中国法内容须分别本地化并由投资团队及经办律师复核。"
+    },
+    {
+      "id": "venture-return-model",
+      "name": "VC 投资回报模型",
+      "category": "专业法律分析",
+      "catalogStatus": "installable",
+      "summary": "测算融资轮次、稀释、退出估值和不同权利安排下的投资回报。",
+      "inputs": [
+        "投资金额、估值和股权结构",
+        "后续融资、退出及权利条款假设"
+      ],
+      "outputs": [
+        "VC 回报情景模型",
+        "敏感性、稀释和关键假设"
+      ],
+      "notice": "源自 CaseMark/skills，不构成估值或投资建议；权利条款、中国法效力和财务假设须由相应专业人员及经办律师复核。",
+      "repository": "https://github.com/CaseMark/skills/tree/main/skills/capital/building-venture-return-models",
+      "localUrl": null,
+      "fileTypeHints": [
+        "XLSX/表格"
+      ],
+      "searchText": "VC 投资回报模型 | 专业法律分析 | 测算融资轮次、稀释、退出估值和不同权利安排下的投资回报。 | 投资金额、估值和股权结构 | 后续融资、退出及权利条款假设 | VC 回报情景模型 | 敏感性、稀释和关键假设 | 源自 CaseMark/skills，不构成估值或投资建议；权利条款、中国法效力和财务假设须由相应专业人员及经办律师复核。"
+    },
+    {
+      "id": "venture-cap-table",
+      "name": "VC 股权结构表建模",
+      "category": "专业法律分析",
+      "catalogStatus": "installable",
+      "summary": "建立融资前后股权结构、期权池、转换、稀释和退出分配模型。",
+      "inputs": [
+        "现有股权和证券安排",
+        "融资估值、金额、期权池和转换条款"
+      ],
+      "outputs": [
+        "融资前后 Cap Table",
+        "稀释、转换和分配核对表"
+      ],
+      "notice": "源自 CaseMark/skills；模型不能替代公司登记、章程和交易文件，股权与权利安排须中国法本地化并由经办律师复核。",
+      "repository": "https://github.com/CaseMark/skills/tree/main/skills/capital/modeling-venture-cap-tables",
+      "localUrl": null,
+      "fileTypeHints": [
+        "DOCX/Word",
+        "XLSX/表格"
+      ],
+      "searchText": "VC 股权结构表建模 | 专业法律分析 | 建立融资前后股权结构、期权池、转换、稀释和退出分配模型。 | 现有股权和证券安排 | 融资估值、金额、期权池和转换条款 | 融资前后 Cap Table | 稀释、转换和分配核对表 | 源自 CaseMark/skills；模型不能替代公司登记、章程和交易文件，股权与权利安排须中国法本地化并由经办律师复核。"
+    },
+    {
+      "id": "term-sheet-economics",
+      "name": "融资条款清单经济性分析",
+      "category": "专业法律分析",
+      "catalogStatus": "installable",
+      "summary": "分析估值、清算优先、反稀释、分红、期权池和控制权条款的经济影响。",
+      "inputs": [
+        "Term Sheet 和融资参数",
+        "各方立场与退出情景"
+      ],
+      "outputs": [
+        "条款经济影响分析",
+        "情景比较和谈判重点"
+      ],
+      "notice": "源自 CaseMark/skills，部分条款反映境外融资惯例；中国项目须核对可执行性并由经办律师、投资团队复核。",
+      "repository": "https://github.com/CaseMark/skills/tree/main/skills/capital/analyzing-term-sheet-economics",
+      "localUrl": null,
+      "fileTypeHints": [
+        "XLSX/表格"
+      ],
+      "searchText": "融资条款清单经济性分析 | 专业法律分析 | 分析估值、清算优先、反稀释、分红、期权池和控制权条款的经济影响。 | Term Sheet 和融资参数 | 各方立场与退出情景 | 条款经济影响分析 | 情景比较和谈判重点 | 源自 CaseMark/skills，部分条款反映境外融资惯例；中国项目须核对可执行性并由经办律师、投资团队复核。"
+    },
+    {
+      "id": "venture-exit-analysis",
+      "name": "VC 退出方案分析",
+      "category": "专业法律分析",
+      "catalogStatus": "installable",
+      "summary": "比较 IPO、并购、老股转让和资本重组等退出路径及回报情景。",
+      "inputs": [
+        "被投企业情况与股权结构",
+        "退出路径、市场和估值假设"
+      ],
+      "outputs": [
+        "退出路径比较",
+        "时间表、回报情景和前置条件"
+      ],
+      "notice": "源自 CaseMark/skills，不构成退出或投资建议；中国项目须结合证券、并购及外汇规则本地化并由经办律师复核。",
+      "repository": "https://github.com/CaseMark/skills/tree/main/skills/capital/preparing-venture-exit-analyses",
+      "localUrl": null,
+      "fileTypeHints": [],
+      "searchText": "VC 退出方案分析 | 专业法律分析 | 比较 IPO、并购、老股转让和资本重组等退出路径及回报情景。 | 被投企业情况与股权结构 | 退出路径、市场和估值假设 | 退出路径比较 | 时间表、回报情景和前置条件 | 源自 CaseMark/skills，不构成退出或投资建议；中国项目须结合证券、并购及外汇规则本地化并由经办律师复核。"
+    }
+  ]
+}
