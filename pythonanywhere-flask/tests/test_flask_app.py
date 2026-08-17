@@ -15,8 +15,8 @@ class FlaskWorkbenchTest(unittest.TestCase):
         app.config.update(TESTING=True)
         cls.client = app.test_client()
 
-    def test_registry_contains_twenty_tools_and_expected_categories(self):
-        self.assertEqual(len(tools), 20)
+    def test_registry_contains_fifty_tools_and_expected_categories(self):
+        self.assertEqual(len(tools), 50)
         self.assertEqual(
             categories,
             ["全部工具", "数据安全", "基础工作", "文书制作", "专业法律分析", "Anthropic Legal"],
@@ -25,7 +25,7 @@ class FlaskWorkbenchTest(unittest.TestCase):
     def test_health_endpoint(self):
         response = self.client.get("/health")
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.get_json(), {"status": "ok", "tools": 20})
+        self.assertEqual(response.get_json(), {"status": "ok", "tools": 50})
 
     def test_homepage_renders_workbench_and_all_tools(self):
         response = self.client.get("/")
@@ -36,6 +36,9 @@ class FlaskWorkbenchTest(unittest.TestCase):
         self.assertIn("工具清单", html)
         self.assertIn("本地律师材料脱敏", html)
         self.assertIn("中国并购交易结构方案规划", html)
+        self.assertIn("IPO 上市准备度评估", html)
+        self.assertIn("买方尽职调查", html)
+        self.assertIn("PE/VC 投资委员会备忘录", html)
         self.assertIn("data-tool-card", html)
 
     def test_every_tool_has_a_detail_page(self):
