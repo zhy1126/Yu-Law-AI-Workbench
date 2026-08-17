@@ -5,6 +5,7 @@ import sqlite3
 import sys
 import tempfile
 import unittest
+import os
 from pathlib import Path
 
 PACKAGE_ROOT = Path(__file__).resolve().parents[1]
@@ -46,6 +47,11 @@ class LitigationDatabaseTests(unittest.TestCase):
     def tearDown(self) -> None:
         self.db.close()
         self.temp.cleanup()
+
+    @unittest.skipIf(os.name == "nt", "Windows does not enforce POSIX file modes")
+    def test_database_and_parent_directory_use_private_permissions(self):
+        self.assertEqual(self.db.data_dir.stat().st_mode & 0o777, 0o700)
+        self.assertEqual(self.db.path.stat().st_mode & 0o777, 0o600)
 
     def test_creates_all_core_tables(self) -> None:
         names = {

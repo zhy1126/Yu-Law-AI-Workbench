@@ -3,6 +3,7 @@ from __future__ import annotations
 from datetime import datetime, timezone
 import hashlib
 import json
+import os
 from pathlib import Path
 import sqlite3
 import uuid
@@ -76,8 +77,12 @@ class LitigationDatabase:
         self.root = root.resolve()
         self.data_dir = self.root / "data"
         self.data_dir.mkdir(parents=True, exist_ok=True)
+        if os.name != "nt":
+            self.data_dir.chmod(0o700)
         self.path = self.data_dir / "litigation.db"
         self.connection = sqlite3.connect(self.path, check_same_thread=False)
+        if os.name != "nt":
+            self.path.chmod(0o600)
         self.connection.row_factory = sqlite3.Row
         self.connection.execute("PRAGMA foreign_keys = ON")
         self._create_schema()
