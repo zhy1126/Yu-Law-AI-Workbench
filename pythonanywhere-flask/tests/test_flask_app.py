@@ -104,6 +104,11 @@ class FlaskWorkbenchTest(unittest.TestCase):
         )
 
         self.assertIn("在浏览器或应用商城下载 WorkBuddy 后，使用微信注册并登录", html)
+        self.assertIn(
+            '<a class="inline-link" href="https://www.workbuddy.cn/work/"'
+            ' target="_blank" rel="noreferrer">如果还未安装，可以点击链接安装</a>',
+            html,
+        )
         self.assertIn(f'href="{invite_url}"', html)
         self.assertIn("点击链接加入【WorkBuddy】虞律团队 AI 工作流试验", html)
         self.assertIn("能在专家栏找到“法律 AI 工作流总入口”", html)
