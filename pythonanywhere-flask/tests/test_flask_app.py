@@ -154,8 +154,11 @@ class FlaskWorkbenchTest(unittest.TestCase):
     def test_legal_document_skills_are_current_in_catalog_and_guide(self):
         html = self.client.get("/guide").get_data(as_text=True)
         for token in (
-            "法律文书制作专家",
-            "合同审阅优先",
+            "法律文书制作专家：工作示例",
+            "技能 1｜法律服务合同｜DRAFT / REVIEW",
+            "技能 2｜法律服务报价函｜DRAFT / REVIEW",
+            "技能 3｜法律服务建议书｜Word DRAFT / REVIEW",
+            "技能 4｜标书 / 响应文件｜母版生成",
             "$drafting-legal-service-contracts",
             "$handling-legal-fee-quotations",
             "$handling-legal-service-proposals",
@@ -164,6 +167,8 @@ class FlaskWorkbenchTest(unittest.TestCase):
             "MA_SPECIAL_V1",
         ):
             self.assertIn(token, html)
+        self.assertNotIn("合同 Skill 的当前边界", html)
+        self.assertNotIn("它不是所有商业合同的通用审阅器", html)
 
         by_id = {tool["id"]: tool for tool in tools}
         contract = by_id["drafting-legal-service-contracts"]
