@@ -11,6 +11,10 @@ class UpdateScriptTests(unittest.TestCase):
 
         self.assertIn("set -euo pipefail", script)
         self.assertIn('git -C "$REPO_DIR" pull --ff-only origin main', script)
+        self.assertIn(
+            "PYTHONDONTWRITEBYTECODE=1 python3.13 -m unittest discover -s tests -v",
+            script,
+        )
         self.assertIn("python3.13 -m unittest discover -s tests -v", script)
         self.assertIn("from flask_app import app", script)
         self.assertIn('touch "$WSGI_FILE"', script)
