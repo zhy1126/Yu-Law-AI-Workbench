@@ -38,6 +38,7 @@ button { cursor: pointer; }
 .brand span { color: #bfcac5; font-size: 12px; }
 .sidebar nav { display: grid; gap: 5px; }
 .nav-item { width: 100%; min-height: 45px; display: flex; align-items: center; justify-content: space-between; padding: 9px 12px; border: 0; border-radius: 6px; background: transparent; color: #c7d0cc; text-align: left; }
+.nav-link { text-decoration: none; }
 .nav-item:hover { background: rgba(255,255,255,.08); }
 .nav-item.is-active { background: rgba(255,255,255,.15); color: #fff; font-weight: 700; }
 .nav-item b { min-width: 24px; height: 24px; display: grid; place-items: center; padding: 0 6px; border-radius: 12px; background: rgba(255,255,255,.12); font-size: 11px; }
