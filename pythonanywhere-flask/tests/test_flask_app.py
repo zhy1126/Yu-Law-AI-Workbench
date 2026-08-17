@@ -95,6 +95,22 @@ class FlaskWorkbenchTest(unittest.TestCase):
         self.assertIn("data-copy-prompt", html)
         self.assertIn("/static/guide.js", html)
 
+    def test_team_guide_omits_retired_material_and_stage_sections(self):
+        html = self.client.get("/guide").get_data(as_text=True)
+
+        self.assertNotIn("材料清点", html)
+        self.assertNotIn('id="files"', html)
+        self.assertNotIn('href="#files"', html)
+        self.assertNotIn("材料和文件命名", html)
+        self.assertNotIn('id="stages"', html)
+        self.assertNotIn('href="#stages"', html)
+        self.assertNotIn("六阶段工作流", html)
+        self.assertNotIn("人工确认节点", html)
+        self.assertIn("Prompt 02｜Skill 推荐", html)
+        self.assertIn("<h2>常见问题</h2>", html)
+        self.assertIn("<p>待更新</p>", html)
+        self.assertNotIn('class="troubleshooting-list"', html)
+
     def test_team_guide_explains_workbuddy_concepts_before_the_workflow(self):
         html = self.client.get("/guide").get_data(as_text=True)
 

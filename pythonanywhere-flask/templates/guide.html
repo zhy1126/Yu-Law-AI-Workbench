@@ -30,7 +30,7 @@
         <nav aria-label="手册目录">
           <a href="#start">开始前检查</a><a href="#parts">三个工作入口</a><a href="#concepts">基础概念</a><a href="#workflow">工作流</a>
           <a href="#install">安装 WorkBuddy</a><a href="#setup">首次设置</a><a href="#documents">法律文书专家</a><a href="#prompts">Prompt 复制区</a>
-          <a href="#files">材料与命名</a><a href="#stages">六阶段状态</a><a href="#review">律师复核</a><a href="#faq">常见问题</a>
+          <a href="#review">律师复核</a><a href="#faq">常见问题</a>
         </nav>
         <a class="back-link" href="/skills">← 进入 Skill 库</a>
       </aside>
@@ -141,22 +141,7 @@
 
 如果当前不是“法律 AI 工作流总入口”，请直接提醒我切换专家。</code></pre></div>
 
-          <div class="prompt-block"><header><div><strong>Prompt 02｜材料清点</strong><p>只确认文件和缺口，不开始工作。</p></div><button type="button" data-copy-prompt="prompt-2">复制</button></header><pre><code id="prompt-2">这是【项目/任务名称】的材料清点，不是正式审阅或起草。
-
-委托方立场：【填写】
-任务目标：【填写】
-截止时间：【填写】
-已提供材料：【逐项填写文件名】
-
-请只输出：
-1. 已收到的文件及版本；
-2. 可能重复、过期或无法识别的文件；
-3. 开始工作前仍缺少的材料；
-4. 必须由律师确认的事实。
-
-不要调用 Skill，不要改文件，不要开始起草或审阅。</code></pre></div>
-
-          <div class="prompt-block"><header><div><strong>Prompt 03｜Skill 推荐</strong><p>推荐后等待律师选择。</p></div><button type="button" data-copy-prompt="prompt-3">复制</button></header><pre><code id="prompt-3">这是【项目/任务名称】。先不要执行。
+          <div class="prompt-block"><header><div><strong>Prompt 02｜Skill 推荐</strong><p>推荐后等待律师选择。</p></div><button type="button" data-copy-prompt="prompt-2">复制</button></header><pre><code id="prompt-2">这是【项目/任务名称】。先不要执行。
 
 任务类型：【报价函/标书/法律服务建议书/合同起草/合同审阅/尽调/并购结构/IPO 等】
 委托方立场：【填写】
@@ -170,7 +155,7 @@
 
 请给出首选方案，但等我确认后再执行。</code></pre></div>
 
-          <div class="prompt-block"><header><div><strong>Prompt 04｜确认执行</strong><p>律师确认范围后使用。</p></div><button type="button" data-copy-prompt="prompt-4">复制</button></header><pre><code id="prompt-4">确认采用【Skill 名称】执行本任务。
+          <div class="prompt-block"><header><div><strong>Prompt 03｜确认执行</strong><p>律师确认范围后使用。</p></div><button type="button" data-copy-prompt="prompt-3">复制</button></header><pre><code id="prompt-3">确认采用【Skill 名称】执行本任务。
 
 委托方立场：【填写】
 确认材料范围：【填写】
@@ -181,19 +166,19 @@
 
 执行要求：只使用确认材料；不确定事实必须标记；发生冲突先停止；所有成果标记“待经办律师复核”；不得自动批准、归档、上传、分享或对外发送。</code></pre></div>
 
-          <div class="prompt-block"><header><div><strong>Prompt 05｜暂停并确认</strong><p>出现事实缺口或冲突时使用。</p></div><button type="button" data-copy-prompt="prompt-5">复制</button></header><pre><code id="prompt-5">请暂停当前生成，不要继续修改文件。
+          <div class="prompt-block"><header><div><strong>Prompt 04｜暂停并确认</strong><p>出现事实缺口或冲突时使用。</p></div><button type="button" data-copy-prompt="prompt-4">复制</button></header><pre><code id="prompt-4">请暂停当前生成，不要继续修改文件。
 
 请把尚未解决的问题整理为确认清单，每项包括：编号、待确认事实或选择、影响、可选方案、建议确认人。
 
 等我逐项回复后，再总结确认内容并询问是否恢复执行。</code></pre></div>
 
-          <div class="prompt-block"><header><div><strong>Prompt 06｜交付前自检</strong><p>辅助律师检查，不替代批准。</p></div><button type="button" data-copy-prompt="prompt-6">复制</button></header><pre><code id="prompt-6">请对当前成果做一次“交付前自检”，但不要替律师批准。
+          <div class="prompt-block"><header><div><strong>Prompt 05｜交付前自检</strong><p>辅助律师检查，不替代批准。</p></div><button type="button" data-copy-prompt="prompt-5">复制</button></header><pre><code id="prompt-5">请对当前成果做一次“交付前自检”，但不要替律师批准。
 
 逐项检查并引用位置：委托方立场；主体、金额、比例、日期和版本；批注、占位符和待确认项；法律依据；用户要求的输出；文件名和格式；不应披露的信息。
 
 最后只输出“复核清单 + 发现的问题 + 建议处理方式”，并保持状态为“待律师复核”。</code></pre></div>
 
-          <div class="prompt-block"><header><div><strong>Prompt 07｜状态汇报</strong><p>只查看进度，不继续执行。</p></div><button type="button" data-copy-prompt="prompt-7">复制</button></header><pre><code id="prompt-7">请只汇报当前任务状态，不要继续执行。
+          <div class="prompt-block"><header><div><strong>Prompt 06｜状态汇报</strong><p>只查看进度，不继续执行。</p></div><button type="button" data-copy-prompt="prompt-6">复制</button></header><pre><code id="prompt-6">请只汇报当前任务状态，不要继续执行。
 
 - 当前阶段：
 - 已完成：
@@ -205,29 +190,13 @@
 
 未经律师复核，不得写“已完成”或“可直接发送”。</code></pre></div>
 
-          <div class="prompt-block"><header><div><strong>Prompt 08｜立即停止</strong><p>发现越权或方向错误时使用。</p></div><button type="button" data-copy-prompt="prompt-8">复制</button></header><pre><code id="prompt-8">立即停止当前任务，不再调用任何 Skill、脚本、连接器或外部服务，也不要修改、上传、分享、批准或归档任何文件。
+          <div class="prompt-block"><header><div><strong>Prompt 07｜立即停止</strong><p>发现越权或方向错误时使用。</p></div><button type="button" data-copy-prompt="prompt-7">复制</button></header><pre><code id="prompt-7">立即停止当前任务，不再调用任何 Skill、脚本、连接器或外部服务，也不要修改、上传、分享、批准或归档任何文件。
 
 请只说明：停止前最后完成的步骤、已经发生的文件变更、当前成果位置、需要人工检查或恢复的事项。</code></pre></div>
         </section>
 
-        <section id="files" class="guide-section">
-          <p class="section-index">08</p><h2>材料和文件命名</h2>
-          <ul class="guide-rules">
-            <li><strong>项目材料：</strong>放在该任务或案件的专用工作区，不放在 Skill 库网页。</li>
-            <li><strong>团队资源：</strong>批准的通用模板、案例、律师履历和使用规范放团队资源库。</li>
-            <li><strong>文件名：</strong>建议使用“项目简称_文件类型_版本_日期”，例如 <code>虚拟A公司_投资协议_v03_20260817.docx</code>。</li>
-            <li><strong>版本：</strong>材料清点和成果交付都写明使用版本；不要用“最新版”“最终版2”代替明确版本。</li>
-          </ul>
-        </section>
-
-        <section id="stages" class="guide-section">
-          <p class="section-index">09</p><h2>六阶段工作流</h2>
-          <ol class="guide-flow"><li><span>1</span><strong>待收件</strong></li><li><span>2</span><strong>材料已确认</strong></li><li><span>3</span><strong>生成中</strong></li><li><span>4</span><strong>待律师复核</strong></li><li><span>5</span><strong>已批准</strong></li><li><span>6</span><strong>已归档</strong></li></ol>
-          <div class="guide-callout"><strong>人工确认节点</strong><p>AI 自动执行只到“待律师复核”。“已批准”“已归档”以及正式对外发送，均由具名经办律师手动确认。</p></div>
-        </section>
-
         <section id="review" class="guide-section">
-          <p class="section-index">10</p><h2>律师复核清单</h2>
+          <p class="section-index">08</p><h2>律师复核清单</h2>
           <div class="review-grid">
             <section><h3>事实</h3><ul><li>主体、姓名、金额、比例、日期</li><li>文件版本和交易阶段</li><li>委托方立场</li></ul></section>
             <section><h3>法律</h3><ul><li>适用法域和法律依据</li><li>引用是否真实、现行、可核验</li><li>事实与法律结论是否区分</li></ul></section>
@@ -239,14 +208,8 @@
         </section>
 
         <section id="faq" class="guide-section">
-          <p class="section-index">11</p><h2>常见问题</h2>
-          <dl class="troubleshooting-list">
-            <div><dt>看不到团队项目</dt><dd>核对接受邀请的账号与 WorkBuddy 登录账号是否一致；不要自行新建同名项目。</dd></div>
-            <div><dt>专家或 Skill 不可见</dt><dd>刷新项目，在“我的专家”或“已安装 Skill”核对完整名称；仍不存在时联系管理员。</dd></div>
-            <div><dt>文件无法读取</dt><dd>检查文件能否在本机打开、是否加密、是否为临时文件，并确认它位于当前授权工作区。</dd></div>
-            <div><dt>它跳过推荐直接执行</dt><dd>立即使用 Prompt 08 停止，重新选择“法律 AI 工作流总入口”，再用 Prompt 03。</dd></div>
-            <div><dt>结果看起来不对</dt><dd>不要批准。停在“待律师复核”，补充立场、模板、版本和输出要求后再决定是否重做。</dd></div>
-          </dl>
+          <p class="section-index">09</p><h2>常见问题</h2>
+          <p>待更新</p>
         </section>
       </article>
     </div>
