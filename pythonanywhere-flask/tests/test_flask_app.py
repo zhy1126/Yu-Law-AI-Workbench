@@ -115,6 +115,33 @@ class FlaskWorkbenchTest(unittest.TestCase):
         self.assertNotIn("第一次先用虚拟材料", html)
         self.assertNotIn("能用虚拟材料把任务推进到", html)
 
+    def test_legal_document_skills_are_current_in_catalog_and_guide(self):
+        html = self.client.get("/guide").get_data(as_text=True)
+        for token in (
+            "法律文书制作专家",
+            "合同审阅优先",
+            "$drafting-legal-service-contracts",
+            "$handling-legal-fee-quotations",
+            "$handling-legal-service-proposals",
+            "$generating-law-firm-tenders",
+            "GENERAL_LETTER_V1",
+            "MA_SPECIAL_V1",
+        ):
+            self.assertIn(token, html)
+
+        by_id = {tool["id"]: tool for tool in tools}
+        contract = by_id["drafting-legal-service-contracts"]
+        quotation = by_id["quotation-letter"]
+        proposal = by_id["legal-service-proposal"]
+        tender = by_id["tender-response"]
+
+        for tool in (contract, quotation, proposal, tender):
+            self.assertEqual(tool["status"], "local-skill")
+        self.assertIn("审阅", contract["summary"])
+        self.assertIn("报价函红线版 Word", quotation["outputs"])
+        self.assertIn("建议书红线版 Word", proposal["outputs"])
+        self.assertIn("固定 Word 母版", tender["summary"])
+
 
 class AuthenticationTest(unittest.TestCase):
     def setUp(self):
