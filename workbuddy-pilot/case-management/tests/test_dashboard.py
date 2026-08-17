@@ -10,6 +10,11 @@ JS = ROOT / "dashboard" / "app.js"
 
 
 class LitigationDashboardTests(unittest.TestCase):
+    def test_sidebar_links_back_to_ai_workbench(self) -> None:
+        html = INDEX.read_text(encoding="utf-8")
+        self.assertIn('class="nav-item nav-link" href="/"', html)
+        self.assertIn(">返回 AI 工作台<", html)
+
     def test_replaces_old_ledger_with_litigation_navigation(self) -> None:
         html = INDEX.read_text(encoding="utf-8")
         self.assertIn("<title>诉讼工作台</title>", html)
