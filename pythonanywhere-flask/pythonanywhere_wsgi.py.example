@@ -1,11 +1,18 @@
 """Copy this content into the WSGI configuration shown on PythonAnywhere's Web page."""
 
+import os
 import sys
 
 
 # Replace YOURUSERNAME with your PythonAnywhere username.
-project_home = "/home/YOURUSERNAME/yu-law-ai-workbench"
+project_home = "/home/YOURUSERNAME/Yu-Law-AI-Workbench/pythonanywhere-flask"
 if project_home not in sys.path:
     sys.path.insert(0, project_home)
+
+# Generate these values privately on PythonAnywhere. Never commit the real values.
+os.environ["YULAW_PASSWORD_HASH"] = "REPLACE_WITH_SHA256_PASSWORD_HASH"
+os.environ["YULAW_SESSION_SECRET"] = "REPLACE_WITH_RANDOM_SESSION_SECRET"
+os.environ["YULAW_CASE_DATA_ROOT"] = "/home/YOURUSERNAME/private-data/case-management"
+os.environ["YULAW_SECURE_COOKIE"] = "1"
 
 from flask_app import app as application  # noqa: E402

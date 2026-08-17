@@ -3,9 +3,14 @@
 from __future__ import annotations
 
 import json
+import hashlib
+import os
 from pathlib import Path
+import secrets
 
-from flask import Flask, abort, jsonify, render_template
+from flask import Flask, abort, jsonify, redirect, render_template, request, session, url_for
+
+from litigation_flask import register_litigation
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -82,6 +87,58 @@ tools = load_tools()
 tools_by_id = {tool["id"]: tool for tool in tools}
 
 app = Flask(__name__)
+app.config.update(
+    SECRET_KEY=os.environ.get("YULAW_SESSION_SECRET", "development-only-change-me"),
+    AUTH_PASSWORD_HASH=os.environ.get("YULAW_PASSWORD_HASH", ""),
+    AUTH_REQUIRED=bool(os.environ.get("YULAW_PASSWORD_HASH")),
+    CASE_DATA_ROOT=os.environ.get("YULAW_CASE_DATA_ROOT", str(BASE_DIR / "instance" / "case-management")),
+    SESSION_COOKIE_HTTPONLY=True,
+    SESSION_COOKIE_SAMESITE="Strict",
+    SESSION_COOKIE_SECURE=os.environ.get("YULAW_SECURE_COOKIE", "0") == "1",
+)
+
+
+def _password_matches(value: str) -> bool:
+    expected = app.config.get("AUTH_PASSWORD_HASH", "")
+    actual = hashlib.sha256(value.encode("utf-8")).hexdigest()
+    return bool(expected and secrets.compare_digest(actual, expected))
+
+
+@app.before_request
+def require_site_login():
+    if not app.config.get("AUTH_REQUIRED"):
+        return None
+    allowed = {"login", "health", "static", "litigation.case_login", "litigation.case_session"}
+    if request.endpoint in allowed:
+        return None
+    if session.get("authenticated"):
+        return None
+    if request.path.startswith("/api/"):
+        return jsonify(error="请先登录虞律团队 AI 工作台"), 401
+    return redirect(url_for("login", next=request.full_path))
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    error = ""
+    if request.method == "POST":
+        password = request.form.get("password", "")
+        if _password_matches(password):
+            session.clear()
+            session["authenticated"] = True
+            next_url = request.args.get("next", "/")
+            if not next_url.startswith("/") or next_url.startswith("//"):
+                next_url = "/"
+            return redirect(next_url)
+        error = "密码错误，请重新输入。"
+        return render_template("login.html", error=error), 401
+    return render_template("login.html", error=error)
+
+
+@app.post("/logout")
+def logout():
+    session.clear()
+    return redirect(url_for("login"))
 
 
 @app.context_processor
@@ -103,6 +160,11 @@ def index():
     return render_template("index.html", tools=tools, counts=counts)
 
 
+@app.get("/guide")
+def guide():
+    return render_template("guide.html")
+
+
 @app.get("/tools/<tool_id>")
 def tool_detail(tool_id):
     tool = tools_by_id.get(tool_id)
@@ -119,6 +181,9 @@ def health():
 @app.errorhandler(404)
 def not_found(_error):
     return render_template("404.html"), 404
+
+
+register_litigation(app)
 
 
 if __name__ == "__main__":

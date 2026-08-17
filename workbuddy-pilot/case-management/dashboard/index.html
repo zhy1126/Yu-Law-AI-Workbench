@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>诉讼工作台</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <section class="login-screen" id="login-screen">
+      <form class="login-card" id="login-form">
+        <p class="eyebrow">YU LAW · SECURE</p>
+        <h1>诉讼工作台</h1>
+        <p>案件、期限、待办和文书统一管理</p>
+        <label>工作台登录密码<input name="password" type="password" autocomplete="current-password" required autofocus></label>
+        <button class="primary-button" type="submit">进入系统</button>
+        <small>使用虞律团队 AI 工作台统一密码</small>
+        <p class="form-message" id="login-message" role="alert"></p>
+      </form>
+    </section>
+
+    <div class="app-shell" id="app-shell" hidden>
+      <aside class="sidebar">
+        <div class="brand"><strong>诉讼工作台</strong><span>虞律团队 · 后台管理</span></div>
+        <nav aria-label="主导航">
+          <button class="nav-item is-active" data-view="dashboard"><span>工作台</span><b id="nav-dashboard-count">0</b></button>
+          <button class="nav-item" data-view="cases"><span>案件</span><b id="nav-cases-count">0</b></button>
+          <button class="nav-item" data-view="deadlines"><span>期限</span><b id="nav-deadlines-count">0</b></button>
+          <button class="nav-item" data-view="tasks"><span>待办</span><b id="nav-tasks-count">0</b></button>
+          <button class="nav-item" data-view="documents"><span>文书</span><b id="nav-documents-count">0</b></button>
+          <button class="nav-item" data-view="backup"><span>导出备份</span></button>
+        </nav>
+        <div class="sidebar-footer">
+          <span>数据保存在 PythonAnywhere 私有后台</span>
+          <button class="quiet-button dark-button" id="lock-button" type="button">锁定工作台</button>
+        </div>
+      </aside>
+
+      <div class="workspace">
+        <header class="topbar">
+          <label class="global-search"><span class="sr-only">全局搜索</span><input id="global-search" type="search" placeholder="搜索案号、案件名称、当事人、机构、代理人、备注、标签"></label>
+          <div class="quick-actions">
+            <button class="primary-button" type="button" data-create="case">新建案件</button>
+            <button class="quiet-button" type="button" data-create="deadline">新增期限</button>
+            <button class="quiet-button" type="button" data-create="task">新增待办</button>
+            <button class="quiet-button" type="button" id="weekly-report-button">本周周报</button>
+          </div>
+        </header>
+
+        <main id="main-content">
+          <section class="view is-active" data-panel="dashboard">
+            <div class="page-heading"><div><h1>工作台</h1><p>按紧急程度合并展示期限、待办与文书</p></div><span id="today-label"></span></div>
+            <div class="metric-grid">
+              <article class="metric-card risk"><span>已逾期</span><strong id="count-overdue">0</strong></article>
+              <article class="metric-card risk"><span>今日到期</span><strong id="count-today">0</strong></article>
+              <article class="metric-card warning"><span>未来 3 天</span><strong id="count-next3">0</strong></article>
+              <article class="metric-card"><span>未来 7 天</span><strong id="count-next7">0</strong></article>
+              <article class="metric-card safe"><span>保全/续封</span><strong id="count-preservation">0</strong></article>
+            </div>
+            <div class="dashboard-grid">
+              <section class="panel span-two"><div class="panel-heading"><h2>紧急事项</h2><span>逾期、今日、3 天内</span></div><div class="table-scroll"><table class="data-table"><thead><tr><th>类型</th><th>事项</th><th>案件</th><th>负责人</th><th>时间</th></tr></thead><tbody id="emergency-body"></tbody></table></div></section>
+              <section class="panel"><div class="panel-heading"><h2>最近开庭</h2><span>未来 30 天</span></div><div id="hearing-list" class="stack-list"></div></section>
+              <section class="panel span-three"><div class="panel-heading"><h2>保全/续封专项</h2><span>60 天内开始提示</span></div><div class="table-scroll"><table class="data-table"><thead><tr><th>类型</th><th>事项</th><th>案件</th><th>时间</th><th>预警</th></tr></thead><tbody id="preservation-body"></tbody></table></div></section>
+            </div>
+          </section>
+
+          <section class="view" data-panel="cases">
+            <div class="page-heading"><div><h1>案件列表</h1><p>默认隐藏结案案件，可通过筛选查看</p></div><button class="primary-button" type="button" data-create="case">新建案件</button></div>
+            <div class="filter-bar">
+              <label>阶段<select id="filter-stage"><option value="">全部</option><option>立案前</option><option>立案中</option><option>一审</option><option>二审</option><option>再审</option><option>执行</option><option>仲裁</option><option>结案</option></select></label>
+              <label>类型<select id="filter-type"><option value="">全部</option><option>诉讼</option><option>仲裁</option></select></label>
+              <label>风险<select id="filter-risk"><option value="">全部</option><option>高</option><option>中</option><option>低</option></select></label>
+              <label class="checkbox-label"><input id="include-closed" type="checkbox"> 显示结案</label>
+            </div>
+            <section class="panel"><div class="table-scroll"><table class="data-table wide-table"><thead><tr><th>案件</th><th>类型/阶段</th><th>机构</th><th>经办团队</th><th>下一事项</th><th>风险/标签</th><th>操作</th></tr></thead><tbody id="cases-body"></tbody></table></div></section>
+          </section>
+
+          <section class="view" data-panel="deadlines">
+            <div class="page-heading"><div><h1>期限中心</h1><p>开庭、举证、上诉和保全期限统一查看</p></div><button class="primary-button" type="button" data-create="deadline">新增期限</button></div>
+            <section class="panel"><div class="table-scroll"><table class="data-table"><thead><tr><th>期限类型</th><th>事项</th><th>案件</th><th>截止时间</th><th>提醒</th><th>状态</th><th>操作</th></tr></thead><tbody id="deadlines-body"></tbody></table></div></section>
+          </section>
+
+          <section class="view" data-panel="tasks">
+            <div class="page-heading"><div><h1>待办事项</h1><p>按案件、负责人和优先级推进</p></div><button class="primary-button" type="button" data-create="task">新增待办</button></div>
+            <section class="panel"><div class="table-scroll"><table class="data-table"><thead><tr><th>优先级</th><th>待办</th><th>案件</th><th>负责人</th><th>截止时间</th><th>状态</th><th>操作</th></tr></thead><tbody id="tasks-body"></tbody></table></div></section>
+          </section>
+
+          <section class="view" data-panel="documents">
+            <div class="page-heading"><div><h1>文书状态</h1><p>第一版只管理状态和提交期限，不上传文件</p></div><button class="primary-button" type="button" data-create="document">新增文书</button></div>
+            <section class="panel"><div class="table-scroll"><table class="data-table"><thead><tr><th>文书类型</th><th>文书</th><th>案件</th><th>提交期限</th><th>提交方式</th><th>状态</th><th>操作</th></tr></thead><tbody id="documents-body"></tbody></table></div></section>
+          </section>
+
+          <section class="view" data-panel="backup">
+            <div class="page-heading"><div><h1>导出备份</h1><p>从 PythonAnywhere 后台下载 CSV 备份；不会自动分享</p></div></div>
+            <div class="export-grid">
+              <a class="export-card" href="/api/export/cases.csv"><strong>案件总表</strong><span>全部案件及核心字段</span></a>
+              <a class="export-card" href="/api/export/deadlines.csv"><strong>期限表</strong><span>期限与完成状态</span></a>
+              <a class="export-card" href="/api/export/tasks.csv"><strong>待办表</strong><span>任务、负责人和进度</span></a>
+              <a class="export-card" href="/api/export/documents.csv"><strong>文书表</strong><span>文书状态及提交期限</span></a>
+              <a class="export-card" href="/api/export/followups.csv"><strong>跟进记录</strong><span>法院、客户及对方沟通</span></a>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <div class="modal-backdrop" id="entity-modal" hidden>
+      <section class="modal" role="dialog" aria-modal="true" aria-labelledby="entity-modal-title">
+        <div class="modal-heading"><h2 id="entity-modal-title">新增记录</h2><button class="icon-button" type="button" data-close="entity-modal" aria-label="关闭">×</button></div>
+        <form id="case-form" data-kind="case" hidden>
+          <div class="form-grid">
+            <label class="full">案件名称<input name="title" required></label><label>案号<input name="caseNumber"></label>
+            <label>案件类型<select name="caseType"><option>诉讼</option><option>仲裁</option></select></label>
+            <label>程序阶段<select name="procedureStage"><option>立案前</option><option>立案中</option><option>一审</option><option>二审</option><option>再审</option><option>执行</option><option>仲裁</option><option>结案</option></select></label>
+            <label>我方身份<input name="ourRole" placeholder="原告/被告/申请人"></label><label>案由<input name="cause"></label>
+            <label class="full">管辖机构<input name="institution"></label><label>承办法官/仲裁员<input name="adjudicator"></label><label>标的额<input name="amount" type="number" min="0"></label>
+            <label>风险等级<select name="riskLevel"><option>中</option><option>高</option><option>低</option></select></label><label>案件状态<select name="status"><option>进行中</option><option>暂停</option><option>已结案</option></select></label>
+            <label class="full">风险原因<input name="riskReason"></label><label class="full">下一关键事项<input name="nextAction"></label>
+            <label>主办律师<input name="leadLawyer"></label><label>经办律师<input name="handlingLawyer"></label><label>复核律师<input name="reviewLawyer"></label>
+            <label class="full">标签<input name="tags" placeholder="重点客户、保全中（逗号分隔）"></label><label class="full">备注<textarea name="notes" rows="3"></textarea></label>
+          </div><div class="form-actions"><button class="quiet-button" type="button" data-close="entity-modal">取消</button><button class="primary-button" type="submit">保存案件</button></div>
+        </form>
+        <form id="deadline-form" data-kind="deadline" hidden>
+          <div class="form-grid"><label class="full">所属案件<select name="caseId" required data-case-select></select></label><label>期限类型<select name="deadlineType"><option>开庭</option><option>举证</option><option>答辩</option><option>上诉</option><option>保全</option><option>续封</option><option>缴费</option><option>文书</option><option>其他</option></select></label><label>提醒级别<select name="reminderLevel"><option>重要</option><option>极重要</option><option>普通</option></select></label><label class="full">事项名称<input name="title" required></label><label>截止时间<input name="dueAt" type="datetime-local" required></label><label>状态<select name="status"><option>未完成</option><option>已完成</option><option>取消</option><option>延期</option></select></label><label class="full">备注<textarea name="notes" rows="3"></textarea></label></div><div class="form-actions"><button class="quiet-button" type="button" data-close="entity-modal">取消</button><button class="primary-button" type="submit">保存期限</button></div>
+        </form>
+        <form id="task-form" data-kind="task" hidden>
+          <div class="form-grid"><label class="full">所属案件<select name="caseId" required data-case-select></select></label><label class="full">待办内容<input name="title" required></label><label>负责人<input name="owner"></label><label>截止时间<input name="dueAt" type="datetime-local"></label><label>优先级<select name="priority"><option>中</option><option>高</option><option>低</option></select></label><label>状态<select name="status"><option>未开始</option><option>进行中</option><option>已完成</option></select></label><label class="full">备注<textarea name="notes" rows="3"></textarea></label></div><div class="form-actions"><button class="quiet-button" type="button" data-close="entity-modal">取消</button><button class="primary-button" type="submit">保存待办</button></div>
+        </form>
+        <form id="document-form" data-kind="document" hidden>
+          <div class="form-grid"><label class="full">所属案件<select name="caseId" required data-case-select></select></label><label>文书类型<input name="documentType" placeholder="起诉状/答辩状/代理词"></label><label>文书名称<input name="title" required></label><label>状态<select name="status"><option>未起草</option><option>起草中</option><option>已定稿</option><option>已提交</option><option>已归档</option></select></label><label>提交期限<input name="dueAt" type="datetime-local"></label><label>提交方式<select name="submissionMethod"><option>线上</option><option>邮寄</option><option>现场</option><option>其他</option></select></label><label class="full">备注<textarea name="notes" rows="3"></textarea></label></div><div class="form-actions"><button class="quiet-button" type="button" data-close="entity-modal">取消</button><button class="primary-button" type="submit">保存文书</button></div>
+        </form>
+        <p class="form-message" id="entity-message" role="alert"></p>
+      </section>
+    </div>
+
+    <div class="modal-backdrop" id="weekly-modal" hidden>
+      <section class="modal weekly-modal" role="dialog" aria-modal="true" aria-labelledby="weekly-title">
+        <div class="modal-heading"><div><h2 id="weekly-title">本周周报</h2><p id="weekly-status"></p></div><button class="icon-button" type="button" data-close="weekly-modal" aria-label="关闭">×</button></div>
+        <div class="weekly-sections" id="weekly-sections"></div>
+        <div class="form-actions"><button class="quiet-button" type="button" data-close="weekly-modal">关闭</button><button class="primary-button" type="button" id="save-weekly-button">保存当前快照</button></div>
+      </section>
+    </div>
+
+    <div class="modal-backdrop" id="case-detail-modal" hidden><section class="modal detail-modal" role="dialog" aria-modal="true"><div class="modal-heading"><h2 id="case-detail-title">案件详情</h2><button class="icon-button" type="button" data-close="case-detail-modal" aria-label="关闭">×</button></div><div id="case-detail-content"></div></section></div>
+    <div class="toast" id="toast" role="status" hidden></div>
+    <script src="/app.js" defer></script>
+  </body>
+</html>

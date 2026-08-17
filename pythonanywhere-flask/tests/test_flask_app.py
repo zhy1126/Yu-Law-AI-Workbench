@@ -1,4 +1,6 @@
+import hashlib
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -62,6 +64,108 @@ class FlaskWorkbenchTest(unittest.TestCase):
         html = self.client.get("/").get_data(as_text=True)
         self.assertIn("/static/workbench.css", html)
         self.assertIn("/static/workbench.js", html)
+
+    def test_homepage_links_the_three_team_destinations(self):
+        html = self.client.get("/").get_data(as_text=True)
+        self.assertIn('href="/"', html)
+        self.assertIn('href="/guide"', html)
+        self.assertIn('href="/cases/"', html)
+        self.assertIn("Skill 库", html)
+        self.assertIn("团队使用指南", html)
+        self.assertIn("诉讼案例管理", html)
+
+    def test_team_guide_renders_workflow_and_copyable_prompts(self):
+        response = self.client.get("/guide")
+        html = response.get_data(as_text=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("虞律团队 AI 工作流使用手册", html)
+        self.assertIn("安装 WorkBuddy", html)
+        self.assertIn("先推荐、律师确认后执行", html)
+        self.assertIn("待律师复核", html)
+        self.assertIn("只推荐 1–3 个最适合的 Skill", html)
+        self.assertIn("data-copy-prompt", html)
+        self.assertIn("/static/guide.js", html)
+
+
+class AuthenticationTest(unittest.TestCase):
+    def setUp(self):
+        app.config.update(
+            TESTING=True,
+            SECRET_KEY="test-secret",
+            AUTH_REQUIRED=True,
+            AUTH_PASSWORD_HASH=hashlib.sha256(b"test-password").hexdigest(),
+        )
+        self.client = app.test_client()
+
+    def tearDown(self):
+        app.config.update(AUTH_REQUIRED=False, AUTH_PASSWORD_HASH="")
+
+    def test_all_pages_require_one_site_password(self):
+        response = self.client.get("/")
+        self.assertEqual(response.status_code, 302)
+        self.assertIn("/login", response.headers["Location"])
+
+        invalid = self.client.post("/login", data={"password": "wrong"})
+        self.assertEqual(invalid.status_code, 401)
+        self.assertIn("密码错误", invalid.get_data(as_text=True))
+
+        valid = self.client.post("/login", data={"password": "test-password"})
+        self.assertEqual(valid.status_code, 302)
+        self.assertEqual(self.client.get("/").status_code, 200)
+        self.assertEqual(self.client.get("/guide").status_code, 200)
+        case_response = self.client.get("/cases/")
+        self.assertEqual(case_response.status_code, 200)
+        case_response.close()
+
+    def test_case_api_returns_json_401_before_login(self):
+        response = self.client.get("/api/cases")
+        self.assertEqual(response.status_code, 401)
+        self.assertEqual(response.get_json(), {"error": "请先登录虞律团队 AI 工作台"})
+
+
+class LitigationFlaskTest(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        app.config.update(TESTING=True, AUTH_REQUIRED=False, CASE_DATA_ROOT=self.temp.name)
+        self.client = app.test_client()
+
+    def tearDown(self):
+        self.temp.cleanup()
+
+    def test_case_dashboard_and_sqlite_persist_between_clients(self):
+        dashboard = self.client.get("/cases/")
+        self.assertEqual(dashboard.status_code, 200)
+        self.assertIn("诉讼工作台", dashboard.get_data(as_text=True))
+        dashboard.close()
+
+        created = self.client.post(
+            "/api/cases",
+            json={
+                "title": "虚拟测试公司诉讼",
+                "caseNumber": "（2026）沪01民初100号",
+                "caseType": "诉讼",
+                "procedureStage": "一审",
+                "cause": "合同纠纷",
+                "ourRole": "原告",
+                "institution": "虚拟法院",
+                "riskLevel": "中",
+                "riskReason": "仅用于部署验证",
+                "status": "进行中",
+                "nextAction": "整理虚拟材料",
+                "tags": ["虚拟测试"],
+                "notes": "不含真实客户信息",
+                "leadLawyer": "测试律师",
+                "handlingLawyer": "测试律师",
+                "reviewLawyer": "测试律师",
+                "actor": "部署测试",
+            },
+        )
+        self.assertEqual(created.status_code, 201)
+        case_id = created.get_json()["id"]
+
+        second_client = app.test_client()
+        records = second_client.get("/api/cases?includeClosed=true").get_json()
+        self.assertIn(case_id, [record["id"] for record in records])
 
 
 if __name__ == "__main__":

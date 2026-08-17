@@ -1,68 +1,67 @@
 # 虞律团队 AI 工作台：PythonAnywhere 部署说明
 
-本压缩包是轻量 Flask 版本。入口文件为 `flask_app.py`，不需要 Node.js、数据库或前端构建。
+线上版本从 GitHub 仓库运行，包含 Skill 库、团队使用指南和诉讼案例管理。程序代码由 GitHub 更新；案例数据保存在 PythonAnywhere 私有目录，不进入 GitHub。
 
-## 一、上传并解压
+## 一、从 GitHub 获取代码
 
-1. 登录 PythonAnywhere，进入 **Files**。
-2. 上传 `yu-law-ai-workbench-pythonanywhere-flask.zip`。
-3. 打开 **Consoles → Bash**，执行：
+在 PythonAnywhere 的 **Consoles → Bash** 中执行：
 
 ```bash
-mkdir -p ~/yu-law-ai-workbench
-cd ~/yu-law-ai-workbench
-unzip ~/yu-law-ai-workbench-pythonanywhere-flask.zip
+git clone https://github.com/zhy1126/Yu-Law-AI-Workbench.git ~/Yu-Law-AI-Workbench
 ```
 
 ## 二、建立虚拟环境
 
-在 Bash 控制台执行（Python版本需与后面创建的Web应用一致）：
+Python 版本需与 Web 应用一致：
 
 ```bash
 mkvirtualenv --python=/usr/bin/python3.13 yu-law-workbench
-pip install -r ~/yu-law-ai-workbench/requirements.txt
+pip install -r ~/Yu-Law-AI-Workbench/pythonanywhere-flask/requirements.txt
 ```
-
-如果你的 PythonAnywhere 页面没有 Python 3.13，请把命令中的版本改为页面提供的版本，并在创建Web应用时选择相同版本。
 
 ## 三、创建 Web 应用
 
 1. 进入 **Web** 页面，点击 **Add a new web app**。
 2. 选择 **Manual configuration**。
 3. 选择与虚拟环境相同的 Python 版本。
-4. 在 **Virtualenv** 一栏填写：
+4. 在 **Virtualenv** 一栏填写 `/home/YOURUSERNAME/.virtualenvs/yu-law-workbench`。
+
+## 四、配置 WSGI、统一密码和数据目录
+
+在 Web 页面打开 WSGI 文件，参考 `pythonanywhere_wsgi.py.example` 配置：
+
+- `project_home` 指向 `/home/YOURUSERNAME/Yu-Law-AI-Workbench/pythonanywhere-flask`；
+- `YULAW_PASSWORD_HASH` 保存统一密码的 SHA-256 摘要，不保存明文；
+- `YULAW_SESSION_SECRET` 使用随机字符串；
+- `YULAW_CASE_DATA_ROOT` 指向 `/home/YOURUSERNAME/private-data/case-management`；
+- `YULAW_SECURE_COOKIE` 在线上 HTTPS 环境设为 `1`。
+
+先建立私有数据目录：
+
+```bash
+mkdir -p ~/private-data/case-management
+chmod 700 ~/private-data ~/private-data/case-management
+```
+
+案例 SQLite 最终位于：
 
 ```text
-/home/YOURUSERNAME/.virtualenvs/yu-law-workbench
+/home/YOURUSERNAME/private-data/case-management/data/litigation.db
 ```
 
-把 `YOURUSERNAME` 替换为你的 PythonAnywhere 用户名。
+该目录在 GitHub 仓库之外，一键更新不会覆盖案件、期限、待办、文书和周报。
 
-## 四、配置 WSGI
+## 五、Reload 与检查
 
-在Web页面点击WSGI配置文件链接，删除其中示例内容，再复制 `pythonanywhere_wsgi.py.example` 的内容。务必把：
+返回 Web 页面点击绿色 **Reload**。访问首页时应先显示统一密码登录页；登录后能看到三个入口。
 
-```python
-project_home = "/home/YOURUSERNAME/yu-law-ai-workbench"
-```
-
-中的 `YOURUSERNAME` 替换为你的用户名。入口导入应保持：
-
-```python
-from flask_app import app as application
-```
-
-## 五、静态文件与上线
-
-Flask会直接提供本项目的CSS和JavaScript，首版不需要另设静态文件映射。返回Web页面，点击绿色 **Reload** 按钮，然后访问页面顶部显示的网址。
-
-可先访问以下地址检查运行状态：
+健康检查地址：
 
 ```text
 https://YOURUSERNAME.pythonanywhere.com/health
 ```
 
-正常结果为：
+正常结果：
 
 ```json
 {"status":"ok","tools":50}
@@ -70,17 +69,18 @@ https://YOURUSERNAME.pythonanywhere.com/health
 
 ## GitHub 一键更新
 
-首次接入完成后，在 PythonAnywhere Bash 控制台运行：
+以后 GitHub `main` 更新后，在 PythonAnywhere Bash 控制台运行：
 
 ```bash
 bash ~/Yu-Law-AI-Workbench/pythonanywhere-flask/update_pythonanywhere.sh
 ```
 
-脚本依次从 GitHub 拉取 `main`、运行单元测试并检查 Flask 是否可以导入。全部通过后才重新加载网站；任何一步失败都会停止，不会重新加载当前线上版本。
+脚本先拉取代码、运行 Flask 测试和导入检查，全部通过后才 Reload。脚本不读取、不删除、不覆盖 `~/private-data`。
 
 ## 常见问题
 
-- 出现 `No module named flask`：确认Web应用已选择 `yu-law-workbench` 虚拟环境，并重新执行 `pip install -r requirements.txt`。
-- 出现 `No module named flask_app`：检查WSGI中的 `project_home` 是否与解压目录一致。
-- 修改文件后页面没有变化：回到Web页面点击 **Reload**。
-- 当前版本没有访问密码，任何知道网址的人都可以访问；不要在工具说明或代码中放入客户材料、账号或密钥。
+- `No module named flask`：确认 Web 应用选择了正确虚拟环境，并重新安装 requirements。
+- `No module named flask_app`：检查 WSGI 的 `project_home`。
+- 登录后仍回到登录页：检查 `YULAW_SESSION_SECRET` 和浏览器 Cookie，并重新 Reload。
+- 案例页面无法写入：检查 private-data 目录是否存在，以及 YuLaw 账号是否有写权限。
+- GitHub 更新后页面无变化：重新运行一键更新，并确认命令最后显示新的 commit 号。

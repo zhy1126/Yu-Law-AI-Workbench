@@ -9,6 +9,7 @@ class DeploymentPackageTest(unittest.TestCase):
     def test_required_deployment_files_exist(self):
         for relative in [
             "flask_app.py",
+            "litigation_flask.py",
             "requirements.txt",
             "README-PythonAnywhere.md",
             "pythonanywhere_wsgi.py.example",
@@ -25,10 +26,13 @@ class DeploymentPackageTest(unittest.TestCase):
         content = (PROJECT_ROOT / "pythonanywhere_wsgi.py.example").read_text(encoding="utf-8")
         self.assertIn("from flask_app import app as application", content)
         self.assertIn("project_home", content)
+        self.assertIn("YULAW_PASSWORD_HASH", content)
+        self.assertIn("YULAW_SESSION_SECRET", content)
+        self.assertIn("YULAW_CASE_DATA_ROOT", content)
 
     def test_readme_contains_complete_pythonanywhere_steps(self):
         content = (PROJECT_ROOT / "README-PythonAnywhere.md").read_text(encoding="utf-8")
-        for phrase in ["上传并解压", "虚拟环境", "Web 应用", "WSGI", "Reload"]:
+        for phrase in ["GitHub", "虚拟环境", "Web 应用", "WSGI", "Reload", "统一密码", "private-data"]:
             with self.subTest(phrase=phrase):
                 self.assertIn(phrase, content)
 
