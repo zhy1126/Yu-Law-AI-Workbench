@@ -28,7 +28,7 @@
       <aside class="guide-toc">
         <p class="panel-label">目录</p>
         <nav aria-label="手册目录">
-          <a href="#start">开始前检查</a><a href="#parts">三个工作入口</a><a href="#workflow">工作流</a>
+          <a href="#start">开始前检查</a><a href="#parts">三个工作入口</a><a href="#concepts">基础概念</a><a href="#workflow">工作流</a>
           <a href="#install">安装 WorkBuddy</a><a href="#setup">首次设置</a><a href="#documents">法律文书专家</a><a href="#prompts">Prompt 复制区</a>
           <a href="#files">材料与命名</a><a href="#stages">六阶段状态</a><a href="#review">律师复核</a><a href="#faq">常见问题</a>
         </nav>
@@ -44,7 +44,6 @@
             <li>□ 能看到团队计划栏、资源库以及项目材料。</li><li>□ 能在专家栏找到“法律 AI 工作流总入口”。</li>
             <li>□ 能用本页连接测试 Prompt 得到正确回复。</li>
           </ul>
-          <div class="guide-callout"><p>演练通过后，真实客户材料再按照项目权限进入对应工作区。不要把客户文件放进公开链接或无关项目。</p></div>
         </section>
 
         <section id="parts" class="guide-section">
@@ -55,16 +54,30 @@
             <a href="/cases/"><h3>诉讼案例管理</h3><p>管理案件、期限、待办、文书和周报。数据统一保存在 PythonAnywhere 私有后台。</p></a>
             <a href="https://www.workbuddy.cn/work/" target="_blank" rel="noreferrer"><h3>WorkBuddy</h3><p>团队实际处理材料和调用 Skill 的地方。计划栏负责进度，任务工作区保存材料和成果。</p></a>
           </div>
-          <div class="readme-route"><span>WorkBuddy 发起任务</span><b>→</b><span>总入口推荐 Skill</span><b>→</b><span>律师确认</span><b>→</b><span>Skill 执行</span><b>→</b><span>律师复核</span></div>
+          <div class="readme-route"><span>WorkBuddy 发起任务</span><b>→</b><span>“法律 AI 工作流总入口”专家推荐 Skill</span><b>→</b><span>律师确认</span><b>→</b><span>Skill 执行</span><b>→</b><span>律师复核</span></div>
+        </section>
+
+        <section id="concepts" class="guide-section">
+          <p class="section-index">02</p><h2>先认识几个基本概念</h2>
+          <p>可以把 WorkBuddy 理解为团队的 AI 工作空间。项目负责划定工作范围，任务承载具体事项，专家负责理解和分流，Skill 负责按照固定方法完成具体工作。</p>
+          <div class="role-grid">
+            <div><h3>Agent（智能代理）</h3><p>实际理解指令并完成工作的 AI。它可以在授权范围内读取材料、调用工具或 Skill，并整理结果。</p></div>
+            <div><h3>WorkBuddy</h3><p>团队使用 Agent 的工作平台。项目、计划、任务、资源库、专家和 Skill 都在这里组织和使用。</p></div>
+            <div><h3>项目（Project）</h3><p>围绕一个团队、案件或专项建立的工作空间，用来集中成员、规则、计划、资源和项目材料。</p></div>
+            <div><h3>任务（Task）</h3><p>项目中的一项具体工作，例如审阅一份合同或起草一份建议书。任务应写清负责人、期限、材料范围和预期成果。</p></div>
+            <div><h3>专家（Expert）</h3><p>按照特定角色和规则配置好的 Agent。例如“法律 AI 工作流总入口”负责判断任务并推荐合适的 Skill。</p></div>
+            <div><h3>Skill（技能）</h3><p>一套可重复使用的具体工作方法，规定适用场景、输入材料、执行步骤、输出成果和风险边界。</p></div>
+          </div>
+          <div class="readme-route"><span>成员发起任务</span><b>→</b><span>专家理解并分流</span><b>→</b><span>Skill 按方法执行</span><b>→</b><span>律师复核</span></div>
         </section>
 
         <section id="workflow" class="guide-section">
-          <p class="section-index">02</p><h2>日常工作流怎么运转</h2>
+          <p class="section-index">03</p><h2>日常工作流怎么运转</h2>
           <ol class="demo-runbook">
-            <li><span>1</span><div><h3>事项进入计划栏</h3><p>周会行动项由周协同整理；日常新增事项由发起人建立。至少写清名称、负责人、期限和所属项目。</p></div></li>
+            <li><span>1</span><div><h3>事项进入计划栏</h3><p>日常事项由发起人建立。至少写清名称、负责人、期限和所属项目。</p></div></li>
             <li><span>2</span><div><h3>判断是否建立专业子任务</h3><p>涉及文书起草、合同审阅、尽调、并购、IPO 或专题研究时，建立独立任务进入法律 AI 工作流。</p></div></li>
             <li><span>3</span><div><h3>整理和确认材料</h3><p>逐项确认文件名、版本、委托方立场、适用法域和缺失材料。</p></div></li>
-            <li><span>4</span><div><h3>总入口只推荐 Skill</h3><p>先推荐 1–3 个 Skill，说明理由、输入、输出、缺口和风险，不立即执行。</p></div></li>
+            <li><span>4</span><div><h3>调用“法律 AI 工作流总入口”专家，推荐 Skill</h3><p>在当前任务中调用该专家，由它推荐 1 个主要 Skill；确有必要时再列出最多 2 个备选，并说明理由、输入、输出、缺口和风险。推荐后等待律师确认，不立即执行。</p></div></li>
             <li><span>5</span><div><h3>律师确认后执行</h3><p>律师确认 Skill、材料范围、工作范围和输出形式后，任务进入“生成中”。</p></div></li>
             <li><span>6</span><div><h3>成果回到任务</h3><p>Word、Excel、问题清单或分析意见保存在任务工作区，写明文件名、版本和待确认项。</p></div></li>
             <li><span>7</span><div><h3>律师复核并更新计划</h3><p>AI 只推进到“待律师复核”。律师复核后手动批准、归档，并更新计划栏。</p></div></li>
@@ -72,7 +85,7 @@
         </section>
 
         <section id="install" class="guide-section">
-          <p class="section-index">03</p><h2>安装 WorkBuddy</h2>
+          <p class="section-index">04</p><h2>安装 WorkBuddy</h2>
           <ol class="readme-steps">
             <li><strong>下载安装</strong><span>打开 <a class="inline-link" href="https://www.workbuddy.cn/work/" target="_blank" rel="noreferrer">WorkBuddy 官方下载页</a>，选择 Mac 或 Windows 版本。</span></li>
             <li><strong>完成登录</strong><span>打开 WorkBuddy，确认服务条款后，使用微信扫码登录。</span></li>
@@ -83,7 +96,7 @@
         </section>
 
         <section id="setup" class="guide-section">
-          <p class="section-index">04</p><h2>首次设置与第一次演练</h2>
+          <p class="section-index">05</p><h2>首次设置与第一次演练</h2>
           <ol class="readme-steps">
             <li><strong>进入正确项目</strong><span>项目标题应为“虞律团队 AI 工作流试验”。看不到时先核对登录账号。</span></li>
             <li><strong>找到总入口</strong><span>在专家区域搜索“法律 AI 工作流总入口”，选择说明中含“先推荐、律师确认后执行”的版本。</span></li>
@@ -94,7 +107,7 @@
         </section>
 
         <section id="documents" class="guide-section">
-          <p class="section-index">04A</p><h2>法律文书制作专家：当前可用能力</h2>
+          <p class="section-index">06</p><h2>法律文书制作专家：当前可用能力</h2>
           <p>WorkBuddy 中只展示一个“法律文书制作专家”，由它识别文书类型和工作模式，再调用四个彼此独立的 Skill。母版、输入、阻断项和人工确认门槛仍由各 Skill 控制。</p>
           <div class="role-grid">
             <div><h3>法律服务合同｜合同审阅优先</h3><p><code>$drafting-legal-service-contracts</code><br>REVIEW：对客户或对方来稿生成真实 Word 红线版、清洁版、Major Issues、完整清单和待确认事项。DRAFT：从常顾、并购专项或诉讼仲裁三套登记母版生成律师工作稿。</p></div>
@@ -115,7 +128,7 @@
         </section>
 
         <section id="prompts" class="guide-section prompt-library">
-          <p class="section-index">05</p><h2>可直接复制的 Prompt</h2><p>复制后把【】中的内容改成当前任务信息。</p>
+          <p class="section-index">07</p><h2>可直接复制的 Prompt</h2><p>复制后把【】中的内容改成当前任务信息。</p>
 
           <div class="prompt-block"><header><div><strong>Prompt 01｜连接测试</strong><p>确认当前专家和基本工作原则。</p></div><button type="button" data-copy-prompt="prompt-1">复制</button></header><pre><code id="prompt-1">这是连接测试。请不要读取文件、不要调用 Skill、不要连接外部服务，也不要生成正式成果。
 
@@ -196,7 +209,7 @@
         </section>
 
         <section id="files" class="guide-section">
-          <p class="section-index">06</p><h2>材料和文件命名</h2>
+          <p class="section-index">08</p><h2>材料和文件命名</h2>
           <ul class="guide-rules">
             <li><strong>项目材料：</strong>放在该任务或案件的专用工作区，不放在 Skill 库网页。</li>
             <li><strong>团队资源：</strong>批准的通用模板、案例、律师履历和使用规范放团队资源库。</li>
@@ -206,13 +219,13 @@
         </section>
 
         <section id="stages" class="guide-section">
-          <p class="section-index">07</p><h2>六阶段工作流</h2>
+          <p class="section-index">09</p><h2>六阶段工作流</h2>
           <ol class="guide-flow"><li><span>1</span><strong>待收件</strong></li><li><span>2</span><strong>材料已确认</strong></li><li><span>3</span><strong>生成中</strong></li><li><span>4</span><strong>待律师复核</strong></li><li><span>5</span><strong>已批准</strong></li><li><span>6</span><strong>已归档</strong></li></ol>
           <div class="guide-callout"><strong>人工确认节点</strong><p>AI 自动执行只到“待律师复核”。“已批准”“已归档”以及正式对外发送，均由具名经办律师手动确认。</p></div>
         </section>
 
         <section id="review" class="guide-section">
-          <p class="section-index">08</p><h2>律师复核清单</h2>
+          <p class="section-index">10</p><h2>律师复核清单</h2>
           <div class="review-grid">
             <section><h3>事实</h3><ul><li>主体、姓名、金额、比例、日期</li><li>文件版本和交易阶段</li><li>委托方立场</li></ul></section>
             <section><h3>法律</h3><ul><li>适用法域和法律依据</li><li>引用是否真实、现行、可核验</li><li>事实与法律结论是否区分</li></ul></section>
@@ -224,7 +237,7 @@
         </section>
 
         <section id="faq" class="guide-section">
-          <p class="section-index">09</p><h2>常见问题</h2>
+          <p class="section-index">11</p><h2>常见问题</h2>
           <dl class="troubleshooting-list">
             <div><dt>看不到团队项目</dt><dd>核对接受邀请的账号与 WorkBuddy 登录账号是否一致；不要自行新建同名项目。</dd></div>
             <div><dt>专家或 Skill 不可见</dt><dd>刷新项目，在“我的专家”或“已安装 Skill”核对完整名称；仍不存在时联系管理员。</dd></div>
