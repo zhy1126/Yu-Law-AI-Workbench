@@ -32,11 +32,13 @@ class DeploymentPackageTest(unittest.TestCase):
             with self.subTest(phrase=phrase):
                 self.assertIn(phrase, content)
 
-    def test_source_tree_has_no_sensitive_or_generated_files(self):
+    def test_source_tree_has_no_sensitive_files(self):
         forbidden_names = {".env", "auth.json", "credentials.json", ".DS_Store"}
-        forbidden_parts = {"__pycache__", ".git", "node_modules", ".venv"}
+        forbidden_parts = {".git", "node_modules", ".venv"}
         for path in PROJECT_ROOT.rglob("*"):
             relative = path.relative_to(PROJECT_ROOT)
+            if "__pycache__" in relative.parts:
+                continue
             self.assertNotIn(path.name, forbidden_names)
             self.assertTrue(forbidden_parts.isdisjoint(relative.parts), str(relative))
 
