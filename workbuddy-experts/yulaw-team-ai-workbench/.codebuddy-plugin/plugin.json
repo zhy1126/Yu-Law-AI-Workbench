@@ -1,0 +1,46 @@
+{
+  "name": "yulaw-team-ai-workbench",
+  "version": "1.2.0",
+  "description": "The controlled Skill routing and legal AI workflow entry for the Yu Law team.",
+  "author": {
+    "name": "Yu Law AI Workflow Team"
+  },
+  "agents": ["./agents/yulaw-team-ai-workbench.md"],
+  "skills": ["./skills/yulaw-workbench-entry"],
+  "expertType": "agent",
+  "agentName": "yulaw-team-ai-workbench",
+  "displayName": {
+    "en": "Yu Law Legal AI Workflow Entry",
+    "zh": "法律 AI 工作流总入口"
+  },
+  "profession": {
+    "en": "Legal Task Execution",
+    "zh": "专业法律任务执行"
+  },
+  "displayDescription": {
+    "en": "Uses the public GitHub catalog to recommend the best Skill, waits for lawyer confirmation, and then executes installed capabilities.",
+    "zh": "通过公开 GitHub 目录推荐合适的 Skill，等待律师确认后执行已安装能力，并将成果停在待律师复核"
+  },
+  "avatar": "avatars/expert.png",
+  "categoryId": "10-ProjectQuality",
+  "defaultInitPrompt": {
+    "zh": "请读取我明确授权的任务或材料，通过公开 GitHub 目录先推荐最合适的法律 Skill，并等待我确认，不要直接执行。",
+    "en": "Review my authorized task, recommend the best legal Skill from the public GitHub catalog, and wait for confirmation before execution."
+  },
+  "plugin": "yulaw-team-ai-workbench",
+  "tags": [
+    { "en": "Workflow Routing", "zh": "工作流分派" },
+    { "en": "GitHub Catalog", "zh": "GitHub 目录" },
+    { "en": "Controlled Access", "zh": "受控材料" }
+  ],
+  "quickPrompts": [
+    {
+      "zh": "请根据我刚刚授权的材料，从 GitHub 目录推荐最合适的法律 Skill，等待我确认后再执行。",
+      "en": "Recommend the best legal Skill from the GitHub catalog for the materials I authorized, then wait for confirmation."
+    },
+    {
+      "zh": "请分析我指定的计划任务，只给出 Skill 推荐卡，不要直接进入生成中。",
+      "en": "Analyze the plan task I specify and show only a Skill recommendation card."
+    }
+  ]
+}
