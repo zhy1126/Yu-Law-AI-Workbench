@@ -113,12 +113,30 @@ class FlaskWorkbenchTest(unittest.TestCase):
         self.assertNotIn("周会行动项由周协同整理", html)
         self.assertNotIn("演练通过后，真实客户材料再按照项目权限进入对应工作区", html)
 
+    def test_first_setup_uses_current_invite_link_and_plain_run_wording(self):
+        html = self.client.get("/guide").get_data(as_text=True)
+        invite_url = (
+            "https://www.workbuddy.cn/app/projects?"
+            "projectId=p_c8b9b165c7ee47399aedfac40a923d16&amp;"
+            "wb_invite_copied_at=1786952018170"
+        )
+
+        self.assertIn(f'href="{invite_url}"', html)
+        self.assertIn("点击链接加入【WorkBuddy】虞律团队 AI 工作流试验", html)
+        self.assertTrue((PROJECT_ROOT / "static" / "workbuddy-first-setup.png").is_file())
+        self.assertIn('src="/static/workbuddy-first-setup.png"', html)
+        self.assertIn('alt="WorkBuddy 项目任务页中选择法律 AI 工作流总入口专家的示意图"', html)
+        self.assertNotIn("先用 Ask 模式", html)
+        self.assertNotIn("问一问", html)
+        self.assertNotIn("做一做", html)
+        self.assertIn("律师确认 Skill、材料、立场和输出后，再进入运行", html)
+
     def test_team_guide_has_direct_workbuddy_onboarding_checklist(self):
         html = self.client.get("/guide").get_data(as_text=True)
         invite_url = (
             "https://www.workbuddy.cn/app/projects?"
             "projectId=p_c8b9b165c7ee47399aedfac40a923d16&amp;"
-            "wb_invite_copied_at=1786947380726"
+            "wb_invite_copied_at=1786952018170"
         )
 
         self.assertIn("在浏览器或应用商城下载 WorkBuddy 后，使用微信注册并登录", html)
@@ -136,8 +154,11 @@ class FlaskWorkbenchTest(unittest.TestCase):
     def test_legal_document_skills_are_current_in_catalog_and_guide(self):
         html = self.client.get("/guide").get_data(as_text=True)
         for token in (
-            "法律文书制作专家",
-            "合同审阅优先",
+            "法律文书制作专家：工作示例",
+            "技能 1｜法律服务合同｜DRAFT / REVIEW",
+            "技能 2｜法律服务报价函｜DRAFT / REVIEW",
+            "技能 3｜法律服务建议书｜Word DRAFT / REVIEW",
+            "技能 4｜标书 / 响应文件｜母版生成",
             "$drafting-legal-service-contracts",
             "$handling-legal-fee-quotations",
             "$handling-legal-service-proposals",
@@ -146,6 +167,8 @@ class FlaskWorkbenchTest(unittest.TestCase):
             "MA_SPECIAL_V1",
         ):
             self.assertIn(token, html)
+        self.assertNotIn("合同 Skill 的当前边界", html)
+        self.assertNotIn("它不是所有商业合同的通用审阅器", html)
 
         by_id = {tool["id"]: tool for tool in tools}
         contract = by_id["drafting-legal-service-contracts"]
