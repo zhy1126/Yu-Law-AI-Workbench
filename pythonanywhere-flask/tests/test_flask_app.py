@@ -147,6 +147,15 @@ class FlaskWorkbenchTest(unittest.TestCase):
         self.assertNotIn("做一做", html)
         self.assertIn("律师确认 Skill、材料、立场和输出后，再进入运行", html)
 
+    def test_install_section_mentions_codex_and_claude_code_deployment(self):
+        html = self.client.get("/guide").get_data(as_text=True)
+        install_section = html[html.index('id="install"'):html.index('id="setup"')]
+
+        self.assertIn(
+            "资源库中的 Skill 不限于 WorkBuddy，也可以部署到 Codex 和 Claude Code",
+            install_section,
+        )
+
     def test_team_guide_has_direct_workbuddy_onboarding_checklist(self):
         html = self.client.get("/guide").get_data(as_text=True)
         invite_url = (
