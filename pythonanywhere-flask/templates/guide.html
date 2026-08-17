@@ -29,7 +29,7 @@
         <p class="panel-label">目录</p>
         <nav aria-label="手册目录">
           <a href="#start">开始前检查</a><a href="#parts">三个工作入口</a><a href="#workflow">工作流</a>
-          <a href="#install">安装 WorkBuddy</a><a href="#setup">首次设置</a><a href="#prompts">Prompt 复制区</a>
+          <a href="#install">安装 WorkBuddy</a><a href="#setup">首次设置</a><a href="#documents">法律文书专家</a><a href="#prompts">Prompt 复制区</a>
           <a href="#files">材料与命名</a><a href="#stages">六阶段状态</a><a href="#review">律师复核</a><a href="#faq">常见问题</a>
         </nav>
         <a class="back-link" href="/skills">← 进入 Skill 库</a>
@@ -91,6 +91,27 @@
             <li><strong>先用 Ask 模式</strong><span>连接测试、材料清点和 Skill 推荐先用“问一问”；复杂任务可先用“想一想”查看计划。</span></li>
             <li><strong>确认后再执行</strong><span>律师确认 Skill、材料、立场和输出后，再进入“做一做”。</span></li>
           </ol>
+        </section>
+
+        <section id="documents" class="guide-section">
+          <p class="section-index">04A</p><h2>法律文书制作专家：当前可用能力</h2>
+          <p>WorkBuddy 中只展示一个“法律文书制作专家”，由它识别文书类型和工作模式，再调用四个彼此独立的 Skill。母版、输入、阻断项和人工确认门槛仍由各 Skill 控制。</p>
+          <div class="role-grid">
+            <div><h3>法律服务合同｜合同审阅优先</h3><p><code>$drafting-legal-service-contracts</code><br>REVIEW：对客户或对方来稿生成真实 Word 红线版、清洁版、Major Issues、完整清单和待确认事项。DRAFT：从常顾、并购专项或诉讼仲裁三套登记母版生成律师工作稿。</p></div>
+            <div><h3>法律服务报价函｜DRAFT / REVIEW</h3><p><code>$handling-legal-fee-quotations</code><br>通用报价函使用 <code>GENERAL_LETTER_V1</code>；并购专项使用 <code>MA_SPECIAL_V1</code>。仅替换登记内容，不重建 Logo、页眉页脚、字体和页面设置。</p></div>
+            <div><h3>法律服务建议书｜Word DRAFT / REVIEW</h3><p><code>$handling-legal-service-proposals</code><br>使用上市公司收购或医药并购两套固定 Word 母版；起草生成清洁版，审阅生成真实红线版和清洁版。当前不输出 PPT。</p></div>
+            <div><h3>标书 / 响应文件｜母版生成</h3><p><code>$generating-law-firm-tenders</code><br>按照招标文件、固定 Word 母版、用户指定组织方式和本地批准素材库生成标书；不自行编造律师、案例、业绩或承诺。</p></div>
+          </div>
+          <div class="guide-callout"><strong>合同 Skill 的当前边界</strong><p>已经适合对单份法律服务合同进行审阅，并从三套受控母版起草；它不是所有商业合同的通用审阅器，也不替代利益冲突、收费、责任上限、印章和最终签发审批。</p></div>
+          <div class="prompt-block"><header><div><strong>文书专家测试 Prompt</strong><p>合同审阅时最小输入是一份 DOCX 和审阅立场。</p></div><button type="button" data-copy-prompt="prompt-document-review">复制</button></header><pre><code id="prompt-document-review">请使用“法律文书制作专家”审阅我提供的法律服务合同 DOCX。
+
+文书类型：法律服务合同
+工作模式：REVIEW
+审阅立场：受托律所
+合同路由：【RETAINER / MA_SPECIAL / DISPUTE】
+特别关注：【服务范围、收费、终止结算、责任、争议解决等】
+
+请保留源 Word 格式，不覆盖源文件，并输出真实修订的红线审阅版、清洁修订版、Major Issues、完整审阅清单和待确认事项。所有成果保持“待律师复核”。</code></pre></div>
         </section>
 
         <section id="prompts" class="guide-section prompt-library">

@@ -34,74 +34,74 @@
   },
   {
     "id": "legal-service-proposal",
-    "name": "法律服务建议书",
+    "name": "法律服务建议书 Word 起草与审阅",
     "category": "文书制作",
-    "status": "building",
-    "summary": "基于批准模板和项目资料生成法律服务建议书的初稿与核对项。",
-    "version": "v0.1.0",
+    "status": "local-skill",
+    "summary": "从登记的固定 Word 母版起草法律服务建议书，或对已有 DOCX 生成真实红线版和清洁版。",
+    "version": "v0.2.0（本机 Skill）",
     "repository": null,
     "localUrl": null,
-    "inputs": ["批准模板", "项目资料", "律师信息", "案例信息"],
-    "outputs": ["建议书初稿", "检查清单", "待确认项"],
-    "steps": ["确认批准模板", "整理项目与团队资料", "生成建议书初稿", "由律师核对后定稿"],
-    "notice": "仅可使用已批准的内容库。"
+    "inputs": ["DRAFT 或 REVIEW 模式", "登记母版或待审 DOCX", "项目资料及来源登记", "律师和案例批准素材"],
+    "outputs": ["建议书清洁版 Word", "建议书红线版 Word", "问题清单", "待确认项"],
+    "steps": ["在本地 Codex 中调用 $handling-legal-service-proposals", "确认模式和适用母版", "只使用登记来源生成或审阅", "渲染检查后交律师复核"],
+    "notice": "当前只输出 Word。不得重建母版版式，也不得编造客户、团队、案例或业绩。"
   },
   {
     "id": "quotation-letter",
-    "name": "报价函",
+    "name": "法律服务报价函起草与审阅",
     "category": "文书制作",
-    "status": "planned",
-    "summary": "根据客户信息、服务范围和计费方案整理报价函初稿。",
-    "version": "v0.1.0",
+    "status": "local-skill",
+    "summary": "从通用或并购专项固定 Word 母版起草报价函，或对已有报价函生成真实红线版和清洁版。",
+    "version": "v0.2.0（本机 Skill）",
     "repository": null,
     "localUrl": null,
-    "inputs": ["客户信息", "服务范围", "计费方案"],
-    "outputs": ["报价函初稿", "费用核对表"],
-    "steps": ["核对客户信息", "确认服务范围", "整理计费方案", "由律师复核费用表述"],
-    "notice": "报价条件、税费和审批要求须由负责律师确认。"
+    "inputs": ["DRAFT 或 REVIEW 模式", "GENERAL_LETTER_V1 或 MA_SPECIAL_V1 母版", "客户及项目信息", "服务范围、费用、税费和付款节点"],
+    "outputs": ["报价函清洁版 Word", "报价函红线版 Word", "参数及变更记录", "待确认项"],
+    "steps": ["在本地 Codex 中调用 $handling-legal-fee-quotations", "确认模式和母版", "核对费用与付款合计", "Word 渲染检查后交律师复核"],
+    "notice": "只替换登记内容；Logo、页眉页脚、字体和页面设置保持母版。费用及内部审批仍由负责律师确认。"
   },
   {
     "id": "tender-response",
-    "name": "标书 / 响应文件",
+    "name": "标书 / 响应文件母版生成",
     "category": "文书制作",
-    "status": "planned",
-    "summary": "依据招标文件和响应模板组织标书或响应文件初稿。",
-    "version": "v0.1.0",
-    "repository": null,
+    "status": "local-skill",
+    "summary": "依据招标文件、固定 Word 母版、用户指定组织方式和本地批准素材库生成标书或响应文件。",
+    "version": "main（本机 Skill）",
+    "repository": "https://github.com/zhy1126/generating-law-firm-tenders",
     "localUrl": null,
-    "inputs": ["招标文件", "响应模板", "团队与案例"],
+    "inputs": ["招标文件", "指定 Word 母版", "用户指定组织方式", "本地批准的团队与案例素材"],
     "outputs": ["响应文件初稿", "偏离表", "缺件清单"],
-    "steps": ["梳理招标要求", "匹配响应模板", "汇总团队与案例", "由律师核验偏离与缺件"],
-    "notice": "投标承诺、资格文件和最终响应内容须按审批流程复核。"
+    "steps": ["在本地 Codex 中调用 $generating-law-firm-tenders", "梳理招标要求和母版结构", "仅使用批准素材组装", "由律师核验偏离、缺件和承诺"],
+    "notice": "不得编造律师、案例、业绩或承诺；资格文件和最终响应内容须按审批流程复核。"
   },
   {
     "id": "drafting-legal-service-contracts",
-    "name": "法律服务合同受控起草",
+    "name": "法律服务合同审阅与受控起草",
     "category": "文书制作",
     "status": "local-skill",
-    "summary": "按固定入项和受控母版，起草常年顾问、并购或尽调专项、诉讼仲裁法律服务合同。",
+    "summary": "以单份法律服务合同审阅为主，从受控 Word 母版起草为辅，覆盖常顾、并购专项和诉讼仲裁三类路由。",
     "version": "main（本机 Skill）",
     "repository": "https://github.com/zhy1126/drafting-legal-service-contracts",
     "localUrl": null,
     "inputs": [
-      "合同路由（常年顾问、并购/尽调专项或诉讼仲裁）",
-      "双方主体、委托事项、服务范围与期限",
-      "团队、收费、付款节点与第三方费用",
-      "争议解决、内部审批状态与适用 Word 母版"
+      "待审 DOCX 和审阅立场，或 DRAFT 模式及登记母版",
+      "合同路由（常年顾问、并购专项或诉讼仲裁）",
+      "项目事实、服务范围、收费和商业底线",
+      "重点问题及内部审批状态"
     ],
     "outputs": [
-      "清洁版法律服务合同 Word",
-      "项目参数摘要",
-      "待律师确认事项",
-      "相对基准模板的变更清单"
+      "真实修订的红线审阅版 Word",
+      "清洁修订版 Word",
+      "Major Issues 和完整审阅清单",
+      "待律师确认事项；DRAFT 模式另输出项目参数和变更清单"
     ],
     "steps": [
       "在本地 Codex 中调用 $drafting-legal-service-contracts",
-      "选择常年顾问、并购/尽调专项或诉讼仲裁路由并填写固定入项",
-      "检查阻断事项和适用 Word 母版",
-      "生成四项成果并由经办律师复核"
+      "确认 REVIEW 或 DRAFT、审阅立场和合同路由",
+      "按 Playbook 审阅或选择唯一登记母版",
+      "生成固定交付并完成 Word 保真检查"
     ],
-    "notice": "当前为团队私有 Skill，GitHub 入口需相应权限。第一版不处理客户返稿或红线；待确认事项、利益冲突检查、收费审批和签署授权完成前，不得作为最终签署版本。"
+    "notice": "当前为团队私有 Skill，GitHub 入口需相应权限。它只处理法律服务合同，不是所有商业合同的通用审阅器；利益冲突、收费、责任上限、印章和最终签发仍由律师审批。"
   },
   {
     "id": "pe-vc-financing-doc-review",
