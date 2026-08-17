@@ -2,7 +2,7 @@
 {% block title %}{{ tool.name }} · 虞律团队 AI 工作台{% endblock %}
 {% block body %}
 <main id="main-content" class="detail-page" tabindex="-1">
-  <a class="back-link" href="{{ url_for('index') }}">← 返回工具箱</a>
+  <a class="back-link" href="{{ url_for('skill_library') }}">← 返回工具箱</a>
   <article class="detail-card">
     <header class="detail-header">
       <div><p class="detail-overline">{{ tool.category }} · {{ status_labels[tool.status] }}</p><h1>{{ tool.name }}</h1><p class="detail-summary">{{ tool.summary }}</p></div>

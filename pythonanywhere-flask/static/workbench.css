@@ -513,7 +513,8 @@ button { color: inherit; }
 .readme-checklist { display: grid; gap: 8px; margin: 20px 0 0; padding: 0; list-style: none; }
 .readme-checklist li { padding: 10px 13px; border: 1px solid var(--line); background: var(--paper); font-size: 14px; }
 .role-grid { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
-.role-grid > div { min-height: 150px; padding: 22px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.role-grid > a { min-height: 150px; padding: 22px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); color: inherit; }
+.role-grid > a:hover { background: var(--paper); }
 .role-grid h3 { margin: 0 0 8px; }
 .role-grid p { margin: 0; color: var(--muted); font-size: 14px; }
 .readme-route { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 20px; padding: 15px; border: 1px solid var(--line); background: var(--paper); font-size: 13px; }
