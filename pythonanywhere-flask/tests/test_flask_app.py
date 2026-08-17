@@ -29,11 +29,17 @@ class FlaskWorkbenchTest(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.get_json(), {"status": "ok", "tools": 50})
 
-    def test_homepage_renders_workbench_and_all_tools(self):
+    def test_homepage_renders_team_guide(self):
         response = self.client.get("/")
         html = response.get_data(as_text=True)
         self.assertEqual(response.status_code, 200)
-        self.assertIn("虞律团队 AI 工作台", html)
+        self.assertIn("虞律团队 AI 工作流使用手册", html)
+        self.assertIn("安装 WorkBuddy", html)
+
+    def test_skill_library_renders_workbench_and_all_tools(self):
+        response = self.client.get("/skills")
+        html = response.get_data(as_text=True)
+        self.assertEqual(response.status_code, 200)
         self.assertIn("流程地图", html)
         self.assertIn("工具清单", html)
         self.assertIn("本地律师材料脱敏", html)
@@ -61,15 +67,18 @@ class FlaskWorkbenchTest(unittest.TestCase):
         self.assertIn("没有找到这个工具", response.get_data(as_text=True))
 
     def test_static_assets_are_linked(self):
-        html = self.client.get("/").get_data(as_text=True)
-        self.assertIn("/static/workbench.css", html)
-        self.assertIn("/static/workbench.js", html)
+        guide_html = self.client.get("/").get_data(as_text=True)
+        skill_html = self.client.get("/skills").get_data(as_text=True)
+        self.assertIn("/static/workbench.css", guide_html)
+        self.assertIn("/static/guide.js", guide_html)
+        self.assertIn("/static/workbench.js", skill_html)
 
     def test_homepage_links_the_three_team_destinations(self):
         html = self.client.get("/").get_data(as_text=True)
-        self.assertIn('href="/"', html)
+        self.assertIn('href="/skills"', html)
         self.assertIn('href="/guide"', html)
         self.assertIn('href="/cases/"', html)
+        self.assertIn('href="https://www.workbuddy.cn/work/"', html)
         self.assertIn("Skill 库", html)
         self.assertIn("团队使用指南", html)
         self.assertIn("诉讼案例管理", html)
@@ -85,6 +94,26 @@ class FlaskWorkbenchTest(unittest.TestCase):
         self.assertIn("只推荐 1–3 个最适合的 Skill", html)
         self.assertIn("data-copy-prompt", html)
         self.assertIn("/static/guide.js", html)
+
+    def test_team_guide_has_direct_workbuddy_onboarding_checklist(self):
+        html = self.client.get("/guide").get_data(as_text=True)
+        invite_url = (
+            "https://www.workbuddy.cn/app/projects?"
+            "projectId=p_c8b9b165c7ee47399aedfac40a923d16&amp;"
+            "wb_invite_copied_at=1786947380726"
+        )
+
+        self.assertIn("在浏览器或应用商城下载 WorkBuddy 后，使用微信注册并登录", html)
+        self.assertIn(
+            '<a class="inline-link" href="https://www.workbuddy.cn/work/"'
+            ' target="_blank" rel="noreferrer">如果还未安装，可以点击链接安装</a>',
+            html,
+        )
+        self.assertIn(f'href="{invite_url}"', html)
+        self.assertIn("点击链接加入【WorkBuddy】虞律团队 AI 工作流试验", html)
+        self.assertIn("能在专家栏找到“法律 AI 工作流总入口”", html)
+        self.assertNotIn("第一次先用虚拟材料", html)
+        self.assertNotIn("能用虚拟材料把任务推进到", html)
 
 
 class AuthenticationTest(unittest.TestCase):
@@ -112,6 +141,7 @@ class AuthenticationTest(unittest.TestCase):
         valid = self.client.post("/login", data={"password": "test-password"})
         self.assertEqual(valid.status_code, 302)
         self.assertEqual(self.client.get("/").status_code, 200)
+        self.assertEqual(self.client.get("/skills").status_code, 200)
         self.assertEqual(self.client.get("/guide").status_code, 200)
         case_response = self.client.get("/cases/")
         self.assertEqual(case_response.status_code, 200)

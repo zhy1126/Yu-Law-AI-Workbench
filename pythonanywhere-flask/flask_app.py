@@ -155,6 +155,11 @@ def inject_shared_data():
 
 @app.get("/")
 def index():
+    return render_template("guide.html")
+
+
+@app.get("/skills")
+def skill_library():
     counts = {category: sum(tool["category"] == category for tool in tools) for category in categories[1:]}
     counts["全部工具"] = len(tools)
     return render_template("index.html", tools=tools, counts=counts)
