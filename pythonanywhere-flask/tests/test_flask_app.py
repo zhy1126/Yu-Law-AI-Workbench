@@ -95,6 +95,24 @@ class FlaskWorkbenchTest(unittest.TestCase):
         self.assertIn("data-copy-prompt", html)
         self.assertIn("/static/guide.js", html)
 
+    def test_team_guide_explains_workbuddy_concepts_before_the_workflow(self):
+        html = self.client.get("/guide").get_data(as_text=True)
+
+        self.assertIn('id="concepts"', html)
+        self.assertLess(html.index('id="concepts"'), html.index('id="workflow"'))
+        for concept in (
+            "Agent（智能代理）",
+            "WorkBuddy",
+            "项目（Project）",
+            "任务（Task）",
+            "专家（Expert）",
+            "Skill（技能）",
+        ):
+            self.assertIn(concept, html)
+        self.assertIn("调用“法律 AI 工作流总入口”专家，推荐 Skill", html)
+        self.assertNotIn("周会行动项由周协同整理", html)
+        self.assertNotIn("演练通过后，真实客户材料再按照项目权限进入对应工作区", html)
+
     def test_team_guide_has_direct_workbuddy_onboarding_checklist(self):
         html = self.client.get("/guide").get_data(as_text=True)
         invite_url = (
