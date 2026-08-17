@@ -1,0 +1,80 @@
+[
+  {
+    "id": "TASK-001",
+    "matterId": "MAT-2026-001",
+    "title": "复核并购专项法律服务合同",
+    "owner": "虞律师",
+    "reviewer": "虞律师",
+    "dueAt": "2026-08-10",
+    "status": "待复核",
+    "source": "项目试验",
+    "requiresConfirmation": true,
+    "workbuddyTodoId": "rNc5MH",
+    "syncState": "已同步"
+  },
+  {
+    "id": "TASK-002",
+    "matterId": "MAT-2026-001",
+    "title": "补充董事会决议签署页",
+    "owner": "陈律师",
+    "reviewer": "虞律师",
+    "dueAt": "2026-08-17",
+    "status": "进行中",
+    "source": "资料缺口",
+    "requiresConfirmation": false,
+    "workbuddyTodoId": "",
+    "syncState": "待同步WorkBuddy"
+  },
+  {
+    "id": "TASK-003",
+    "matterId": "MAT-2026-002",
+    "title": "整理投资条款清单",
+    "owner": "周律师",
+    "reviewer": "虞律师",
+    "dueAt": "2026-08-20",
+    "status": "待办",
+    "source": "收案",
+    "requiresConfirmation": false,
+    "workbuddyTodoId": "",
+    "syncState": "待同步WorkBuddy"
+  },
+  {
+    "id": "TASK-004",
+    "matterId": "MAT-2026-002",
+    "title": "确认投委会材料负责人",
+    "owner": "",
+    "reviewer": "虞律师",
+    "dueAt": "2026-08-19",
+    "status": "待办",
+    "source": "周会",
+    "requiresConfirmation": true,
+    "workbuddyTodoId": "",
+    "syncState": "待同步WorkBuddy"
+  },
+  {
+    "id": "TASK-005",
+    "matterId": "MAT-2026-003",
+    "title": "准备答辩材料目录",
+    "owner": "陈律师",
+    "reviewer": "周律师",
+    "dueAt": "2026-08-14",
+    "status": "进行中",
+    "source": "诉讼期限",
+    "requiresConfirmation": false,
+    "workbuddyTodoId": "",
+    "syncState": "待同步WorkBuddy"
+  },
+  {
+    "id": "TASK-006",
+    "matterId": "MAT-2026-003",
+    "title": "完成利益冲突检索",
+    "owner": "周律师",
+    "reviewer": "虞律师",
+    "dueAt": "2026-08-08",
+    "status": "已完成",
+    "source": "收案",
+    "requiresConfirmation": false,
+    "workbuddyTodoId": "",
+    "syncState": "已同步"
+  }
+]
