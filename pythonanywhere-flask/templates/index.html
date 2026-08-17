@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="site-shell">
+  <header class="site-header">
+    <div class="brand-mark" aria-hidden="true">虞律</div>
+    <div class="brand-copy">
+      <p class="eyebrow">YU LAW TEAM</p>
+      <p class="brand-name">虞律团队 AI 工作台</p>
+    </div>
+  </header>
+
+  <section class="hero" aria-labelledby="workbench-title">
+    <div>
+      <p class="hero-kicker">AI TOOLBOX · INTERNAL</p>
+      <h1 id="workbench-title">虞律团队 AI 工作台</h1>
+      <p class="hero-subtitle">团队专属的 AI 工具与 Skill 统一入口</p>
+    </div>
+    <aside class="privacy-note" aria-label="数据安全提示">
+      <span class="privacy-dot" aria-hidden="true"></span>
+      <div>
+        <strong>客户材料留在本机</strong>
+        <p>本入口不会上传客户文件，仅提供工具导航与使用说明。</p>
+      </div>
+    </aside>
+  </section>
+
+  <div class="view-switcher" aria-label="工作台视图">
+    <button class="view-button is-active" type="button" data-view-button="workflow" aria-pressed="true">流程地图</button>
+    <button class="view-button" type="button" data-view-button="tools" aria-pressed="false">工具清单</button>
+  </div>
+
+  <main id="main-content" tabindex="-1">
+    <section class="workflow-view" data-view="workflow" aria-labelledby="workflow-map-title">
+      <div class="workflow-heading">
+        <div>
+          <p class="panel-label">任务流程</p>
+          <h2 id="workflow-map-title">从律师发起任务到复核归档</h2>
+        </div>
+        <p>横向看业务阶段，纵向看能力层级。点击流程环节可查看相关 Skill。</p>
+      </div>
+
+      <div class="system-flow" aria-label="任务运行流程">
+        {% for stage in system_stages %}
+        <button class="flow-stage" type="button" data-system-stage="{{ stage }}" aria-pressed="false">{{ stage }}</button>
+        {% endfor %}
+      </div>
+
+      <div class="workflow-matrix">
+        <div class="workflow-matrix-head" aria-hidden="true">
+          <span>能力层级</span>
+          {% for stage in business_stages %}<span>{{ stage }}</span>{% endfor %}
+        </div>
+
+        {% for level in workflow_levels %}
+        <section class="workflow-row" aria-label="{{ level }}">
+          <div class="workflow-level">
+            <strong>{{ level }}</strong>
+            <span>{% if level == "通用能力层" %}整理任务与材料{% elif level == "专业法律工作层" %}分析、审阅与项目管理{% else %}形成可复核交付物{% endif %}</span>
+          </div>
+          {% for business_stage in business_stages %}
+          <div class="workflow-cell" data-stage="{{ business_stage }}">
+            <div class="workflow-tool-list">
+              {% for tool in tools %}
+                {% set profile = workflow_profiles.get(tool.id) %}
+                {% if profile and profile.level == level and business_stage in profile.businessStages %}
+                <a class="workflow-tool" data-workflow-tool="{{ tool.id }}" data-system-stages="{{ profile.systemStages|join('|') }}" href="{{ url_for('tool_detail', tool_id=tool.id) }}">{{ tool.name }}</a>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+          {% endfor %}
+        </section>
+        {% endfor %}
+
+        <section class="workflow-safeguard-row" aria-label="入口与保障层">
+          <div class="workflow-level"><strong>入口与保障层</strong><span>贯穿全部业务阶段</span></div>
+          <div class="workflow-safeguards">
+            {% for tool in tools %}
+              {% set profile = workflow_profiles.get(tool.id) %}
+              {% if profile and profile.level == "入口与保障层" %}
+              <a class="workflow-tool" data-workflow-tool="{{ tool.id }}" data-system-stages="{{ profile.systemStages|join('|') }}" href="{{ url_for('tool_detail', tool_id=tool.id) }}">{{ tool.name }}</a>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </section>
+      </div>
+      <div class="workflow-selection" aria-live="polite"><p data-workflow-message>点击任一 Skill，可直接进入该工具的使用说明。</p></div>
+    </section>
+
+    <div class="workbench-layout" data-view="tools" hidden>
+      <aside class="category-panel">
+        <p class="panel-label">工具分类</p>
+        <nav aria-label="工具分类">
+          {% for category in categories %}
+          <button class="category-button{% if loop.first %} is-active{% endif %}" type="button" data-category-filter="{{ category }}" aria-pressed="{{ 'true' if loop.first else 'false' }}">
+            <span>{{ category }}</span><span class="category-count">{{ counts[category] }}</span>
+          </button>
+          {% endfor %}
+        </nav>
+        <div class="sidebar-note"><strong>注意</strong><p>工具结果仅供工作辅助，关键结论须由经办律师复核。</p></div>
+      </aside>
+
+      <section class="tool-browser" aria-label="工具清单">
+        <div class="toolbar">
+          <div class="search-field"><label for="tool-search">搜索工具</label><input id="tool-search" type="search" placeholder="搜索名称、场景或输入输出"></div>
+          <div class="status-field">
+            <label for="status-filter">接入状态</label>
+            <select id="status-filter">
+              <option value="all">全部状态</option>
+              {% for value, label in status_labels.items() %}<option value="{{ value }}">{{ label }}</option>{% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="result-heading" aria-live="polite">
+          <p><strong data-result-count>{{ tools|length }}</strong> 个工具</p>
+          <button class="clear-button" type="button" data-clear-filters hidden>清除筛选</button>
+        </div>
+
+        <section class="tool-grid" aria-label="工具列表">
+          {% for tool in tools %}
+          {% set featured = tool.id == "local-legal-redaction" %}
+          <article class="tool-card{% if featured %} tool-card-featured{% endif %}" data-tool-card data-category="{{ tool.category }}" data-status="{{ tool.status }}" data-search="{{ ([tool.name, tool.category, tool.summary] + tool.inputs + tool.outputs)|join(' ')|lower }}">
+            <div class="card-topline"><span class="category-label">{{ tool.category }}</span><span class="status-badge status-{{ tool.status }}">{{ status_labels[tool.status] }}</span></div>
+            {% if featured %}<p class="featured-label">优先推荐 · 全程本机处理</p>{% endif %}
+            <h2><a href="{{ url_for('tool_detail', tool_id=tool.id) }}">{{ tool.name }}</a></h2>
+            <p class="tool-summary">{{ tool.summary }}</p>
+            <div class="card-footer">
+              <div class="tool-actions tool-actions-compact">
+                {% if tool.status == "local-skill" %}<span class="unavailable-action">通过本地 Codex 调用</span>{% endif %}
+                {% if tool.localUrl %}<a class="action action-primary" href="{{ tool.localUrl }}">打开本地工具</a>{% endif %}
+                {% if tool.repository %}<a class="action action-secondary" href="{{ tool.repository }}" target="_blank" rel="noreferrer">安装 / 查看 GitHub</a>{% endif %}
+                {% if not tool.localUrl and not tool.repository and tool.status != "local-skill" %}<span class="unavailable-action">{% if tool.status == "building" %}建设中{% else %}等待接入{% endif %}</span>{% endif %}
+              </div>
+              <a class="detail-link" href="{{ url_for('tool_detail', tool_id=tool.id) }}">查看详情 <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+          {% endfor %}
+        </section>
+
+        <section class="empty-state" data-empty-state hidden aria-live="polite">
+          <p class="empty-index">00</p><h2>暂未找到匹配工具</h2><p>可以换一个关键词，或清除当前筛选条件。</p>
+          <button class="action action-primary" type="button" data-clear-filters>清除筛选</button>
+        </section>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer"><p>虞律团队 · 内部工作入口</p><p>AI 提效，专业判断始终由律师完成。</p></footer>
+</div>
+{% endblock %}
+
+{% block scripts %}<script src="{{ url_for('static', filename='workbench.js') }}" defer></script>{% endblock %}
