@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 import { categories, statuses, type Category, type ToolRecord, type ToolStatus } from "../../lib/tool-registry";
 import { statusLabels } from "../../lib/tool-status";
 import { ToolCard } from "./ToolCard";
@@ -42,11 +43,17 @@ export function WorkbenchShell({ tools }: { tools: readonly ToolRecord[] }) {
   return (
     <div className="site-shell">
       <header className="site-header">
-        <div className="brand-mark" aria-hidden="true">虞律</div>
-        <div className="brand-copy">
-          <p className="eyebrow">YU LAW TEAM</p>
-          <p className="brand-name">虞律团队 AI 工作台</p>
-        </div>
+        <Link className="brand-home" href="/" aria-label="返回虞律团队 AI 工作台首页">
+          <span className="brand-mark" aria-hidden="true">虞律</span>
+          <span className="brand-copy">
+            <span className="eyebrow">YU LAW TEAM</span>
+            <span className="brand-name">虞律团队 AI 工作台</span>
+          </span>
+        </Link>
+        <nav className="site-nav" aria-label="主要导航">
+          <Link href="/" aria-current="page">工作台</Link>
+          <Link href="/guide">团队使用手册</Link>
+        </nav>
       </header>
 
       <section className="hero" aria-labelledby="workbench-title">

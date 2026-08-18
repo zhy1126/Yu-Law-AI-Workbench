@@ -138,11 +138,34 @@ test("homepage exposes accessible navigation, filters, and tool landmarks", asyn
   assert.match(html, /<label[^>]+for="tool-search"/i);
   assert.match(html, /<label[^>]+for="status-filter"/i);
   assert.match(html, /清除筛选/);
+  assert.match(html, /href="\/guide"/);
+  assert.match(html, /团队使用手册/);
   assert.match(html, /<div class="sidebar-note">\s*<strong>注意<\/strong>/);
   assert.doesNotMatch(html, /<div class="sidebar-note">\s*<span[^>]*>01<\/span>/);
   for (const category of ["数据安全", "基础工作", "文书制作", "专业法律分析", "Anthropic Legal"]) {
     assert.match(html, new RegExp(`data-category="${category}"`));
   }
+});
+
+test("team handbook renders the complete onboarding workflow", async () => {
+  const response = await render("/guide");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /虞律团队 AI 工作流使用手册/);
+  assert.match(html, /安装和登录/);
+  assert.match(html, /加入“虞律团队 AI 工作流试验”/);
+  assert.match(html, /工作流如何运转/);
+  assert.match(html, /周会或日常工作/);
+  assert.match(html, /计划栏/);
+  assert.match(html, /成果回到任务/);
+  assert.match(html, /先推荐、律师确认后执行/);
+  assert.match(html, /待律师复核/);
+  assert.match(html, /只推荐 1–3 个最适合的 Skill/);
+  assert.match(html, /复制 Prompt/);
+  assert.match(html, /第一次完整跑通：虚拟任务演练/);
+  assert.match(html, /管理员上线前检查/);
+  assert.match(html, /返回 AI 工作台/);
 });
 
 test("homepage exposes a workflow map with business stages and capability layers", async () => {
